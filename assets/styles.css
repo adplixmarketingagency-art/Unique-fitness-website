@@ -1170,7 +1170,7 @@ a {
   place-items: center;
   border: 0.15rem solid currentColor;
   border-radius: 50%;
-  content: "↗";
+   content: "→";
   font-size: 0.8rem;
   line-height: 1;
   transition: background-color 180ms ease, color 180ms ease;
