@@ -10,13 +10,13 @@ The supplied Google Maps place and review source is [Unique Unisex Fitness & Gym
 
 ## Run locally
 
-No build step is required. From the project root, start Python's built-in local server:
+No build step is required. From the project root, start the Node development server:
 
 ```bash
-python3 -m http.server 8000 --bind 127.0.0.1
+npm run dev
 ```
 
-Open <http://127.0.0.1:8000/> in a browser. Keep the terminal running while testing, and press `Ctrl-C` to stop the server. Use a different port, such as `4173`, if port `8000` is already in use.
+Open <http://127.0.0.1:3000/> in a browser. Keep the terminal running while testing, and press `Ctrl-C` to stop the server. Set `PORT=4173 npm run dev` if port `3000` is already in use.
 
 Serve the site over HTTP rather than opening the HTML file directly so that relative asset paths and browser form behavior match a real deployment.
 

@@ -4,6 +4,8 @@
   "private": true,
   "description": "Static multi-page website for Unique Unisex Fitness and Gym.",
   "scripts": {
+    "dev": "node --watch dev-server.mjs",
+    "start": "node dev-server.mjs",
     "test": "node tests/site-test.js"
   }
 }
