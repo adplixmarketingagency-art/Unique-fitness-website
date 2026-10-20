@@ -1,0 +1,9 @@
+.git
+.gitignore
+.agents
+.claude
+.taste-skill
+graphify-out
+doc
+.DS_Store
+node_modules

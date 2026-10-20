@@ -1,0 +1,9 @@
+{
+  "name": "unique-fitness-gym-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Static multi-page website for Unique Unisex Fitness and Gym.",
+  "scripts": {
+    "test": "node tests/site-test.js"
+  }
+}

@@ -1,0 +1,8 @@
+.DS_Store
+.agents/
+.claude/
+.taste-skill/
+.opencode/
+graphify-out/
+doc/
+node_modules/
