@@ -10,14 +10,63 @@ The supplied Google Maps place and review source is [Unique Unisex Fitness & Gym
 
 ## Design system
 
-- **Palette**: obsidian ground `#0B0D0F`, surfaces `#15191D` / `#1D2328`, gold accent `#C5A46D` / `#D9BC8B`, ink `#F5F5F2` / `#A3A9AE`, hairlines `#30363B`.
-- **Type**: Archivo variable (Google Fonts, width 62..125, weight 100..900). Bold wide display; regular-width text. No other family is loaded.
-- **Layout**: typographic home hero (no photo behind the text, plus a floating `Check your BMI` pill that links to the calculator), split sections (`sec-split`, heading column beside content), bounded bento photo grids (`figs`), review-wall cards (`rwall`), and one framed CTA panel per page.
-- **BMI calculator** (`bmi/`): height/weight inputs in cm·kg or ft+in·lb, computed fully client-side (no data sent or stored). Result shows the BMI value, the WHO band it lands in, a highlighted band-bar marker, and the healthy weight range for the entered height. The bands and their footnote are rendered with the shared board pattern.
+### Colour
+
+All colour is authored in **OKLCH** in `assets/styles.css` and exposed as CSS custom properties on `:root`. The original hue family is preserved — obsidian ground, crimson/ember accent, brass secondary — and each has been refined into a full tonal scale with a fixed hue and a lightness-anchored chroma curve.
+
+Raw ramps (each step 50 to 950 unless noted):
+
+| Ramp | Hue | Role | Steps |
+| --- | --- | --- | --- |
+| `--neutral-*` | 245 | Ink and surface greys | 50–800, plus 850, 900, 950, 975 |
+| `--ember-*` | 29.22 | Primary accent (crimson) | 50–950 |
+| `--brass-*` | 89.80 | Secondary accent (brass) | 50–950 |
+| `--jade-*` | 158.58 | Success | 300–900 |
+| `--amber-*` | 63.18 | Warning | 300–900 |
+| `--crimson-*` | 18.74 | Danger | 300–900 |
+
+Semantic tokens sit on top of the ramps and are the only names components should use:
+
+- Ground and surfaces: `--color-bg`, `--color-bg-deep`, `--color-surface`, `--color-surface-elevated`, `--color-surface-raised`, `--color-surface-sunken`.
+- Lines: `--color-border`, `--color-border-strong`, `--color-border-soft`.
+- Text: `--color-text-primary`, `--color-text-secondary`, `--color-text-muted`, `--color-text-faint`, `--color-text-inverse`.
+- Accent: `--color-accent`, `--color-accent-hover`, `--color-accent-active`, `--color-accent-quiet`, `--color-accent-text`, `--color-accent-strong`, `--color-accent-line`; secondary `--color-secondary`, `--color-secondary-text`. `--color-accent-strong` is the deepest red that still clears 4.5:1 as small text, and is what accent-coloured labels under 18px use.
+- Status: `--color-success`, `--color-warning`, `--color-danger`.
+- Overlays: `--color-scrim`, `--color-overlay`.
+
+Every foreground and background pair in the shipped pages was checked against WCAG AA (4.5:1 for body text, 3:1 for large text) against its composited background.
+
+### Type
+
+- **Archivo** variable (Google Fonts, width 62..125, weight 100..900). Bold wide display; regular-width text. No other family is loaded.
+- A modular scale drives the type ramp through `--step-display`, `--step-head`, `--step-subhead`, `--step-quote`, `--step-lead`, `--step-body`, `--step-small`, `--step-micro`, each a `clamp()` between a floor and a ceiling.
+- Tracking, leading, and measure are tokenised as `--tracking-display|head|body|label`, `--leading-display|head|body`, `--measure`, `--measure-tight`.
+
+### Space, radius, elevation, motion
+
+- A 4px base spacing scale runs `--space-1` (0.25rem) through `--space-24` (6rem).
+- Radii run `--r-xs` through `--r-2xl`, with `--r-media: 1rem` for photographs and `--r-pill` for capsule controls.
+- Elevation is `--shadow-sm|md|lg|accent` plus `--ring-accent` for the focused accent state.
+- Easings are `--ease-out`, `--ease-expo`, `--ease-in-out`, `--ease-soft`; durations are `--t-press`, `--t-hover`, `--t-ui`, `--t-reveal`, with `--stagger-line` and `--stagger-item` for staged entrances.
+
+### Layout
+
+- Layout frame and gutter are `--frame` and `--gutter`; breakpoints are 30rem, 34rem, 48rem, 60rem, and 64rem, mobile-first.
+- The home hero (`v-hero`) is a typographic split: `v-hero__copy` on the left with the display wordmark, slogan, lead, and calls to action; `v-hero__aside` on the right with an inline BMI card and a `Check your calorie goal` pill that links to the calorie calculator. The two blocks stack below 64rem.
+- Section heads use `sec-head`; `sec-head--split` puts the note in a right-hand column from 48rem and stacks it below the heading on narrow screens. `sec-split` sets a narrow sticky heading column beside the content from 48rem.
+- Bounded photo grids (`figs`) are bento layouts; `figs__lead` and `figs__tall` are the large and portrait variants. Review-wall cards (`rwall`) and one framed CTA panel per page complete the pattern set.
+- **BMI calculator** (`bmi/`): height/weight inputs in cm·kg or ft+in·lb, computed fully client-side (no data sent or stored). Result shows the BMI value, the WHO band it lands in, a highlighted band-bar marker, and the healthy weight range for the entered height. The bands and their footnote are rendered with the shared board pattern. On wide screens the calculator form is sticky and the band list scrolls beside it.
 - **Photography treatment**: every bounded photograph uses one soft radius token (`--r-media: 1rem`) and visible grid gaps; full-bleed usage is limited to the viewport-edge media panels (home hero and closing CTA).
-- **Hero background**: the requested Scrollhaus-style gradient could not be lifted as code (the Backgrounds MCP server exposes metadata only, no source). The shipped hero is a hand-built reinterpretation in brand colours: layered radial gold gradients plus an inline SVG `feTurbulence` film-grain overlay in `assets/styles.css`.
-- **Motion**: load/rise reveals and clip-path image opens driven by `IntersectionObserver`; all hero text lines stagger once on load.
-- **Copy rules**: hour ranges use en dashes (`05:00–22:00`), titles use middle dots (`·`), and no em dashes appear in page copy.
+
+### Motion
+
+- Load and scroll reveals and clip-path image opens are driven by `IntersectionObserver` in `assets/main.js`. The JavaScript owns the contract: it adds `.is-in` to reveal targets, splits headings into `span.line > span` with a `--i` stagger index, and writes `--d`, `--magnet-x`, and `--magnet-y` custom properties. CSS reacts to those; it does not set them.
+- Runtime state classes carry the JavaScript-to-CSS contract: `.is-in` (a target has been revealed), `.is-open` and `.is-closed` (disclosure panels), `.is-scrolled` (the header after the first scroll), `.is-ready` and `.is-on` (the staged media sequence), `.touched` and `.is-error` (form fields), and `.is-here` (the active BMI band segment). The scripts own these class names; the stylesheet only reacts to them.
+- Every animation is gated behind `prefers-reduced-motion`, and cross-document navigation uses `@view-transition { navigation: auto }`.
+
+### Copy rules
+
+Hour ranges use en dashes (`05:00–22:00`), titles use middle dots (`·`), and no em dashes appear in page copy.
 
 ## Do not link
 

@@ -85,44 +85,46 @@
       <section class="v-hero" data-scroll-scene aria-labelledby="hero-title">
         <canvas class="hero-starfield" data-hero-starfield aria-hidden="true"></canvas>
         <div class="v-hero__inner frame-in">
-          <h1 class="display v-hero__title" id="hero-title"><span class="v-hero__title-line"><span class="v-hero__title-accent">Unique</span> by</span> <span class="v-hero__title-line"><span class="hero-barbell" aria-hidden="true"><svg viewBox="0 0 260 64" focusable="false"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M6 32h248" stroke-width="5"></path><rect x="28" y="25" width="8" height="14" rx="2" fill="currentColor" stroke="none"></rect><rect x="38" y="19" width="10" height="26" rx="3" fill="currentColor" stroke="none"></rect><rect x="52" y="12" width="12" height="40" rx="3" fill="currentColor" stroke="none"></rect><rect x="70" y="4" width="16" height="56" rx="3" fill="currentColor" stroke="none"></rect><rect x="174" y="4" width="16" height="56" rx="3" fill="currentColor" stroke="none"></rect><rect x="196" y="12" width="12" height="40" rx="3" fill="currentColor" stroke="none"></rect><rect x="212" y="19" width="10" height="26" rx="3" fill="currentColor" stroke="none"></rect><rect x="224" y="25" width="8" height="14" rx="2" fill="currentColor" stroke="none"></rect></g></svg></span><span class="v-hero__title-name">name.</span></span></h1>
-          <p class="v-hero__slogan" data-load style="--d:440ms">Stronger every morning.</p>
-          <p class="lead v-hero__lead" data-load style="--d:520ms">Gym training, CrossFit, yoga and one-to-one coaching on 100 Feet Road, Mudaliarpet: one unisex floor, open from first light.</p>
-          <div class="hero-actions" data-load style="--d:600ms">
-            <a class="button button--beam" data-tel href="tel:+919994985599">Call the gym</a>
-            <a class="button button--ghost button--beam" href="https://maps.app.goo.gl/KbJBjfcGLrUxyGn37" target="_blank" rel="noreferrer">Get directions</a>
+          <div class="v-hero__copy">
+            <h1 class="display v-hero__title" id="hero-title"><span class="v-hero__title-line"><span class="v-hero__title-accent">Unique</span> by</span> <span class="v-hero__title-line"><span class="hero-barbell" aria-hidden="true"><svg viewBox="0 0 260 64" focusable="false"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M6 32h248" stroke-width="5"></path><rect x="28" y="25" width="8" height="14" rx="2" fill="currentColor" stroke="none"></rect><rect x="38" y="19" width="10" height="26" rx="3" fill="currentColor" stroke="none"></rect><rect x="52" y="12" width="12" height="40" rx="3" fill="currentColor" stroke="none"></rect><rect x="70" y="4" width="16" height="56" rx="3" fill="currentColor" stroke="none"></rect><rect x="174" y="4" width="16" height="56" rx="3" fill="currentColor" stroke="none"></rect><rect x="196" y="12" width="12" height="40" rx="3" fill="currentColor" stroke="none"></rect><rect x="212" y="19" width="10" height="26" rx="3" fill="currentColor" stroke="none"></rect><rect x="224" y="25" width="8" height="14" rx="2" fill="currentColor" stroke="none"></rect></g></svg></span><span class="v-hero__title-name">name.</span></span></h1>
+            <p class="v-hero__slogan" data-load style="--d:440ms">Stronger every morning.</p>
+            <p class="lead v-hero__lead" data-load style="--d:520ms">Gym training, CrossFit, yoga and one-to-one coaching on 100 Feet Road, Mudaliarpet: one unisex floor, open from first light.</p>
+            <div class="hero-actions" data-load style="--d:600ms">
+              <a class="button button--beam" data-tel href="tel:+919994985599">Call the gym</a>
+              <a class="button button--ghost button--beam" href="https://maps.app.goo.gl/KbJBjfcGLrUxyGn37" target="_blank" rel="noreferrer">Get directions</a>
+            </div>
           </div>
-          <form class="hero-bmi-calc" id="hero-bmi-calc" data-hero-bmi novalidate data-load style="--d:660ms">
-            <label>
-              <span>Height <small>cm</small></span>
-              <input name="height" type="number" min="100" max="250" step="0.1" inputmode="decimal" placeholder="170" required>
-            </label>
-            <label>
-              <span>Weight <small>kg</small></span>
-              <input name="weight" type="number" min="25" max="300" step="0.1" inputmode="decimal" placeholder="65" required>
-            </label>
-            <button class="button button--beam" type="submit">Check BMI</button>
-            <p class="hero-bmi-calc__result" data-hero-bmi-result role="status" aria-live="polite"><strong data-hero-bmi-value>—</strong><span data-hero-bmi-band>Enter height + weight.</span></p>
-          </form>
-        </div>
-        <div class="bmi-float-wrap">
-          <div class="bmi-float-callout" aria-hidden="true">
-            <span>Check your calorie goal here</span>
+          <div class="v-hero__aside">
+            <form class="hero-bmi-calc" id="hero-bmi-calc" data-hero-bmi novalidate data-load style="--d:660ms">
+              <label>
+                <span>Height <small>cm</small></span>
+                <input name="height" type="number" min="100" max="250" step="0.1" inputmode="decimal" placeholder="170" required>
+              </label>
+              <label>
+                <span>Weight <small>kg</small></span>
+                <input name="weight" type="number" min="25" max="300" step="0.1" inputmode="decimal" placeholder="65" required>
+              </label>
+              <button class="button button--beam" type="submit">Check BMI</button>
+              <p class="hero-bmi-calc__result" data-hero-bmi-result role="status" aria-live="polite"><strong data-hero-bmi-value>—</strong><span data-hero-bmi-band>Enter height + weight.</span></p>
+            </form>
+            <div class="bmi-float-wrap">
+              <svg class="bmi-float-arrows" viewBox="-7 -1 15 31" focusable="false" aria-hidden="true">
+                <defs>
+                  <linearGradient id="doodle-fade" gradientUnits="userSpaceOnUse" x1="3" y1="2" x2="4" y2="28">
+                    <stop offset="0" stop-color="#ffffff" stop-opacity="0.95"></stop>
+                    <stop offset="0.55" stop-color="#ffffff" stop-opacity="0.62"></stop>
+                    <stop offset="1" stop-color="#ffffff" stop-opacity="0.24"></stop>
+                  </linearGradient>
+                </defs>
+                <path d="M3.4 28 C -1 21, -1 10, 3.4 2.4" fill="none" stroke="url(#doodle-fade)" stroke-width="2.2" stroke-linecap="round"></path>
+                <path d="M0.2 6.4 L3.4 2.4 L6.6 6.4" fill="none" stroke="#ffffff" stroke-opacity="0.92" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path>
+              </svg>
+              <div class="bmi-float-callout" aria-hidden="true">
+                <span>Check your calorie goal here</span>
+              </div>
+              <a class="bmi-float" href="bmi/#calorie-calculator" data-magnetic>Check your calorie goal <span class="bmi-float__arrow" aria-hidden="true">→</span></a>
+            </div>
           </div>
-          <svg class="bmi-float-arrows" viewBox="-9 0 53 26" focusable="false" aria-hidden="true">
-            <defs>
-              <linearGradient id="doodle-fade" gradientUnits="userSpaceOnUse" x1="2" y1="1" x2="6" y2="23">
-                <stop offset="0" stop-color="#ffffff" stop-opacity="0.04"></stop>
-                <stop offset="0.6" stop-color="#ffffff" stop-opacity="0.55"></stop>
-                <stop offset="1" stop-color="#ffffff" stop-opacity="1"></stop>
-              </linearGradient>
-              <marker id="doodle-head" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto" markerUnits="userSpaceOnUse">
-                <path d="M0.6 0.6 5 3 0.6 5.4" fill="none" stroke="#ffffff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path>
-              </marker>
-            </defs>
-            <path d="M2 1 C -6 7, -6 16, 4 23" fill="none" stroke="url(#doodle-fade)" stroke-width="1.8" stroke-linecap="round" marker-end="url(#doodle-head)"></path>
-          </svg>
-          <a class="bmi-float" href="bmi/#calorie-calculator" data-magnetic>Check your calorie goal <span class="bmi-float__arrow" aria-hidden="true">→</span></a>
         </div>
         <div class="v-hero__meta frame-in" data-load style="--d:720ms">
           <span class="open-now" data-open-now>Open daily <span data-placeholder="hours">05:00–22:00</span></span>
