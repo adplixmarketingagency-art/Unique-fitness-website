@@ -22,7 +22,7 @@
     navigation: [
       { label: "Home", href: "/" },
       { label: "About", href: "/about/" },
-      { label: "Services", href: "/services/" },
+      { label: "BMI", href: "/bmi/" },
       { label: "Contact", href: "/contact/" }
     ],
     contact: {

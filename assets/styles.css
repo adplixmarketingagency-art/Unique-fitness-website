@@ -666,9 +666,8 @@ body[data-page="home"] main {
   background: var(--space-bg);
   opacity: 0.68;
   pointer-events: none;
-  transform: translate3d(0, calc(var(--hero-scroll, 0) * 4rem), 0) scale(calc(1 + var(--hero-scroll, 0) * 0.06));
-  transform-origin: center top;
-  will-change: transform;
+  /* No CSS transform here: scaling the bitmap made the stars smear during
+     scroll. The parallax is drawn inside the canvas at native resolution. */
 }
 
 /* Film grain overlay: a fractal-noise tile kept near-invisible. */
@@ -788,12 +787,12 @@ body[data-page="home"] main {
 .v-hero__lead {
   max-width: 46ch;
   margin-top: 1.6rem;
-  font-size: clamp(0.3rem, 0.1rem + 1.1vw, 2rem);
+  font-size: var(--step-lead);
 }
 
 .v-hero .hero-actions {
   justify-content: flex-start;
-  margin-top: 2.4rem;
+  margin-top: 3.6rem;
 }
 
 .hero-bmi-calc {
@@ -808,14 +807,51 @@ body[data-page="home"] main {
   border: 1px solid rgba(163, 169, 174, 0.22);
 }
 
+/* Wide screens: the title column on the left, the BMI calculator card parked
+   beside it on the right instead of under the buttons. */
 @media (min-width: 65rem) {
+  .v-hero__inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 26rem);
+    grid-template-rows: repeat(4, auto);
+    align-content: center;
+    justify-items: start;
+    column-gap: clamp(2rem, 4vw, 4.5rem);
+    row-gap: 0;
+  }
+
+  .v-hero__title {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .v-hero__slogan {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .v-hero__lead {
+    grid-column: 1;
+    grid-row: 3;
+  }
+
+  .v-hero .hero-actions {
+    grid-column: 1;
+    grid-row: 4;
+  }
+
   .hero-bmi-calc {
-    position: absolute;
-    z-index: 3;
-    top: calc(var(--header-h) + 3.75rem);
-    right: var(--frame);
-    width: min(24rem, calc(100% - (var(--frame) * 2)));
-    margin-top: 0;
+    grid-column: 2;
+    grid-row: 1 / 5;
+    align-self: start;
+    width: 100%;
+    margin-top: 5rem;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+
+  .hero-bmi-calc .button {
+    grid-column: 1 / -1;
+    justify-self: stretch;
   }
 }
 
@@ -1763,12 +1799,17 @@ body[data-page="home"] main {
 
 /* Floating pill on the home hero: the way into the calculator. */
 
-.bmi-float {
+.bmi-float-wrap {
   position: absolute;
   z-index: 2;
-  top: auto;
-  bottom: 7.4rem;
   right: var(--frame);
+  bottom: 8.6rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.bmi-float {
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
@@ -1786,34 +1827,26 @@ body[data-page="home"] main {
 }
 
 .bmi-float-callout {
-  position: absolute;
-  z-index: 4;
-  right: calc(var(--frame) + 0.2rem);
-  bottom: 11.35rem;
   display: flex;
   align-items: center;
   gap: 0.15rem;
+  margin-bottom: 0.15rem;
   color: var(--ink);
   font-size: 0.78rem;
   font-weight: 700;
+  white-space: nowrap;
   pointer-events: none;
-  transform: rotate(-2deg);
-  transform-origin: right bottom;
 }
 
-.bmi-float-callout svg {
-  width: 5.8rem;
-  height: 2.5rem;
+/* One white doodle arrow: starts at the label's first word, curves down and
+   points at the pill's first word. */
+.bmi-float-arrows {
+  display: block;
+  width: 4.4rem;
+  height: 2.6rem;
+  margin-bottom: 0.2rem;
   overflow: visible;
-  color: var(--hero-red);
-}
-
-.bmi-float-callout path {
-  fill: none;
-  stroke: currentColor;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-width: 2.4;
+  pointer-events: none;
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -1859,35 +1892,30 @@ body[data-page="home"] main {
     padding-inline: 0.7rem;
   }
 
+  /* Small screens: the pill joins the hero's flow so it can never sit on top
+     of the BMI form. The hand-drawn annotation has nowhere safe to point at
+     this width, so it is dropped rather than left overlapping. */
+  .bmi-float-wrap {
+    position: static;
+    inset: auto;
+    align-items: center;
+    margin: 0 var(--frame) 1.5rem;
+  }
+
   .bmi-float {
-    bottom: 10.5rem;
-    animation: none;
     padding: 0.7rem 1.1rem;
     font-size: 0.85rem;
-    right: auto;
-    left: 50%;
-    transform: translate3d(calc(-50% + var(--magnet-x, 0px)), var(--magnet-y, 0px), 0);
+    animation: none;
+    transform: none;
   }
 
-  .bmi-float-callout {
-    right: auto;
-    bottom: 12.5rem;
-    left: 50%;
-    align-items: center;
-    flex-direction: column;
-    gap: 0;
-    transform: translateX(-50%) rotate(-2deg);
-  }
-
-  .bmi-float-callout svg {
-    width: 5rem;
-    height: 2.2rem;
-    margin-left: 4rem;
-    transform: scaleX(-1);
+  .bmi-float-callout,
+  .bmi-float-arrows {
+    display: none;
   }
 
   .bmi-float:active {
-    transform: translate3d(calc(-50% + var(--magnet-x, 0px)), var(--magnet-y, 0px), 0) scale(0.97);
+    transform: scale(0.97);
   }
 }
 

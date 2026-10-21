@@ -85,7 +85,7 @@
       <section class="v-hero" data-scroll-scene aria-labelledby="hero-title">
         <canvas class="hero-starfield" data-hero-starfield aria-hidden="true"></canvas>
         <div class="v-hero__inner frame-in">
-          <h1 class="display v-hero__title" id="hero-title"><span class="v-hero__title-line"><span class="v-hero__title-accent">Unique</span> by</span> <span class="v-hero__title-line"><span class="hero-barbell" aria-hidden="true"><svg viewBox="0 0 260 64" focusable="false"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M38 32h184" stroke-width="4"></path><path d="M70 13v38M190 13v38" stroke-width="3"></path><rect x="8" y="10" width="12" height="44" rx="3" fill="currentColor" stroke="none"></rect><rect x="22" y="6" width="12" height="52" rx="3" fill="currentColor" stroke="none"></rect><rect x="44" y="17" width="10" height="30" rx="3" fill="currentColor" stroke="none"></rect><rect x="206" y="17" width="10" height="30" rx="3" fill="currentColor" stroke="none"></rect><rect x="224" y="6" width="12" height="52" rx="3" fill="currentColor" stroke="none"></rect><rect x="240" y="10" width="12" height="44" rx="3" fill="currentColor" stroke="none"></rect></g></svg></span><span class="v-hero__title-name">name.</span></span></h1><br><br><br>
+          <h1 class="display v-hero__title" id="hero-title"><span class="v-hero__title-line"><span class="v-hero__title-accent">Unique</span> by</span> <span class="v-hero__title-line"><span class="hero-barbell" aria-hidden="true"><svg viewBox="0 0 260 64" focusable="false"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M38 32h184" stroke-width="4"></path><path d="M70 13v38M190 13v38" stroke-width="3"></path><rect x="8" y="10" width="12" height="44" rx="3" fill="currentColor" stroke="none"></rect><rect x="22" y="6" width="12" height="52" rx="3" fill="currentColor" stroke="none"></rect><rect x="44" y="17" width="10" height="30" rx="3" fill="currentColor" stroke="none"></rect><rect x="206" y="17" width="10" height="30" rx="3" fill="currentColor" stroke="none"></rect><rect x="224" y="6" width="12" height="52" rx="3" fill="currentColor" stroke="none"></rect><rect x="240" y="10" width="12" height="44" rx="3" fill="currentColor" stroke="none"></rect></g></svg></span><span class="v-hero__title-name">name.</span></span></h1>
           <p class="v-hero__slogan" data-load style="--d:440ms">Stronger every morning.</p>
           <p class="lead v-hero__lead" data-load style="--d:520ms">Gym training, CrossFit, yoga and one-to-one coaching on 100 Feet Road, Mudaliarpet: one unisex floor, open from first light.</p>
           <div class="hero-actions" data-load style="--d:600ms">
@@ -104,15 +104,26 @@
             <button class="button button--beam" type="submit">Check BMI</button>
             <p class="hero-bmi-calc__result" data-hero-bmi-result role="status" aria-live="polite"><strong data-hero-bmi-value>—</strong><span data-hero-bmi-band>Enter height + weight.</span></p>
           </form>
-        </div><br><br>
-        <div class="bmi-float-callout" aria-hidden="true">
-         
-          <!-- <svg viewBox="0 0 112 48" focusable="false"> -->
-            <path d="M4 8C42 5 72 12 91 37" fill="none"></path>
-            <path d="m80 32 12 7-4-13" fill="none"></path>
-          </svg>
         </div>
-        <a class="bmi-float" href="bmi/#calorie-calculator" data-magnetic>Check your calorie goal <span class="bmi-float__arrow" aria-hidden="true">→</span></a>
+        <div class="bmi-float-wrap">
+          <div class="bmi-float-callout" aria-hidden="true">
+            <span>Check your calorie goal here</span>
+          </div>
+          <svg class="bmi-float-arrows" viewBox="-9 0 53 26" focusable="false" aria-hidden="true">
+            <defs>
+              <linearGradient id="doodle-fade" gradientUnits="userSpaceOnUse" x1="2" y1="1" x2="6" y2="23">
+                <stop offset="0" stop-color="#ffffff" stop-opacity="0.04"></stop>
+                <stop offset="0.6" stop-color="#ffffff" stop-opacity="0.55"></stop>
+                <stop offset="1" stop-color="#ffffff" stop-opacity="1"></stop>
+              </linearGradient>
+              <marker id="doodle-head" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto" markerUnits="userSpaceOnUse">
+                <path d="M0.6 0.6 5 3 0.6 5.4" fill="none" stroke="#ffffff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path>
+              </marker>
+            </defs>
+            <path d="M2 1 C -6 7, -6 16, 4 23" fill="none" stroke="url(#doodle-fade)" stroke-width="1.8" stroke-linecap="round" marker-end="url(#doodle-head)"></path>
+          </svg>
+          <a class="bmi-float" href="bmi/#calorie-calculator" data-magnetic>Check your calorie goal <span class="bmi-float__arrow" aria-hidden="true">→</span></a>
+        </div>
         <div class="v-hero__meta frame-in" data-load style="--d:720ms">
           <span class="open-now" data-open-now>Open daily <span data-placeholder="hours">05:00–22:00</span></span>
           <span><strong data-placeholder="rating">5.0</strong> on Google · <span data-placeholder="reviews">20</span> reviews</span>
