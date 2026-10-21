@@ -1787,7 +1787,7 @@ body[data-page="home"] main {
 
 .bmi-float-callout {
   position: absolute;
-  z-index: 2;
+  z-index: 4;
   right: calc(var(--frame) + 0.2rem);
   bottom: 11.35rem;
   display: flex;
