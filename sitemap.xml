@@ -8,13 +8,7 @@
     <loc>https://[YOUR-DOMAIN]/about/</loc>
   </url>
   <url>
-    <loc>https://[YOUR-DOMAIN]/services/</loc>
-  </url>
-  <url>
-    <loc>https://[YOUR-DOMAIN]/blog/</loc>
-  </url>
-  <url>
-    <loc>https://[YOUR-DOMAIN]/blog/post.html</loc>
+    <loc>https://[YOUR-DOMAIN]/bmi/</loc>
   </url>
   <url>
     <loc>https://[YOUR-DOMAIN]/contact/</loc>

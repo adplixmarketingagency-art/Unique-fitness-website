@@ -2,11 +2,26 @@
 
 Production notes for the Unique Fitness Gym static site.
 
-The site is a no-build, multi-page static website for **Unique Unisex Fitness and Gym** in Kumaran Nagar, Mudaliarpet, Pondicherry. It follows the requested fitness-site structure, using the supplied local imagery for the actual gym and clearly marked external references for activity concepts.
+The site is a no-build, multi-page static website for **Unique Unisex Fitness and Gym** in Kumaran Nagar, Mudaliarpet, Pondicherry. It uses the supplied local imagery for the actual gym and clearly marked external references for activity concepts. Four pages ship today: home (`index.html`), About, BMI calculator (`bmi/`), and Contact. The former Notes/blog section and the former Services page were removed at the client's request; the six listing services are documented on the home listing board, and the Services slot in the navigation now opens the BMI calculator.
 
-The public listing used for the current business facts is [Justdial](https://www.justdial.com/Pondicherry/Unique-Unisex-Fitness-and-Gym-Kumaran-Nagar-Mudaliarpet/0413PX413-X413-250910211420-K1I9_BZDET). Confirm all listing details with the gym before launch.
+The public listing used for the current business facts is [Justdial](https://www.justdial.com/Pondicherry/Unique-Unisex-Fitness-and-Gym-Kumaran-Nagar-Mudaliarpet/0413PX413-X413-250910211420-K1I9_BZDET). Justdial blocks scripted fetching (HTTP 403), so its details were transcribed manually. Confirm all listing details with the gym before launch.
 
 The supplied Google Maps place and review source is [Unique Unisex Fitness & Gym](https://maps.app.goo.gl/KbJBjfcGLrUxyGn37).
+
+## Design system
+
+- **Palette**: obsidian ground `#0B0D0F`, surfaces `#15191D` / `#1D2328`, gold accent `#C5A46D` / `#D9BC8B`, ink `#F5F5F2` / `#A3A9AE`, hairlines `#30363B`.
+- **Type**: Archivo variable (Google Fonts, width 62..125, weight 100..900). Bold wide display; regular-width text. No other family is loaded.
+- **Layout**: typographic home hero (no photo behind the text, plus a floating `Check your BMI` pill that links to the calculator), split sections (`sec-split`, heading column beside content), bounded bento photo grids (`figs`), review-wall cards (`rwall`), and one framed CTA panel per page.
+- **BMI calculator** (`bmi/`): height/weight inputs in cm·kg or ft+in·lb, computed fully client-side (no data sent or stored). Result shows the BMI value, the WHO band it lands in, a highlighted band-bar marker, and the healthy weight range for the entered height. The bands and their footnote are rendered with the shared board pattern.
+- **Photography treatment**: every bounded photograph uses one soft radius token (`--r-media: 1rem`) and visible grid gaps; full-bleed usage is limited to the viewport-edge media panels (home hero and closing CTA).
+- **Hero background**: the requested Scrollhaus-style gradient could not be lifted as code (the Backgrounds MCP server exposes metadata only, no source). The shipped hero is a hand-built reinterpretation in brand colours: layered radial gold gradients plus an inline SVG `feTurbulence` film-grain overlay in `assets/styles.css`.
+- **Motion**: load/rise reveals and clip-path image opens driven by `IntersectionObserver`; all hero text lines stagger once on load.
+- **Copy rules**: hour ranges use en dashes (`05:00–22:00`), titles use middle dots (`·`), and no em dashes appear in page copy.
+
+## Do not link
+
+The Google Business Profile social handle `@unique.fitness.gym_` belongs to a **different business in Kerala** with a near-identical name. No Instagram or other social profiles were verified for this gym, so the site carries no social links. Email and social links must come from the gym itself.
 
 ## Run locally
 
@@ -51,11 +66,11 @@ The page content is intended to be maintained in [`assets/data.js`](assets/data.
 4. Do not add credentials, API keys, or other secrets to this client-side file.
 5. Refresh the local page after saving. Use a hard refresh if the browser is still showing cached content.
 
-The current data model includes address, city, postal code, phone number, establishment year, public listing categories, map URL, hours, rating, and review count sourced from the supplied Google Maps place link and Justdial. Email, social profiles, app links, and blog metadata remain placeholders because they were not supplied.
+The current data model includes brand names, navigation, contact details (no email), hours, map URL, rating, review count, and six service entries sourced from the supplied Google Maps place link and Justdial. Email and social profiles remain placeholders because they were not supplied.
 
 ## Form endpoint setup
 
-This is a static site, so it cannot process form submissions by itself. No production form endpoint was supplied with the project.
+This is a static site, so it cannot process form submissions by itself. No production form endpoint was supplied with the project; the contact form keeps its placeholder endpoint and shows a "cannot send yet" status message instead.
 
 Before launch:
 
@@ -78,9 +93,10 @@ Do not expose private API keys in HTML or JavaScript. If the endpoint requires a
 
 ## Image provenance
 
-- Images under `assets/optimized/` are the supplied Unique Fitness Gym photos and are used for the facility, equipment, training floor, and owner sections.
-- Images under `assets/external/` are openly licensed Wikimedia Commons references for CrossFit, yoga, and meditation concepts. They are not photos of Unique Fitness Gym. Full source and license records are in [`assets/external/credits.json`](assets/external/credits.json).
-- [`assets/provided/mudaliarpet-street-view.jpg`](assets/provided/mudaliarpet-street-view.jpg) is a street-view screenshot supplied by the client and used for the Mudaliarpet location sections.
+- Images under `assets/optimized/` are the supplied Unique Fitness Gym photos and are used for the facility, equipment, training floor, and owner sections. The owner photographs are kept as supplied; they show the founder mid-pose and the achievement-wall magazine cover, so the achievement wall leads wherever both appear.
+- Images under `assets/external/` are openly licensed Wikimedia Commons references for the gym access, CrossFit, yoga, and meditation concepts. They are not photos of Unique Fitness Gym and are always captioned as concept references. Full source and license records are in [`assets/external/credits.json`](assets/external/credits.json).
+- [`assets/provided/personal-training.jpg`](assets/provided/personal-training.jpg) and [`assets/provided/Gym_founder_4k.png`](assets/provided/Gym_founder_4k.png) are client-supplied photographs (a personal-training session reference and the founder posing). Web deliveries are the optimized derivatives under `assets/optimized/`.
+- [`assets/provided/mudaliarpet-street-view.jpg`](assets/provided/mudaliarpet-street-view.jpg) is a street-view screenshot supplied by the client. It is currently unused on the pages but kept in the provided set.
 
 ## Deploy notes
 
@@ -108,7 +124,7 @@ The placeholder host is deliberately retained in the delivery files until a real
 
 ## Missing real brand information
 
-No official logo, email, social links, app URLs, confirmed service schedules/prices, or blog metadata were supplied. The phone number, address, rating, and review excerpts were taken from the supplied Google Maps place link; opening hours and listed services were also cross-checked against the public listing above.
+No official logo, email, social links, app URLs, or confirmed service schedules/prices were supplied. The phone number, address, rating, and review excerpts were taken from the supplied Google Maps place link; opening hours and listed services were also cross-checked against the public listing above.
 
 The following information was not supplied and must be confirmed before launch:
 
@@ -117,9 +133,8 @@ The following information was not supplied and must be confirmed before launch:
 - Social media links
 - App URLs
 - Confirmed service descriptions, schedules, and prices
-- Blog metadata, including any titles, authors, dates, slugs, descriptions, or images
 
-The supplied Google Maps listing provides the phone number `099949 85599`, a `5.0` rating from `20` reviews, and review excerpts used on the About and Services pages. It does not provide an email address. The favicon in this repository is an original temporary U monogram/wordmark-derived mark only. It must not be presented as the official Unique Fitness Gym logo.
+The supplied Google Maps listing provides the phone number `099949 85599`, a `5.0` rating from `20` reviews, and review excerpts used on the About page. It does not provide an email address. The favicon in this repository is an original temporary U monogram/wordmark-derived mark only. It must not be presented as the official Unique Fitness Gym logo.
 
 ## Assumptions recorded
 
@@ -127,3 +142,4 @@ The supplied Google Maps listing provides the phone number `099949 85599`, a `5.
 - The HTML pages, `assets/data.js`, CSS, and JavaScript are the source of truth; the site has no build step.
 - There is no server-side form handler; configure the endpoint before launch.
 - `https://[YOUR-DOMAIN]/` is a local-friendly canonical placeholder, not a real production domain.
+- Membership rates and class schedules stay unlisted everywhere because no source publishes them; every related section ends at the phone number instead.

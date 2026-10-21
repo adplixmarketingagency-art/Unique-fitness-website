@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="favicon-title favicon-desc">
   <title id="favicon-title">Unique Fitness Gym temporary U mark</title>
   <desc id="favicon-desc">An original placeholder U monogram derived from the Unique Fitness Gym wordmark concept; it is not an official logo.</desc>
-  <rect width="64" height="64" rx="14" fill="#111111"/>
-  <path d="M21 12h22" fill="none" stroke="#A3E635" stroke-linecap="round" stroke-width="4"/>
-  <path d="M17 17v16.5C17 43.5 22.5 49 32 49s15-5.5 15-15.5V17" fill="none" stroke="#F8FAFC" stroke-linecap="round" stroke-linejoin="round" stroke-width="7"/>
+  <rect width="64" height="64" rx="14" fill="#15191d"/>
+  <path d="M21 12h22" fill="none" stroke="#C5A46D" stroke-linecap="round" stroke-width="4"/>
+  <path d="M17 17v16.5C17 43.5 22.5 49 32 49s15-5.5 15-15.5V17" fill="none" stroke="#C5A46D" stroke-linecap="round" stroke-linejoin="round" stroke-width="7"/>
 </svg>

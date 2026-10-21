@@ -8,9 +8,7 @@ const root = path.resolve(__dirname, "..");
 const htmlFiles = [
   "index.html",
   "about/index.html",
-  "services/index.html",
-  "blog/index.html",
-  "blog/post.html",
+  "bmi/index.html",
   "contact/index.html",
 ];
 
