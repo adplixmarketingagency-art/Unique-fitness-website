@@ -902,8 +902,10 @@ h1.display {
   position: relative;
   isolation: isolate;
   min-height: min(100svh, 62rem);
-  padding-top: calc(var(--header-h) + clamp(2rem, 6vh, 5rem));
-  padding-bottom: clamp(1.5rem, 3vh, 2.5rem);
+  /* Phones give the headline less air: the screen is short and the hero
+     stacks a card, a pill and a meta strip below it. */
+  padding-top: calc(var(--header-h) + clamp(1.5rem, 4.5vh, 3rem));
+  padding-bottom: clamp(1.25rem, 2.5vh, 2rem);
   overflow: clip;
 }
 
@@ -933,11 +935,18 @@ h1.display {
   grid-column: 1;
 }
 
+/* On a phone the aside is a single stacked column, so its children fill the
+   width instead of hugging their content and leaving half the screen empty.
+   The calorie annotation stays content-width and left-aligned. */
 .v-hero__aside {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: stretch;
   gap: var(--space-4);
+}
+
+.v-hero__aside > .bmi-float-wrap {
+  align-self: flex-start;
 }
 
 @media (min-width: 64rem) {
@@ -947,8 +956,11 @@ h1.display {
     gap: clamp(2rem, 4vw, 4.5rem);
   }
 
+  /* Two columns: the BMI card reads as a compact instrument beside the
+     headline rather than a full-width panel. */
   .v-hero__aside {
     grid-column: 2;
+    align-items: flex-start;
   }
 }
 
@@ -969,6 +981,9 @@ h1.display {
   width: 2.1em;
   height: 0.52em;
   vertical-align: -0.06em;
+  /* The bar's rod runs to the edge of its box, so it needs clearance before
+     the word that follows it. */
+  margin-right: 0.08em;
   color: var(--color-accent);
 }
 
@@ -2275,6 +2290,25 @@ h1.display {
    64rem (1024).
    ========================================================================= */
 
+@media (max-width: 25rem) {
+  /* Below 400px the header cannot hold the wordmark and its tagline on one
+     line, so the lockup stacks deliberately instead of wrapping mid-phrase. */
+  .site-header .site-logo {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 0.1rem;
+    font-size: 1.05rem;
+    padding-block: 0.55rem;
+  }
+
+  .site-header .site-logo small {
+    font-size: 0.6875rem;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+  }
+}
+
 @media (min-width: 30rem) {
   .hero-bmi-calc {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -2296,6 +2330,11 @@ h1.display {
 }
 
 @media (min-width: 48rem) {
+  .v-hero {
+    padding-top: calc(var(--header-h) + clamp(2rem, 6vh, 5rem));
+    padding-bottom: clamp(1.5rem, 3vh, 2.5rem);
+  }
+
   .sec-head--split {
     grid-template-columns: minmax(0, 1fr) minmax(0, 26rem);
     align-items: end;

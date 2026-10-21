@@ -51,8 +51,9 @@ Every foreground and background pair in the shipped pages was checked against WC
 
 ### Layout
 
-- Layout frame and gutter are `--frame` and `--gutter`; breakpoints are 30rem, 34rem, 48rem, 60rem, and 64rem, mobile-first.
-- The home hero (`v-hero`) is a typographic split: `v-hero__copy` on the left with the display wordmark, slogan, lead, and calls to action; `v-hero__aside` on the right with an inline BMI card and a `Check your calorie goal` pill that links to the calorie calculator. The two blocks stack below 64rem.
+- Layout frame and gutter are `--frame` and `--gutter`; breakpoints are 25rem, 30rem, 34rem, 48rem, 60rem, and 64rem, mobile-first.
+- The home hero (`v-hero`) is a typographic split: `v-hero__copy` on the left with the display wordmark, slogan, lead, and calls to action; `v-hero__aside` on the right with an inline BMI card and a `Check your calorie goal` pill that links to the calorie calculator. The two blocks stack below 64rem, and in that stacked layout the BMI card fills the column so the inputs stay thumb-sized instead of hugging their content.
+- Below 25rem the header lockup stacks, with `UNIQUE` over its tagline, so the tagline never wraps mid-phrase on a narrow phone.
 - Section heads use `sec-head`; `sec-head--split` puts the note in a right-hand column from 48rem and stacks it below the heading on narrow screens. `sec-split` sets a narrow sticky heading column beside the content from 48rem.
 - Bounded photo grids (`figs`) are bento layouts; `figs__lead` and `figs__tall` are the large and portrait variants. Review-wall cards (`rwall`) and one framed CTA panel per page complete the pattern set.
 - **BMI calculator** (`bmi/`): height/weight inputs in cm·kg or ft+in·lb, computed fully client-side (no data sent or stored). Result shows the BMI value, the WHO band it lands in, a highlighted band-bar marker, and the healthy weight range for the entered height. The bands and their footnote are rendered with the shared board pattern. On wide screens the calculator form is sticky and the band list scrolls beside it.
