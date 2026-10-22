@@ -672,9 +672,10 @@ h1.display {
 
 .site-header__inner {
   display: flex;
+  flex-wrap: wrap;
   align-items: stretch;
   justify-content: space-between;
-  gap: var(--space-6);
+  column-gap: var(--space-6);
   min-height: var(--header-h);
   max-width: var(--content-max);
   margin-inline: auto;
@@ -703,9 +704,9 @@ h1.display {
   font-weight: 600;
   font-stretch: 100%;
   letter-spacing: 0.05em;
-  /* 0.7rem = 11.2px. The brand tagline is functional text, so it stays above
-     the 11px legibility floor rather than shrinking with the wordmark. */
-  font-size: 0.7rem;
+  /* The brand tagline is functional text, so it sits on the micro step
+     (13px) rather than shrinking below a legible size with the wordmark. */
+  font-size: var(--step-micro);
 }
 
 .site-nav {
@@ -771,6 +772,9 @@ h1.display {
 
 .menu-toggle {
   display: none;
+  /* If large text pushes the lockup wider than the row, the toggle wraps to
+     its own line and stays flush right instead of being pushed offscreen. */
+  margin-inline-start: auto;
   align-items: center;
   gap: 0.6rem;
   padding: 0.5rem 0;
@@ -964,8 +968,18 @@ h1.display {
   }
 }
 
-.v-hero__title {
+/* The headline is authored as two lines. Making the copy column a query
+   container lets the display size follow the column, so "Unique by" holds on
+   one line instead of wrapping into a third line and stranding the barbell. */
+.v-hero__copy {
+  container-type: inline-size;
+}
+
+/* h1.display sets the display step above; this selector matches its
+   specificity and comes later, so the cap wins. */
+h1.v-hero__title {
   margin: 0;
+  font-size: min(var(--step-display), 17.6cqw);
   line-height: 1.02;
   letter-spacing: var(--tracking-display);
 }
@@ -1053,8 +1067,8 @@ h1.display {
   letter-spacing: 0;
   text-transform: none;
   /* The unit suffix inherits the user-agent "smaller" scale, which drops it
-     below the 11px floor. Pin it just above that floor. */
-  font-size: 0.7rem;
+     below a legible size. Pin it at 12px. */
+  font-size: 0.75rem;
 }
 
 .hero-bmi-calc button {
@@ -1088,6 +1102,13 @@ h1.display {
   border-radius: var(--r-sm);
   font-size: 1rem;
   transition: border-color var(--t-hover) ease, box-shadow var(--t-hover) ease;
+}
+
+.hero-bmi-calc input::placeholder {
+  /* The UA default (a flat mid-grey) only reaches 4.23:1 on this field; use
+     the same faint token as the contact form's hints, which clears 4.5:1. */
+  color: var(--color-text-faint);
+  opacity: 1;
 }
 
 .hero-bmi-calc input:focus-visible {
@@ -1136,10 +1157,10 @@ h1.display {
   box-shadow: 0 0 0 0.25rem oklch(0.792 0.0965 63.18 / 0.16);
 }
 
-/* The calorie-goal annotation: a handwritten note and a doodled arrow that
-   point back up at the BMI card, with the pill that leads to the full
-   calorie calculator underneath. It lives in the hero's aside column so it
-   can never float over the card or the headline. */
+/* The calorie-goal annotation: a doodled arrow that points back up at the
+   BMI card, with the pill that leads to the full calorie calculator
+   underneath. It lives in the hero's aside column so it can never float over
+   the card or the headline. */
 .bmi-float-wrap {
   position: relative;
   z-index: 2;
@@ -1148,17 +1169,6 @@ h1.display {
   align-items: flex-start;
   gap: 0.15rem;
   margin-top: var(--space-1);
-}
-
-.bmi-float-callout {
-  display: flex;
-  align-items: center;
-  color: var(--color-text-primary);
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 0.01em;
-  white-space: nowrap;
-  pointer-events: none;
 }
 
 .bmi-float-arrows {
@@ -1327,7 +1337,7 @@ h1.display {
 }
 
 .board-phone {
-  color: var(--color-accent-text);
+  color: var(--color-accent-strong);
   font-weight: 600;
   text-decoration: underline;
   text-underline-offset: 0.2em;
@@ -1538,6 +1548,10 @@ h1.display {
 .site-footer__panel {
   max-width: var(--content-max);
   margin-inline: auto;
+  /* The panel is capped at the content measure, so it only needs the frame
+     inset; without it the footer sat flush to the viewport while every
+     section above was inset by --frame. */
+  padding-inline: var(--frame);
   display: grid;
   grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr) minmax(0, 1fr);
   gap: var(--space-8);
@@ -1558,10 +1572,14 @@ h1.display {
 .footer-menu nav ul {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-4);
+  gap: var(--space-2) var(--space-4);
 }
 
 .footer-menu nav a {
+  /* Footer links are standalone targets, not inline prose, so they need a
+     hit area of their own: 15px text plus this padding clears 28px. */
+  display: inline-block;
+  padding: 0.45rem 0.3rem;
   color: var(--color-text-muted);
   font-size: var(--step-small);
   font-weight: 500;
@@ -1598,6 +1616,13 @@ h1.display {
   margin: 0;
   font-size: var(--step-small);
   color: var(--color-text-secondary);
+}
+
+.footer-info p > a {
+  /* The phone number and the map link stand alone in their paragraphs, so
+     they get a full-size hit area rather than the inline-text exception. */
+  display: inline-block;
+  padding-block: 0.45rem;
 }
 
 .footer-legal {
@@ -2303,7 +2328,7 @@ h1.display {
   }
 
   .site-header .site-logo small {
-    font-size: 0.6875rem;
+    font-size: 0.75rem;
     letter-spacing: 0.04em;
     white-space: nowrap;
   }

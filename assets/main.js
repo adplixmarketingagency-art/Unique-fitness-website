@@ -553,8 +553,10 @@
         event.preventDefault();
         setFormStatus(
           form,
-          "Thank you, the enquiry form is wired and ready. A production mail endpoint is added before launch; meanwhile the fastest reply is a call to " + ((content.contact && content.contact.phoneDisplay) || "the gym") + ".",
-          false
+          "Nothing was sent: this form isn’t connected to an inbox yet. Call " +
+            ((content.contact && content.contact.phoneDisplay) || "the gym") +
+            " and the desk can help straight away.",
+          true
         );
       }
     });
