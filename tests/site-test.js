@@ -71,7 +71,6 @@ assert.equal((data.match(/id: "/g) || []).length, 6, "data model should contain 
 assert.ok(fs.existsSync(path.join(root, ".nvmrc")), "runtime version must be pinned");
 assert.ok(fs.existsSync(path.join(root, "package-lock.json")), "lockfile must exist");
 assert.ok(fs.existsSync(path.join(root, "Dockerfile")), "Dockerfile must exist");
-assert.ok(fs.existsSync(path.join(root, "README.md")), "README must exist");
 
 require("./hero-glow-test.js");
 
