@@ -456,10 +456,11 @@ h1.display {
   grid-template-columns: minmax(0, 1fr);
 }
 
+/* On a phone the heading sits directly above the content, so it has to scroll
+   away with it. Sticky only makes sense once the two columns sit side by side;
+   pinned here it floated over the board and the two texts mixed. */
 .sec-split .sec-head {
   margin-bottom: 0;
-  position: sticky;
-  top: calc(var(--header-h) + var(--space-8));
 }
 
 .sec-split .sec-head h2 {
