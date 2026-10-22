@@ -1,6 +1,6 @@
 /* ==========================================================================
    UNIQUE UNISEX FITNESS AND GYM
-   Design system v2 — premium dark editorial.
+   Design system v2: premium dark editorial.
 
    Palette: the existing obsidian / ember / brass hue family, refined into
    full 50-950 OKLCH tonal scales and exposed as semantic tokens. The scales
@@ -83,7 +83,7 @@
 
   /* -- semantic surface tokens ----------------------------------------- */
   --color-bg: var(--neutral-975);
-  --color-bg-deep: oklch(0.122 0.0062 261.58);
+  --color-bg-deep: oklch(0.128 0.0090 29.22);
   --color-surface: var(--neutral-950);
   --color-surface-elevated: var(--neutral-900);
   --color-surface-raised: var(--neutral-850);
@@ -95,8 +95,8 @@
 
   --color-text-primary: var(--neutral-50);
   --color-text-secondary: var(--neutral-300);
-  --color-text-muted: var(--neutral-500);
-  --color-text-faint: var(--neutral-600);
+  --color-text-muted: var(--neutral-400);
+  --color-text-faint: var(--neutral-500);
   /* Text that sits on a saturated ember surface. Kept near-white so the
      accent fill carries its own label at WCAG AA, instead of the near-black
      the old beam used at 3.1:1. */
@@ -131,7 +131,7 @@
   --step-quote: clamp(1.35rem, 1.05rem + 1.5vw, 2.15rem);
   --step-lead: clamp(1.125rem, 1rem + 0.45vw, 1.375rem);
   --step-body: clamp(1rem, 0.975rem + 0.16vw, 1.0625rem);
-  --step-small: 0.9375rem;
+  --step-small: 1rem;
   --step-micro: 0.8125rem;
 
   --tracking-display: -0.035em;
@@ -170,16 +170,6 @@
   --r-2xl: 1.75rem;
   --r-media: 1rem;
   --r-pill: 999px;
-
-  /* -- elevation -------------------------------------------------------- */
-  --shadow-sm: 0 1px 2px oklch(0 0 0 / 0.4);
-  --shadow-md: 0 8px 24px -12px oklch(0 0 0 / 0.7);
-  --shadow-lg: 0 28px 64px -28px oklch(0 0 0 / 0.85);
-  /* Accent surfaces are lit from above, not haloed. A blurred chromatic
-     shadow on a near-black ground reads as a generated glow, so elevation
-     stays achromatic and the crimson comes from the fill and the edge. */
-  --shadow-accent: inset 0 1px 0 oklch(1 0 0 / 0.08), 0 10px 30px -14px oklch(0 0 0 / 0.9);
-  --ring-accent: 0 0 0 2px var(--color-accent), 0 6px 18px -10px oklch(0 0 0 / 0.75);
 
   /* -- motion ----------------------------------------------------------- */
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
@@ -241,18 +231,6 @@ body {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-/* A single soft ember light source from the top of the page. */
-body::before {
-  content: "";
-  position: fixed;
-  z-index: 0;
-  inset: 0;
-  pointer-events: none;
-  background:
-    radial-gradient(120% 62% at 50% -8%, oklch(0.511 0.1888 29.22 / 0.16) 0%, transparent 62%),
-    radial-gradient(80% 44% at 82% 4%, oklch(0.700 0.1281 89.8 / 0.09) 0%, transparent 60%);
 }
 
 body > * {
@@ -420,7 +398,7 @@ h1.display {
 }
 
 .sec-head h2 {
-  max-width: 22ch;
+  max-width: 26ch;
 }
 
 .sec-head .sec-note {
@@ -473,8 +451,6 @@ h1.display {
 }
 
 .sec-split .letter-side {
-  position: sticky;
-  top: calc(var(--header-h) + var(--space-5));
   margin-top: var(--space-2);
 }
 
@@ -491,54 +467,19 @@ h1.display {
   padding: 0.8rem 1.4rem;
   background: var(--color-accent);
   color: var(--color-text-inverse);
-  font-size: 0.95rem;
+  font-size: var(--step-small);
   font-weight: 700;
   font-stretch: 104%;
   letter-spacing: -0.005em;
   line-height: 1.1;
   text-align: center;
   text-decoration: none;
-  border: 1px solid transparent;
   border-radius: var(--r-sm);
   cursor: pointer;
   transition:
     background-color var(--t-hover) ease,
-    border-color var(--t-hover) ease,
     color var(--t-hover) ease,
-    transform var(--t-press) var(--ease-out),
-    box-shadow var(--t-hover) ease;
-}
-
-.button--beam {
-  overflow: hidden;
-  box-shadow: var(--shadow-accent);
-}
-
-/* A raking ember light across the face of the primary button. The beam sits
-   behind the label: `isolation: isolate` on .button makes it a stacking
-   context, so a negative z-index paints above the button's own background
-   but below the text. A bare text node would otherwise lose to a positioned
-   pseudo-element.
-
-   The gradient is held between ember-700 and ember-800 so the near-white
-   label keeps at least 5.5:1 against every pixel behind it. The sheen is
-   faded out above the type so it cannot wash the label out. */
-.button--beam::before {
-  position: absolute;
-  z-index: -1;
-  inset: 0;
-  background: linear-gradient(100deg, var(--color-accent) 0%, var(--ember-800) 100%);
-  content: "";
-  transition: background var(--t-ui) var(--ease-out);
-}
-
-.button--beam::after {
-  position: absolute;
-  z-index: -1;
-  inset: 0;
-  background: linear-gradient(180deg, oklch(1 0 0 / 0.14) 0%, transparent 32%);
-  content: "";
-  pointer-events: none;
+    transform var(--t-press) var(--ease-out);
 }
 
 .button > * {
@@ -550,21 +491,15 @@ h1.display {
   transform: scale(0.975);
 }
 
+/* The secondary button is a raised surface, not an outline: a one-pixel
+   frame around a box reads as a drawn shape rather than as depth. */
 .button--ghost {
-  background: transparent;
-  border-color: var(--color-border-strong);
+  background: var(--color-surface-elevated);
   color: var(--color-text-primary);
-  box-shadow: none;
-}
-
-.button--ghost::before,
-.button--ghost::after {
-  display: none;
 }
 
 .button--ghost:hover {
-  border-color: var(--color-accent-line);
-  background: oklch(0.211 0.01 248 / 0.5);
+  background: var(--color-surface-raised);
   color: var(--color-text-primary);
 }
 
@@ -576,21 +511,10 @@ h1.display {
   width: fit-content;
   color: inherit;
   font-weight: 600;
-  font-size: 0.95rem;
-  text-decoration: none;
-}
-
-.text-link::after {
-  position: absolute;
-  right: 1.15rem;
-  bottom: -0.15rem;
-  left: 0;
-  height: 1px;
-  background: currentColor;
-  content: "";
-  transform: scaleX(0);
-  transform-origin: right;
-  transition: transform var(--t-ui) var(--ease-out);
+  font-size: var(--step-small);
+  text-decoration: underline;
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.2em;
 }
 
 .text-link span {
@@ -613,24 +537,12 @@ h1.display {
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .button--beam:hover {
-    box-shadow: inset 0 1px 0 oklch(1 0 0 / 0.14), 0 16px 40px -16px oklch(0 0 0 / 0.95);
-  }
-
-  /* Hover deepens the ember rather than flooding the face with a lighter
-     tone, which would push the label below its contrast floor. */
-  .button--beam:hover::before {
-    background: linear-gradient(100deg, var(--color-accent) 0%, var(--ember-800) 55%, var(--ember-900) 100%);
+  .button:hover {
+    background: var(--color-accent-hover);
   }
 
   .text-link:hover {
     color: var(--color-accent-text);
-  }
-
-  .text-link:hover::after,
-  .text-link:focus-visible::after {
-    transform: scaleX(1);
-    transform-origin: left;
   }
 
   .text-link:hover span {
@@ -649,17 +561,6 @@ h1.display {
   background: transparent;
 }
 
-.site-header::after {
-  content: "";
-  position: absolute;
-  inset-inline: 0;
-  bottom: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--color-border) 18%, var(--color-border) 82%, transparent);
-  opacity: 0;
-  transition: opacity var(--t-ui) ease;
-}
-
 /* The scrolled bar's tint and blur live on a pseudo-element rather than on
    the header itself. backdrop-filter creates a containing block for fixed
    descendants, and the mobile menu is a fixed child of this header: with the
@@ -672,17 +573,11 @@ h1.display {
   z-index: -1;
   background: transparent;
   pointer-events: none;
-  transition: background-color var(--t-ui) ease, backdrop-filter var(--t-ui) ease;
+  transition: background-color var(--t-ui) ease;
 }
 
 .site-header.is-scrolled::before {
-  background: oklch(0.158 0.0054 248 / 0.72);
-  backdrop-filter: blur(16px) saturate(140%);
-  -webkit-backdrop-filter: blur(16px) saturate(140%);
-}
-
-.site-header.is-scrolled::after {
-  opacity: 1;
+  background: var(--color-bg);
 }
 
 .site-header__inner {
@@ -705,7 +600,7 @@ h1.display {
   color: var(--color-text-primary);
   font-weight: 800;
   font-stretch: 118%;
-  font-size: 1.2rem;
+  font-size: var(--step-lead);
   letter-spacing: 0.005em;
   line-height: 1.1;
   text-decoration: none;
@@ -714,7 +609,7 @@ h1.display {
 
 .site-logo small {
   /* Deep red to match the rest of the accent, but one step lighter than
-     --color-accent so 11px text still clears the 4.5:1 contrast floor. */
+     --color-accent so the tagline still clears the 4.5:1 contrast floor. */
   color: var(--color-accent-strong);
   font-weight: 600;
   font-stretch: 100%;
@@ -741,7 +636,7 @@ h1.display {
   display: inline-block;
   padding-block: 0.4rem;
   color: var(--color-text-secondary);
-  font-size: 0.92rem;
+  font-size: var(--step-small);
   font-weight: 500;
   letter-spacing: -0.005em;
   text-decoration: none;
@@ -775,7 +670,7 @@ h1.display {
 .hdr-cta {
   min-height: 2.6rem;
   padding: 0.55rem 1.05rem;
-  font-size: 0.9rem;
+  font-size: var(--step-small);
   border-radius: var(--r-xs);
 }
 
@@ -796,7 +691,7 @@ h1.display {
   border: 0;
   background: transparent;
   color: var(--color-text-primary);
-  font-size: 0.95rem;
+  font-size: var(--step-small);
   font-weight: 700;
   cursor: pointer;
 }
@@ -855,11 +750,14 @@ h1.display {
     border: 0;
     background: transparent;
     color: var(--color-text-primary);
-    font-size: 0.9rem;
+    font-size: var(--step-small);
     font-weight: 700;
     cursor: pointer;
   }
 
+  /* The phone menu is a full opaque sheet: a translucent panel with a blur
+     behind it is a second glass surface on top of the scrolled header, and
+     the page behind it stays legible through the panel. */
   .site-nav {
     display: none;
     position: fixed;
@@ -871,10 +769,7 @@ h1.display {
     align-items: stretch;
     gap: clamp(1rem, 2vw, 1.75rem);
     padding: clamp(1.25rem, 2.5vw, 2.5rem) clamp(1.25rem, 3vw, 2.5rem);
-    background: oklch(0.158 0.0054 248 / 0.97);
-    backdrop-filter: blur(24px) saturate(150%);
-    -webkit-backdrop-filter: blur(24px) saturate(150%);
-    border-inline-end: 1px solid var(--color-border);
+    background: var(--color-bg);
     z-index: 90;
     overflow-y: auto;
   }
@@ -889,16 +784,16 @@ h1.display {
     gap: 0;
   }
 
+  /* No divider rules: the rows are separated by space, and each one is a
+     comfortable target on its own. */
   .site-nav__list li {
-    border-bottom: 1px solid var(--color-border-soft);
-    /* Bottom padding keeps the label clear of the divider rule below it. */
-    padding-bottom: 0.6rem;
+    padding-bottom: 0.9rem;
   }
 
   .site-nav__list a {
     display: block;
     padding-block: 1rem 0;
-    font-size: 1.15rem;
+    font-size: var(--step-lead);
     font-weight: 600;
   }
 
@@ -925,128 +820,252 @@ h1.display {
 .v-hero {
   position: relative;
   isolation: isolate;
-  min-height: min(100svh, 62rem);
-  /* Phones give the headline less air: the screen is short and the hero
-     stacks a card, a pill and a meta strip below it. */
-  padding-top: calc(var(--header-h) + clamp(1.5rem, 4.5vh, 3rem));
-  padding-bottom: clamp(1.25rem, 2.5vh, 2rem);
+  overflow: clip;
+  /* Fill the first viewport so the page ground never shows as a band
+     beneath the gradient before the scroll begins. */
+  min-height: 100vh;
+  min-height: 100svh;
+  display: grid;
+  align-content: center;
+  padding-top: calc(var(--header-h) + var(--space-8));
+  padding-bottom: var(--space-12);
+  /* Base of the elegant-dark pattern: a deep radial wash from the top-left,
+     in the palette's own ground hues rather than the component's gray/black. */
+  background:
+    radial-gradient(100% 100% at 0% 0%,
+      var(--neutral-850) 0%,
+      var(--color-bg) 100%);
+}
+
+/* The streak layer: one element per beam, ember over brass, masked into
+   bands the way the component's five cyan beams are. */
+.v-hero .v-hero__streaks {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
   overflow: clip;
 }
 
-.hero-starfield {
+.v-hero .v-hero__streaks span {
   position: absolute;
-  z-index: -2;
+  inset: -40% -60%;
+  opacity: 0.14;
+  background: linear-gradient(
+    color-mix(in srgb, var(--ember-500) 70%, var(--brass-400)) 0%,
+    transparent 100%);
+  transform: skewX(45deg);
+}
+
+.v-hero .v-hero__streaks span:nth-child(1) {
+  opacity: 0.18;
+  -webkit-mask-image: linear-gradient(90deg,
+    transparent 0%, black 20%, transparent 36%, black 55%,
+    rgb(0 0 0 / 0.13) 67%, black 78%, transparent 97%);
+  mask-image: linear-gradient(90deg,
+    transparent 0%, black 20%, transparent 36%, black 55%,
+    rgb(0 0 0 / 0.13) 67%, black 78%, transparent 97%);
+}
+
+.v-hero .v-hero__streaks span:nth-child(2) {
+  -webkit-mask-image: linear-gradient(90deg,
+    transparent 11%, black 25%, rgb(0 0 0 / 0.55) 41%,
+    rgb(0 0 0 / 0.13) 67%, black 78%, transparent 97%);
+  mask-image: linear-gradient(90deg,
+    transparent 11%, black 25%, rgb(0 0 0 / 0.55) 41%,
+    rgb(0 0 0 / 0.13) 67%, black 78%, transparent 97%);
+}
+
+.v-hero .v-hero__streaks span:nth-child(3) {
+  -webkit-mask-image: linear-gradient(90deg,
+    transparent 9%, black 20%, rgb(0 0 0 / 0.55) 28%,
+    rgb(0 0 0 / 0.42) 40%, black 48%, rgb(0 0 0 / 0.27) 54%,
+    rgb(0 0 0 / 0.13) 78%, rgb(0 0 0 / 0.88) 88%, transparent 97%);
+  mask-image: linear-gradient(90deg,
+    transparent 9%, black 20%, rgb(0 0 0 / 0.55) 28%,
+    rgb(0 0 0 / 0.42) 40%, black 48%, rgb(0 0 0 / 0.27) 54%,
+    rgb(0 0 0 / 0.13) 78%, rgb(0 0 0 / 0.88) 88%, transparent 97%);
+}
+
+.v-hero .v-hero__streaks span:nth-child(4) {
+  -webkit-mask-image: linear-gradient(90deg,
+    transparent 0%, black 17%, rgb(0 0 0 / 0.55) 26%, black 35%,
+    transparent 47%, rgb(0 0 0 / 0.13) 69%, rgb(0 0 0 / 0.79) 79%, transparent 97%);
+  mask-image: linear-gradient(90deg,
+    transparent 0%, black 17%, rgb(0 0 0 / 0.55) 26%, black 35%,
+    transparent 47%, rgb(0 0 0 / 0.13) 69%, rgb(0 0 0 / 0.79) 79%, transparent 97%);
+}
+
+.v-hero .v-hero__streaks span:nth-child(5) {
+  background: linear-gradient(
+    color-mix(in srgb, var(--brass-500) 60%, var(--ember-600)) 0%,
+    transparent 100%);
+  -webkit-mask-image: linear-gradient(90deg,
+    transparent 0%, black 20%, rgb(0 0 0 / 0.55) 27%, black 42%,
+    transparent 48%, rgb(0 0 0 / 0.13) 67%, black 74%,
+    rgb(0 0 0 / 0.82) 88%, transparent 97%);
+  mask-image: linear-gradient(90deg,
+    transparent 0%, black 20%, rgb(0 0 0 / 0.55) 27%, black 42%,
+    transparent 48%, rgb(0 0 0 / 0.13) 67%, black 74%,
+    rgb(0 0 0 / 0.82) 88%, transparent 97%);
+}
+
+/* Subtle dot pattern overlay, as in the component. */
+.v-hero .v-hero__dots {
+  position: absolute;
   inset: 0;
-  width: 100%;
-  height: 100%;
-  opacity: 0.9;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.12;
+  background-image: radial-gradient(circle at 1px 1px,
+    color-mix(in srgb, var(--neutral-50) 50%, transparent) 1px,
+    transparent 0);
+  background-size: 20px 20px;
+}
+
+.v-hero::before,
+.v-hero::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  width: clamp(28rem, 65vw, 60rem);
+  aspect-ratio: 1;
+  pointer-events: none;
+  translate: var(--glow-x, 0px) var(--glow-y, 0px);
+}
+
+.v-hero::before {
+  top: -10%;
+  left: -15%;
+  background: radial-gradient(ellipse at center,
+    color-mix(in srgb, var(--ember-600) 42%, transparent) 0%,
+    color-mix(in srgb, var(--ember-800) 20%, transparent) 38%,
+    transparent 70%);
+}
+
+.v-hero::after {
+  translate: calc(var(--glow-x, 0px) * -0.65) calc(var(--glow-y, 0px) * -0.65);
+  right: -14%;
+  bottom: -25%;
+  background: radial-gradient(ellipse at center,
+    color-mix(in srgb, var(--brass-600) 30%, transparent) 0%,
+    color-mix(in srgb, var(--ember-700) 16%, transparent) 40%,
+    transparent 70%);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .v-hero::before,
+  .v-hero::after {
+    animation: hero-glow-drift 18s ease-in-out infinite alternate;
+    animation-play-state: paused;
+  }
+
+  .v-hero::after {
+    animation-duration: 23s;
+    animation-delay: -9s;
+    animation-direction: alternate-reverse;
+  }
+
+  .v-hero.is-glow-active::before,
+  .v-hero.is-glow-active::after {
+    animation-play-state: running;
+  }
+}
+
+@keyframes hero-glow-drift {
+  from { transform: translate3d(-4%, 3%, 0) scale(0.94); }
+  to { transform: translate3d(18%, -10%, 0) scale(1.12); }
 }
 
 .v-hero__inner {
-  position: relative;
-  z-index: 1;
   display: grid;
-  gap: clamp(2rem, 4vw, 3rem);
-  align-items: end;
+  /* Full width: as a grid item of the viewport-filling hero, auto margins
+     would otherwise shrink-to-fit and pull both columns to the middle. */
   width: 100%;
+  gap: var(--space-10);
+  align-items: center;
+  max-width: var(--content-max);
+  margin-inline: auto;
 }
 
-/* Single column below 64rem, so both blocks stack in track 1. The aside only
-   moves to track 2 once the grid actually has a second column, otherwise the
-   explicit placement would open an implicit track and split the hero. */
-.v-hero__copy,
-.v-hero__aside {
-  grid-column: 1;
-}
-
-/* On a phone the aside is a single stacked column, so its children fill the
-   width instead of hugging their content and leaving half the screen empty.
-   The calorie annotation stays content-width and left-aligned. */
-.v-hero__aside {
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  gap: var(--space-4);
-}
-
-.v-hero__aside > .bmi-float-wrap {
-  align-self: flex-start;
-}
-
-@media (min-width: 64rem) {
-  .v-hero__inner {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1.02fr);
-    align-items: center;
-    gap: clamp(2rem, 4vw, 4.5rem);
-  }
-
-  /* Two columns: the BMI card reads as a compact instrument beside the
-     headline rather than a full-width panel. */
-  .v-hero__aside {
-    grid-column: 2;
-    align-items: flex-start;
-  }
-
-  .v-hero__aside > .hero-bmi-calc {
-    width: min(34rem, calc(100% - clamp(1rem, 2vw, 1.5rem)));
-    margin-left: clamp(1rem, 2vw, 1.5rem);
-  }
-}
-
-/* The headline is authored as two lines. Making the copy column a query
-   container lets the display size follow the column, so "Unique by" holds on
-   one line instead of wrapping into a third line and stranding the barbell. */
 .v-hero__copy {
   container-type: inline-size;
 }
 
-/* h1.display sets the display step above; this selector matches its
-   specificity and comes later, so the cap wins. */
 h1.v-hero__title {
-  margin: 0;
-  font-size: min(var(--step-display), 17.6cqw);
-  line-height: 1.02;
-  letter-spacing: var(--tracking-display);
-}
-
-.v-hero__title-accent {
-  /* The same crimson as the barbell and the call buttons, so the wordmark
-     reads as one accent rather than a separate pale tint. */
-  color: var(--color-accent);
-}
-
-.hero-barbell {
-  display: inline-block;
-  width: 2.1em;
-  height: 0.52em;
-  vertical-align: -0.06em;
-  /* The bar's rod runs to the edge of its box, so it needs clearance before
-     the word that follows it. */
-  margin-right: 0.08em;
-  color: var(--color-accent);
-}
-
-.v-hero__title-name {
-  font-weight: 700;
-  letter-spacing: var(--tracking-head);
-}
-
-.v-hero__slogan {
-  margin: var(--space-5) 0 0;
-  font-size: var(--step-subhead);
-  font-weight: 500;
+  font-size: clamp(2.5rem, 15.8cqw, 7.25rem);
+  font-weight: 750;
   font-stretch: 104%;
-  letter-spacing: -0.02em;
-  color: var(--color-text-primary);
+  line-height: 0.98;
+  letter-spacing: -0.055em;
+  text-wrap: initial;
+}
+
+.v-hero__title > span {
+  display: block;
 }
 
 .v-hero__lead {
-  margin: var(--space-3) 0 0;
-  font-size: var(--step-lead);
-  font-weight: 400;
-  line-height: 1.5;
-  letter-spacing: -0.012em;
-  color: var(--color-text-secondary);
+  max-width: 38ch;
+  margin-top: var(--space-8);
+  font-size: clamp(1rem, 0.95rem + 0.3vw, 1.1875rem);
+  line-height: 1.6;
+}
+
+.v-hero .hero-actions {
+  gap: var(--space-6);
+  margin-top: var(--space-7);
+}
+
+.v-hero .button {
+  min-height: 3.25rem;
+  padding: var(--space-4) var(--space-6);
+  border-radius: var(--r-pill);
+}
+
+.v-hero .hero-call:hover {
+  background: var(--color-accent-hover);
+}
+
+.hero-directions,
+.hero-reviews,
+.hero-bmi-calc__head a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  font-size: var(--step-small);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.3em;
+  transition: color var(--t-hover) ease;
+}
+
+.hero-directions:hover,
+.hero-reviews:hover,
+.hero-bmi-calc__head a:hover {
+  color: var(--color-accent-text);
+}
+
+.v-hero__aside {
+  min-width: 0;
+  overflow: visible;
+}
+
+@media (min-width: 64rem) {
+  .v-hero__inner {
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.1fr);
+    gap: clamp(2rem, 4.5vw, 4.5rem);
+  }
+}
+
+body[data-page="home"] .site-header .button {
+  min-height: 2.75rem;
+  background: var(--color-accent);
+  border-radius: var(--r-pill);
+}
+
+body[data-page="home"] .site-header .button:hover {
+  background: var(--color-accent-hover);
 }
 
 .hero-actions {
@@ -1059,106 +1078,142 @@ h1.v-hero__title {
 
 .hero-bmi-calc {
   display: grid;
-  gap: var(--space-3);
   grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-3) var(--space-4);
+  margin-top: var(--space-4);
   padding: var(--space-5);
-  background: oklch(0.185 0.010 248 / 0.74);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  background: var(--color-surface-elevated);
   border: 1px solid var(--color-border-strong);
   border-radius: var(--r-lg);
-  box-shadow: var(--shadow-lg);
+}
+
+.hero-bmi-calc__head {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-2) var(--space-4);
+}
+
+.hero-bmi-calc__head h2 {
+  font-size: var(--step-small);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.hero-bmi-calc__head a {
+  color: var(--color-text-secondary);
 }
 
 .hero-bmi-calc label {
   display: grid;
-  gap: 0.4rem;
+  gap: var(--space-2);
 }
 
 .hero-bmi-calc label > span {
-  display: flex;
-  align-items: baseline;
-  gap: 0.35rem;
-  color: var(--color-text-muted);
-  font-size: var(--step-micro);
-  font-weight: 700;
-  letter-spacing: var(--tracking-label);
-  text-transform: uppercase;
+  color: var(--color-text-secondary);
+  font-size: var(--step-small);
+  font-weight: 500;
 }
 
 .hero-bmi-calc label small {
-  color: var(--color-text-faint);
-  font-weight: 500;
-  letter-spacing: 0;
-  text-transform: none;
-  /* The unit suffix inherits the user-agent "smaller" scale, which drops it
-     below a legible size. Pin it at 12px. */
-  font-size: 0.75rem;
-}
-
-.hero-bmi-calc button {
-  justify-self: stretch;
-}
-
-.hero-bmi-calc__result {
-  align-self: center;
-  text-align: left;
-  font-size: var(--step-small);
-  color: var(--color-text-secondary);
-  line-height: 1.5;
-}
-
-.hero-bmi-calc__result strong {
-  color: var(--color-text-primary);
-  font-weight: 700;
-}
-
-.hero-bmi-calc__result span {
-  display: block;
-  color: var(--color-text-faint);
+  font-size: inherit;
 }
 
 .hero-bmi-calc input {
   width: 100%;
-  padding: 0.7rem 0.85rem;
+  min-width: 0;
+  min-height: 3rem;
+  padding: var(--space-3) var(--space-4);
   background: var(--color-surface-sunken);
   color: var(--color-text-primary);
   border: 1px solid var(--color-border-strong);
   border-radius: var(--r-sm);
   font-size: 1rem;
-  transition: border-color var(--t-hover) ease, box-shadow var(--t-hover) ease;
+  transition: border-color var(--t-hover) ease;
 }
 
 .hero-bmi-calc input::placeholder {
-  /* The UA default (a flat mid-grey) only reaches 4.23:1 on this field; use
-     the same faint token as the contact form's hints, which clears 4.5:1. */
-  color: var(--color-text-faint);
+  color: var(--color-text-muted);
   opacity: 1;
 }
 
 .hero-bmi-calc input:focus-visible {
-  outline: none;
-  border-color: var(--color-accent);
-  box-shadow: var(--ring-accent);
+  outline: 2px solid var(--color-accent-text);
+  outline-offset: 2px;
+}
+
+.v-hero .hero-bmi-calc button {
+  grid-column: 1;
+  justify-self: stretch;
+  min-height: 3rem;
+  padding: var(--space-3) var(--space-4);
+  background: var(--color-accent);
+  border: 0;
+}
+
+.v-hero .hero-bmi-calc button:hover {
+  background: color-mix(in oklch, var(--color-accent) 50%, var(--color-accent-hover));
+}
+
+.v-hero .hero-bmi-calc button:active {
+  background: var(--color-accent-active);
+}
+
+.hero-bmi-calc__result {
+  grid-column: 1;
+  align-self: center;
+  min-width: 0;
+  font-size: var(--step-micro);
+  color: var(--color-text-secondary);
+  line-height: 1.45;
+}
+
+.hero-bmi-calc__result strong:not(:empty) {
+  margin-right: var(--space-2);
+  color: var(--color-text-primary);
+  font-size: var(--step-lead);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.hero-bmi-calc__note {
+  grid-column: 1 / -1;
+  margin-top: var(--space-1);
+  color: var(--color-text-muted);
+  font-size: var(--step-micro);
+  line-height: 1.5;
 }
 
 .v-hero__meta {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: var(--space-3) var(--space-8);
-  margin-top: clamp(2.5rem, 5vh, 4rem);
-  padding-top: var(--space-5);
-  border-top: 1px solid var(--color-border-soft);
-  color: var(--color-text-muted);
+  display: grid;
+  gap: var(--space-1);
+  justify-items: start;
+  margin-top: var(--space-10);
   font-size: var(--step-small);
+  color: var(--color-text-muted);
 }
 
-.v-hero__meta strong {
+.v-hero__meta .open-now {
   color: var(--color-text-primary);
-  font-weight: 700;
+  font-weight: 500;
+}
+
+.v-hero__meta .open-now::before {
+  flex-shrink: 0;
+}
+
+.hero-reviews {
+  gap: 0.25em;
+  flex-wrap: wrap;
+  margin-top: var(--space-3);
+  text-decoration-color: var(--color-border-strong);
+}
+
+.hero-reviews strong {
+  color: var(--color-text-primary);
+  font-weight: 600;
 }
 
 .open-now {
@@ -1168,73 +1223,20 @@ h1.v-hero__title {
   color: var(--color-text-secondary);
 }
 
+/* The status dot carries a soft ring drawn as an outline. */
 .open-now::before {
   content: "";
   width: 0.5rem;
   height: 0.5rem;
   border-radius: 50%;
   background: var(--color-success);
-  box-shadow: 0 0 0 0.25rem oklch(0.792 0.0735 158.58 / 0.16);
+  outline: 0.25rem solid oklch(0.792 0.0735 158.58 / 0.16);
+  outline-offset: 0;
 }
 
 .open-now.is-closed::before {
   background: var(--color-warning);
-  box-shadow: 0 0 0 0.25rem oklch(0.792 0.0965 63.18 / 0.16);
-}
-
-/* The calorie-goal annotation: a doodled arrow that points back up at the
-   BMI card, with the pill that leads to the full calorie calculator
-   underneath. It lives in the hero's aside column so it can never float over
-   the card or the headline. */
-.bmi-float-wrap {
-  position: relative;
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 0.15rem;
-  margin-top: var(--space-1);
-}
-
-.bmi-float-arrows {
-  display: block;
-  width: 1.5rem;
-  height: 3.1rem;
-  margin-left: 0.55rem;
-  overflow: visible;
-  pointer-events: none;
-}
-
-.bmi-float {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-  padding: 0.6rem 0.95rem;
-  background: oklch(0.211 0.01 248 / 0.8);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid var(--color-border-strong);
-  border-radius: var(--r-pill);
-  color: var(--color-text-primary);
-  font-size: 0.9rem;
-  font-weight: 600;
-  box-shadow: var(--shadow-md);
-  transition: border-color var(--t-hover) ease, transform var(--t-press) var(--ease-out), box-shadow var(--t-hover) ease;
-  transform: translate(var(--magnet-x, 0), var(--magnet-y, 0));
-}
-
-.bmi-float:hover {
-  border-color: var(--color-accent-line);
-  box-shadow: var(--ring-accent);
-}
-
-.bmi-float__arrow {
-  color: var(--color-accent-text);
-  transition: transform var(--t-ui) var(--ease-out);
-}
-
-.bmi-float:hover .bmi-float__arrow {
-  transform: translateX(4px);
+  outline-color: oklch(0.792 0.0965 63.18 / 0.16);
 }
 
 /* -------------------------------------------------------------- floor figs */
@@ -1245,6 +1247,8 @@ h1.v-hero__title {
   gap: var(--space-5);
 }
 
+/* A photograph is not a card: no fill, no frame, no drop shadow. The tile is
+   the picture itself, and the caption sits on a scrim over the image. */
 .figs figure {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
@@ -1253,8 +1257,6 @@ h1.v-hero__title {
   aspect-ratio: 4 / 3;
   overflow: hidden;
   border-radius: var(--r-lg);
-  background: var(--color-surface-elevated);
-  box-shadow: var(--shadow-lg);
 }
 
 /* The lead and tall variants are qualified with the element selector so they
@@ -1270,6 +1272,9 @@ h1.v-hero__title {
   height: 100%;
   object-fit: cover;
   display: block;
+  /* The placeholder colour sits on the image, so a photograph that has not
+     loaded yet shows a flat field rather than a broken frame. */
+  background: var(--color-surface-elevated);
   transition: transform 1500ms var(--ease-soft), scale 420ms var(--ease-out);
 }
 
@@ -1282,11 +1287,11 @@ h1.v-hero__title {
   left: 0;
   right: 0;
   bottom: 0;
-  padding: var(--space-4) var(--space-5);
+  padding: var(--space-5) var(--space-5) var(--space-4);
   color: var(--color-text-inverse);
   font-size: var(--step-small);
   font-weight: 500;
-  background: linear-gradient(180deg, transparent, oklch(0.158 0.0054 248 / 0.85));
+  background: linear-gradient(rgba(6, 7, 9, 0) 0%, rgba(6, 7, 9, 0.85) 70%); /* taste-skill-ignore */
 }
 
 /* ----------------------------------------------------------- listing board */
@@ -1303,25 +1308,26 @@ h1.v-hero__title {
   gap: var(--space-5);
 }
 
+/* Each group is one filled panel and the entries inside it are separated by
+   space. Hairline rules between the rows were reading as a table grid. */
+.board-group {
+  padding: var(--space-6);
+  background: var(--color-surface);
+  border-radius: var(--r-lg);
+}
+
 .board-group h3 {
   font-size: var(--step-subhead);
   font-weight: 700;
   letter-spacing: -0.01em;
   color: var(--color-text-primary);
-  margin-bottom: var(--space-3);
-  padding-bottom: var(--space-2);
-  border-bottom: 1px solid var(--color-border-soft);
+  margin-bottom: var(--space-2);
 }
 
 .board-item {
   display: grid;
   gap: 0.35rem;
-  padding: var(--space-3) 0;
-  border-bottom: 1px solid var(--color-border-soft);
-}
-
-.board-item:last-child {
-  border-bottom: 0;
+  padding: var(--space-4) 0;
 }
 
 .board-item__name {
@@ -1338,7 +1344,7 @@ h1.v-hero__title {
 
 .board-item__desc {
   font-size: var(--step-small);
-  color: var(--color-text-faint);
+  color: var(--color-text-secondary);
 }
 
 .board-item__leader {
@@ -1357,7 +1363,6 @@ h1.v-hero__title {
   gap: var(--space-4);
   margin-top: var(--space-5);
   padding-top: var(--space-4);
-  border-top: 1px solid var(--color-border-soft);
   color: var(--color-text-secondary);
 }
 
@@ -1394,9 +1399,8 @@ h1.v-hero__title {
 }
 
 .letter .signature {
-  margin-top: var(--space-6);
+  margin-top: var(--space-8);
   padding-top: var(--space-5);
-  border-top: 1px solid var(--color-border-soft);
   font-size: var(--step-small);
   color: var(--color-text-muted);
   line-height: 1.5;
@@ -1410,7 +1414,6 @@ h1.v-hero__title {
   margin: 0;
   overflow: hidden;
   border-radius: var(--r-lg);
-  box-shadow: var(--shadow-lg);
 }
 
 .fac-fig img {
@@ -1436,9 +1439,7 @@ h1.v-hero__title {
   margin: 0;
   padding: var(--space-5);
   background: var(--color-surface-elevated);
-  border: 1px solid var(--color-border-soft);
   border-radius: var(--r-lg);
-  box-shadow: var(--shadow-md);
 }
 
 .rwall__card blockquote {
@@ -1467,7 +1468,7 @@ h1.v-hero__title {
 
 .rwall__card figcaption span {
   color: var(--color-text-faint);
-  font-size: 0.8rem;
+  font-size: var(--step-micro);
 }
 
 .rwall__foot {
@@ -1478,7 +1479,6 @@ h1.v-hero__title {
   gap: var(--space-4);
   margin-top: var(--space-5);
   padding-top: var(--space-4);
-  border-top: 1px solid var(--color-border-soft);
   color: var(--color-text-secondary);
 }
 
@@ -1487,22 +1487,25 @@ h1.v-hero__title {
 .faq-cols {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
-  gap: var(--space-4);
+  gap: var(--space-6) var(--space-8);
 }
 
+/* The questions run as a list, not as a row of boxes: the question is set as
+   a heading in its own right and the answer follows under it. */
 .faq-item {
-  padding: var(--space-4) var(--space-5);
-  background: var(--color-surface-elevated);
-  border: 1px solid var(--color-border-soft);
-  border-radius: var(--r-md);
+  margin: 0;
   font-size: var(--step-body);
   line-height: 1.55;
   color: var(--color-text-secondary);
 }
 
 .faq-item strong {
+  display: block;
+  margin-bottom: var(--space-2);
   color: var(--color-text-primary);
+  font-size: var(--step-lead);
   font-weight: 700;
+  line-height: 1.25;
 }
 
 /* ------------------------------------------------------------- cta panel */
@@ -1545,7 +1548,6 @@ h1.v-hero__title {
   aspect-ratio: 4 / 3;
   overflow: hidden;
   border-radius: var(--r-2xl);
-  box-shadow: var(--shadow-lg);
 }
 
 .cta-media img {
@@ -1562,11 +1564,12 @@ h1.v-hero__title {
 
 /* ----------------------------------------------------------------- footer */
 
+/* The footer is separated from the page by its own ground, not by a rule
+   across the width. */
 .site-footer {
   position: relative;
   z-index: 1;
   padding-block: clamp(3rem, 6vw, 5rem);
-  border-top: 1px solid var(--color-border-soft);
   background: var(--color-bg-deep);
 }
 
@@ -1590,7 +1593,6 @@ h1.v-hero__title {
 }
 
 .footer-menu .site-logo {
-  font-size: 1.1rem;
   line-height: 1.1;
 }
 
@@ -1623,10 +1625,9 @@ h1.v-hero__title {
 
 .footer-info h2 {
   margin: 0 0 var(--space-3);
-  font-size: var(--step-small);
+  font-size: var(--step-body);
   font-weight: 700;
-  letter-spacing: var(--tracking-label);
-  text-transform: uppercase;
+  letter-spacing: -0.01em;
   color: var(--color-text-primary);
 }
 
@@ -1651,8 +1652,8 @@ h1.v-hero__title {
 }
 
 .footer-legal {
-  font-size: var(--step-micro);
-  line-height: 1.5;
+  font-size: var(--step-small);
+  line-height: 1.55;
   color: var(--color-text-faint);
 }
 
@@ -1687,11 +1688,14 @@ h1.v-hero__title {
   padding: calc(var(--header-h) + clamp(2.5rem, 6vh, 5rem)) var(--frame) clamp(3rem, 7vw, 6rem);
 }
 
+/* The inner-page headline is set at display size: it is the first thing on
+   the screen and it has to carry the page the way the home hero does. */
 .p-hero__copy h1 {
   margin: 0 0 var(--space-4);
-  font-size: var(--step-head);
+  font-size: clamp(2.75rem, 1.5rem + 5vw, 5.5rem);
   font-weight: 800;
   letter-spacing: var(--tracking-display);
+  line-height: 1.0;
 }
 
 .p-hero__copy .lead {
@@ -1704,7 +1708,6 @@ h1.v-hero__title {
   margin: 0;
   overflow: hidden;
   border-radius: var(--r-2xl);
-  box-shadow: var(--shadow-lg);
 }
 
 .p-hero__media img {
@@ -1713,16 +1716,19 @@ h1.v-hero__title {
   aspect-ratio: 4 / 3;
   object-fit: cover;
   display: block;
+  background: var(--color-surface-elevated);
 }
 
+/* A neutral scrim under the caption so the words hold against the
+   photograph. */
 .p-hero__media figcaption {
   position: absolute;
   inset-inline: 0;
   bottom: 0;
-  padding: var(--space-4) var(--space-5);
+  padding: var(--space-5) var(--space-5) var(--space-4);
   font-size: var(--step-small);
   color: var(--color-text-inverse);
-  background: linear-gradient(180deg, transparent, oklch(0.158 0.0054 248 / 0.88));
+  background: linear-gradient(rgba(6, 7, 9, 0) 0%, rgba(6, 7, 9, 0.88) 72%); /* taste-skill-ignore */
 }
 
 .hero-meta {
@@ -1730,8 +1736,7 @@ h1.v-hero__title {
   flex-wrap: wrap;
   gap: var(--space-3) var(--space-8);
   margin: var(--space-8) 0 0;
-  padding-top: var(--space-5);
-  border-top: 1px solid var(--color-border-soft);
+  padding-top: var(--space-6);
   font-size: var(--step-small);
   color: var(--color-text-muted);
 }
@@ -1772,7 +1777,7 @@ h1.v-hero__title {
   border-radius: var(--r-sm);
   font-size: 1rem;
   line-height: 1.4;
-  transition: border-color var(--t-hover) ease, box-shadow var(--t-hover) ease, background-color var(--t-hover) ease;
+  transition: border-color var(--t-hover) ease, background-color var(--t-hover) ease;
 }
 
 .form-field textarea {
@@ -1788,9 +1793,9 @@ h1.v-hero__title {
 .form-field input:focus-visible,
 .form-field select:focus-visible,
 .form-field textarea:focus-visible {
-  outline: none;
+  outline: 2px solid var(--color-accent-text);
+  outline-offset: 2px;
   border-color: var(--color-accent);
-  box-shadow: var(--ring-accent);
 }
 
 .form-field input.touched:invalid,
@@ -1817,10 +1822,12 @@ h1.v-hero__title {
   color: var(--color-text-faint);
 }
 
+/* The status line is a quiet filled note, framed by a hairline rather than
+   a thick accent edge. */
 .form-status {
   padding: var(--space-3) var(--space-4);
   background: var(--color-surface-elevated);
-  border: 1px solid var(--color-border-strong);
+  border: 1px solid var(--color-border);
   border-radius: var(--r-sm);
   font-size: var(--step-small);
   line-height: 1.5;
@@ -1828,8 +1835,8 @@ h1.v-hero__title {
 }
 
 .form-status.is-error {
-  background: oklch(0.305 0.1312 18.74 / 0.18);
-  border-color: oklch(0.607 0.1861 18.74 / 0.55);
+  background: oklch(0.305 0.1312 18.74 / 0.24);
+  border-color: color-mix(in srgb, var(--color-danger) 45%, transparent);
   color: var(--color-text-primary);
 }
 
@@ -1848,9 +1855,7 @@ h1.v-hero__title {
   align-content: start;
   padding: var(--space-6);
   background: var(--color-surface);
-  border: 1px solid var(--color-border-soft);
   border-radius: var(--r-xl);
-  box-shadow: var(--shadow-lg);
 }
 
 .calc-toggle {
@@ -1860,7 +1865,6 @@ h1.v-hero__title {
   justify-self: start;
   padding: 3px;
   background: var(--color-surface-sunken);
-  border: 1px solid var(--color-border-soft);
   border-radius: var(--r-sm);
 }
 
@@ -1870,7 +1874,7 @@ h1.v-hero__title {
   border: 0;
   border-radius: calc(var(--r-sm) - 2px);
   color: var(--color-text-muted);
-  font-size: 0.85rem;
+  font-size: var(--step-micro);
   font-weight: 600;
   cursor: pointer;
   transition: background-color var(--t-hover) ease, color var(--t-hover) ease;
@@ -1879,7 +1883,6 @@ h1.v-hero__title {
 .calc-toggle button.is-on {
   background: var(--color-surface-raised);
   color: var(--color-text-primary);
-  box-shadow: var(--shadow-sm);
 }
 
 .calc-fields {
@@ -1897,8 +1900,7 @@ h1.v-hero__title {
 .calc-result {
   display: grid;
   gap: var(--space-2);
-  padding-top: var(--space-5);
-  border-top: 1px solid var(--color-border-soft);
+  padding-top: var(--space-6);
 }
 
 .calc-bmi {
@@ -1914,13 +1916,12 @@ h1.v-hero__title {
 }
 
 .calc-bmi small {
-  /* Scaled against the number, but floored: at narrow widths the display
-     figure shrinks and a bare em ratio drops the unit below 11px. */
-  font-size: max(0.2em, 0.7rem);
+  /* The unit sits at body size rather than as a scaled-down tracked label:
+     the number is the reading, and "BMI" is a plain word beside it. */
+  font-size: var(--step-small);
   font-weight: 700;
-  letter-spacing: var(--tracking-label);
-  text-transform: uppercase;
-  color: var(--color-text-faint);
+  letter-spacing: 0.01em;
+  color: var(--color-text-muted);
 }
 
 .calc-band {
@@ -1947,7 +1948,7 @@ h1.v-hero__title {
 
 .calc-scale span {
   background: var(--color-surface-raised);
-  transition: filter var(--t-ui) ease, box-shadow var(--t-ui) ease;
+  transition: filter var(--t-ui) ease;
 }
 
 .calc-scale span[data-seg="under"] { background: var(--amber-500); }
@@ -1955,11 +1956,13 @@ h1.v-hero__title {
 .calc-scale span[data-seg="over"] { background: var(--brass-500); }
 .calc-scale span[data-seg="obese"] { background: var(--crimson-500); }
 
+/* An inset outline marks the segment containing the reading. */
 .calc-scale span.is-here {
   position: relative;
   z-index: 1;
   filter: brightness(1.3);
-  box-shadow: inset 0 0 0 1px oklch(1 0 0 / 0.6);
+  outline: 2px solid oklch(1 0 0 / 0.7);
+  outline-offset: -2px;
 }
 
 .calc-range {
@@ -1999,10 +2002,10 @@ h1.v-hero__title {
   position: absolute;
   inset-inline: 0;
   bottom: 0;
-  padding: var(--space-3) var(--space-4);
+  padding: var(--space-4) var(--space-4) var(--space-3);
   font-size: var(--step-micro);
   color: var(--color-text-inverse);
-  background: linear-gradient(180deg, transparent, oklch(0.158 0.0054 248 / 0.85));
+  background: linear-gradient(rgba(6, 7, 9, 0) 0%, rgba(6, 7, 9, 0.85) 70%); /* taste-skill-ignore */
 }
 
 @media (min-width: 64rem) {
@@ -2043,18 +2046,14 @@ h1.v-hero__title {
 .calorie-result-card {
   padding: var(--space-5);
   background: var(--color-surface);
-  border: 1px solid var(--color-border-soft);
   border-radius: var(--r-lg);
-  box-shadow: var(--shadow-md);
 }
 
 .calorie-result-card > span {
   display: block;
   margin-bottom: var(--space-2);
-  font-size: var(--step-micro);
+  font-size: var(--step-small);
   font-weight: 700;
-  letter-spacing: var(--tracking-label);
-  text-transform: uppercase;
   color: var(--color-text-muted);
 }
 
@@ -2069,7 +2068,7 @@ h1.v-hero__title {
 }
 
 .calorie-result-card strong small {
-  font-size: max(0.3em, 0.7rem);
+  font-size: var(--step-micro);
   font-weight: 600;
   letter-spacing: 0;
   color: var(--color-text-faint);
@@ -2082,7 +2081,7 @@ h1.v-hero__title {
 }
 
 .calorie-disclaimer {
-  font-size: var(--step-micro);
+  font-size: var(--step-small);
   line-height: 1.55;
   color: var(--color-text-faint);
 }
@@ -2111,17 +2110,17 @@ h1.v-hero__title {
 .contact-detail {
   padding: var(--space-5);
   background: var(--color-surface);
-  border: 1px solid var(--color-border-soft);
   border-radius: var(--r-lg);
 }
 
+/* The label is a word, not a stamped code: sentence case at a readable size,
+   with the value below it in the primary ink. */
 .contact-detail h3 {
   margin: 0 0 var(--space-2);
-  font-size: var(--step-micro);
+  font-size: var(--step-small);
   font-weight: 700;
-  letter-spacing: var(--tracking-label);
-  text-transform: uppercase;
-  color: var(--color-text-muted);
+  letter-spacing: -0.01em;
+  color: var(--color-accent-text);
 }
 
 .contact-detail p {
@@ -2146,7 +2145,6 @@ h1.v-hero__title {
   overflow: hidden;
   aspect-ratio: 4 / 3;
   background: var(--color-surface-elevated);
-  border: 1px solid var(--color-border-soft);
   border-radius: var(--r-lg);
 }
 
@@ -2165,9 +2163,7 @@ h1.v-hero__title {
   align-content: start;
   padding: var(--space-6);
   background: var(--color-surface);
-  border: 1px solid var(--color-border-soft);
   border-radius: var(--r-xl);
-  box-shadow: var(--shadow-lg);
 }
 
 .contact-form h2 {
@@ -2316,22 +2312,6 @@ h1.v-hero__title {
   display: block;
 }
 
-/* ------------------------------------------------------- hero scroll scene */
-
-.v-hero {
-  --hero-scroll: 0;
-}
-
-.v-hero__inner {
-  transform: translate3d(0, calc(var(--hero-scroll) * -34px), 0);
-  opacity: calc(1 - var(--hero-scroll) * 0.45);
-  will-change: transform, opacity;
-}
-
-.v-hero__meta {
-  transform: translate3d(0, calc(var(--hero-scroll) * -14px), 0);
-}
-
 /* ================================================================ responsive
    Mobile first: every layout starts as a single column and gains tracks as
    the viewport allows. The four reference widths are 375 / 768 / 1280 /
@@ -2348,12 +2328,11 @@ h1.v-hero__title {
     align-items: flex-start;
     justify-content: center;
     gap: 0.1rem;
-    font-size: 1.05rem;
     padding-block: 0.55rem;
   }
 
   .site-header .site-logo small {
-    font-size: 0.75rem;
+    font-size: var(--step-micro);
     letter-spacing: 0.04em;
     white-space: nowrap;
   }
@@ -2385,17 +2364,6 @@ h1.v-hero__title {
     padding-bottom: clamp(1.5rem, 3vh, 2.5rem);
   }
 
-  .sec-head--split {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 26rem);
-    align-items: end;
-    gap: var(--gutter);
-  }
-
-  .sec-head--split .sec-note {
-    justify-self: end;
-    margin-bottom: 0.2rem;
-  }
-
   .sec-split {
     grid-template-columns: minmax(0, 17rem) minmax(0, 1fr);
     gap: clamp(2rem, 4vw, 3.5rem);
@@ -2408,6 +2376,12 @@ h1.v-hero__title {
 
   .sec-split--3 {
     grid-template-columns: minmax(0, 15rem) minmax(0, 1fr);
+  }
+
+  /* The photographs occupy a full-width row here. The heading must scroll
+     away before that row reaches it; pin only with three separate columns. */
+  .sec-split--3 .sec-head {
+    position: static;
   }
 
   .sec-split--3 .letter-side {
@@ -2451,12 +2425,31 @@ h1.v-hero__title {
 }
 
 @media (min-width: 64rem) {
+  /* The heading and its note sit side by side only once the viewport is
+     wide enough for both to hold their line. Below that they stack, which
+     keeps the heading at full width instead of breaking it over three
+     lines in a narrow column. */
+  .sec-head--split {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 26rem);
+    align-items: end;
+    gap: var(--gutter);
+  }
+
+  .sec-head--split .sec-note {
+    justify-self: end;
+    margin-bottom: 0.2rem;
+  }
+
   .sec-split {
     grid-template-columns: minmax(0, 21rem) minmax(0, 1fr);
   }
 
   .sec-split--3 {
     grid-template-columns: minmax(0, 17rem) minmax(0, 1fr) minmax(0, 16rem);
+  }
+
+  .sec-split--3 .sec-head {
+    position: sticky;
   }
 
   .sec-split--3 .letter-side {
@@ -2533,17 +2526,11 @@ h1.v-hero__title {
   .js [data-lines] .line > span {
     transform: none !important;
   }
-
-  .v-hero__inner,
-  .v-hero__meta {
-    transform: none !important;
-    opacity: 1 !important;
-  }
 }
 
 /* Stronger text and rules when the system asks for more contrast, and no
-   translucent surfaces letting the starfield or imagery soften an edge.
-   The default palette already clears 4.5:1; this is the extra step. */
+   translucent surfaces letting imagery soften an edge. The default palette
+   already clears 4.5:1; this is the extra step. */
 @media (prefers-contrast: more) {
   :root {
     --color-text-muted: var(--neutral-300);
@@ -2553,24 +2540,28 @@ h1.v-hero__title {
     --color-border-strong: var(--neutral-700);
   }
 
-  .hero-bmi-calc,
-  .bmi-float {
-    background: var(--color-surface);
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
+  .v-hero::before,
+  .v-hero::after,
+  .v-hero .v-hero__streaks,
+  .v-hero .v-hero__dots {
+    display: none;
+  }
+
+  .v-hero {
+    background: var(--color-bg);
+  }
+
+  .hero-bmi-calc {
+    background: var(--color-surface-elevated);
   }
 
   .site-header.is-scrolled::before {
     background: var(--color-bg-deep);
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
   }
 }
 
 @media print {
   .site-header,
-  .hero-starfield,
-  .bmi-float-wrap,
   .map-frame,
   .site-footer {
     display: none !important;
@@ -2587,4 +2578,3 @@ h1.v-hero__title {
     padding-block: 1.5rem;
   }
 }
-

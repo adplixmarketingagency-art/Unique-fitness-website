@@ -23,7 +23,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/styles.css">
     <script src="assets/data.js" defer></script>
-    <script src="assets/hero-space.js" defer></script>
     <script src="assets/main.js" defer></script>
     <script type="application/ld+json">
       {
@@ -75,70 +74,61 @@
             <li><a href="bmi/">BMI</a></li>
             <li><a href="contact/">Contact</a></li>
           </ul>
-          <a class="button button--beam hdr-cta site-nav__cta" data-tel href="tel:+919994985599" aria-label="Call Unique Fitness Gym on 099949 85599">Call now</a>
-          <a class="button button--beam hdr-cta hdr-cta-mobile" data-tel href="tel:+919994985599">Call 099949 85599</a>
+          <a class="button hdr-cta site-nav__cta" data-tel href="tel:+919994985599" aria-label="Call Unique Fitness Gym on 099949 85599">Call now</a>
+          <a class="button hdr-cta hdr-cta-mobile" data-tel href="tel:+919994985599">Call 099949 85599</a>
         </nav>
       </div>
     </header>
 
     <main id="main-content">
-      <section class="v-hero" data-scroll-scene aria-labelledby="hero-title">
-        <canvas class="hero-starfield" data-hero-starfield aria-hidden="true"></canvas>
+      <section class="v-hero" aria-labelledby="hero-title">
+        <div class="v-hero__streaks" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
+        <div class="v-hero__dots" aria-hidden="true"></div>
         <div class="v-hero__inner frame-in">
           <div class="v-hero__copy">
-            <h1 class="display v-hero__title" id="hero-title"><span class="v-hero__title-line"><span class="v-hero__title-accent">Unique</span> by</span> <span class="v-hero__title-line"><span class="hero-barbell" aria-hidden="true"><svg viewBox="0 0 260 64" focusable="false"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M6 32h248" stroke-width="5"></path><rect x="28" y="25" width="8" height="14" rx="2" fill="currentColor" stroke="none"></rect><rect x="38" y="19" width="10" height="26" rx="3" fill="currentColor" stroke="none"></rect><rect x="52" y="12" width="12" height="40" rx="3" fill="currentColor" stroke="none"></rect><rect x="70" y="4" width="16" height="56" rx="3" fill="currentColor" stroke="none"></rect><rect x="174" y="4" width="16" height="56" rx="3" fill="currentColor" stroke="none"></rect><rect x="196" y="12" width="12" height="40" rx="3" fill="currentColor" stroke="none"></rect><rect x="212" y="19" width="10" height="26" rx="3" fill="currentColor" stroke="none"></rect><rect x="224" y="25" width="8" height="14" rx="2" fill="currentColor" stroke="none"></rect></g></svg></span><span class="v-hero__title-name">name.</span></span></h1>
-            <p class="v-hero__slogan" data-load style="--d:440ms">Stronger every morning.</p>
-            <p class="lead v-hero__lead" data-load style="--d:520ms">Gym training, CrossFit, yoga and one-to-one coaching on 100 Feet Road, Mudaliarpet: one unisex floor, open from first light.</p>
-            <div class="hero-actions" data-load style="--d:600ms">
-              <a class="button button--beam" data-tel href="tel:+919994985599">Call the gym</a>
-              <a class="button button--ghost button--beam" href="https://maps.app.goo.gl/KbJBjfcGLrUxyGn37" target="_blank" rel="noreferrer">Get directions</a>
+            <h1 class="display v-hero__title" id="hero-title"><span>Stronger</span> <span>starts here.</span></h1>
+            <p class="lead v-hero__lead">Your unisex gym on 100 Feet Road, Mudaliarpet. Train your way with gym access, CrossFit, yoga and one-to-one coaching.</p>
+            <div class="hero-actions">
+              <a class="button hero-call" data-tel href="tel:+919994985599">Call the gym</a>
+              <a class="hero-directions" href="https://maps.app.goo.gl/KbJBjfcGLrUxyGn37" target="_blank" rel="noreferrer">Get directions</a>
+            </div>
+            <div class="v-hero__meta">
+              <p class="open-now" data-open-now>Open daily <span data-placeholder="hours">05:00–22:00</span></p>
+              <p>Every day, from 5 am to 10 pm.</p>
+              <a class="hero-reviews" href="https://maps.app.goo.gl/KbJBjfcGLrUxyGn37" target="_blank" rel="noreferrer"><strong data-placeholder="rating">5.0</strong> on Google, from <span data-placeholder="reviews">20</span> reviews</a>
             </div>
           </div>
           <div class="v-hero__aside">
-            <form class="hero-bmi-calc" id="hero-bmi-calc" data-hero-bmi novalidate data-load style="--d:660ms">
+            <form class="hero-bmi-calc" id="hero-bmi-calc" data-hero-bmi novalidate aria-labelledby="hero-bmi-title" aria-describedby="hero-bmi-note">
+              <div class="hero-bmi-calc__head">
+                <h2 id="hero-bmi-title">A quick BMI check</h2>
+                <a href="bmi/#calorie-calculator">Calorie goal</a>
+              </div>
               <label>
-                <span>Height <small>cm</small></span>
+                <span>Height <small>(cm)</small></span>
                 <input name="height" type="number" min="100" max="250" step="0.1" inputmode="decimal" placeholder="170" required>
               </label>
               <label>
-                <span>Weight <small>kg</small></span>
+                <span>Weight <small>(kg)</small></span>
                 <input name="weight" type="number" min="25" max="300" step="0.1" inputmode="decimal" placeholder="65" required>
               </label>
-              <button class="button button--beam" type="submit">Check BMI</button>
-              <p class="hero-bmi-calc__result" data-hero-bmi-result role="status" aria-live="polite"><strong data-hero-bmi-value>—</strong><span data-hero-bmi-band>Enter height + weight.</span></p>
+              <button class="button" type="submit">Check BMI</button>
+              <p class="hero-bmi-calc__result" data-hero-bmi-result role="status" aria-live="polite" aria-atomic="true"><strong data-hero-bmi-value></strong><span data-hero-bmi-band>Enter your height and weight.</span></p>
+              <p class="hero-bmi-calc__note" id="hero-bmi-note">For adults. A general guide, not a health assessment.</p>
             </form>
-            <div class="bmi-float-wrap">
-              <svg class="bmi-float-arrows" viewBox="-7 -1 15 31" focusable="false" aria-hidden="true">
-                <defs>
-                  <linearGradient id="doodle-fade" gradientUnits="userSpaceOnUse" x1="3" y1="2" x2="4" y2="28">
-                    <stop offset="0" stop-color="#ffffff" stop-opacity="0.95"></stop>
-                    <stop offset="0.55" stop-color="#ffffff" stop-opacity="0.62"></stop>
-                    <stop offset="1" stop-color="#ffffff" stop-opacity="0.24"></stop>
-                  </linearGradient>
-                </defs>
-                <path d="M3.4 28 C -1 21, -1 10, 3.4 2.4" fill="none" stroke="url(#doodle-fade)" stroke-width="2.2" stroke-linecap="round"></path>
-                <path d="M0.2 6.4 L3.4 2.4 L6.6 6.4" fill="none" stroke="#ffffff" stroke-opacity="0.92" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path>
-              </svg>
-              <a class="bmi-float" href="bmi/#calorie-calculator" data-magnetic>Check your calorie goal <span class="bmi-float__arrow" aria-hidden="true">→</span></a>
-            </div>
           </div>
-        </div>
-        <div class="v-hero__meta frame-in" data-load style="--d:720ms">
-          <span class="open-now" data-open-now>Open daily <span data-placeholder="hours">05:00–22:00</span></span>
-          <span><strong data-placeholder="rating">5.0</strong> on Google · <span data-placeholder="reviews">20</span> reviews</span>
-          <span>Unisex · est. <strong>2025</strong></span>
         </div>
       </section>
 
       <section class="sec frame-in" id="floor" aria-labelledby="floor-title">
         <div class="sec-head sec-head--split">
           <h2 class="head" id="floor-title" data-lines>The floor, before you walk it.</h2>
-          <p class="sec-note">Photographs of the Mudaliarpet facility itself: the wide training floor, the free-weight corner, the machines and the cardio room under their own light.</p>
+          <p class="sec-note">Photographs of the Mudaliarpet facility itself: the wide training floor, the free-weight corner, the cardios and the mirror-wall end of the floor, under their own light.</p>
         </div>
         <div class="figs">
           <figure class="figs__lead" data-reveal="open">
-            <img src="assets/optimized/GYm-machine.jpg" alt="Machine stations on the training floor of Unique Fitness Gym" width="1200" height="900" loading="lazy">
-            <figcaption>The machine row.</figcaption>
+            <img src="assets/optimized/wide-angle-click.jpg" alt="Wide view across the training floor of Unique Fitness Gym" width="1200" height="900" loading="lazy">
+            <figcaption>Straight across the floor.</figcaption>
           </figure>
           <figure class="figs__tall" data-reveal="open" style="--d:120ms">
             <img src="assets/optimized/cardio-machine2.jpg" alt="Cardio equipment inside Unique Fitness Gym" width="900" height="1200" loading="lazy">
@@ -153,15 +143,15 @@
             <figcaption>Detail on the floor.</figcaption>
           </figure>
           <figure data-reveal="open" style="--d:240ms">
-            <img src="assets/optimized/wide-angle-click.jpg" alt="Wide view across the training floor of Unique Fitness Gym" width="1200" height="900" loading="lazy">
-            <figcaption>Straight across the floor.</figcaption>
+            <img src="assets/optimized/interior-entrance.jpg" alt="Treadmills and a mirror wall on the training floor of Unique Fitness Gym" width="1200" height="900" loading="lazy">
+            <figcaption>Treadmills under the mirror wall.</figcaption>
           </figure>
         </div>
       </section>
 
       <section class="sec sec-split frame-in" id="listing" aria-labelledby="listing-title">
         <div class="sec-head">
-          <h2 class="head" data-lines>Straight from the listing.</h2>
+          <h2 class="head" id="listing-title" data-reveal="rise">Straight from the listing.</h2>
           <p class="sec-note">Every option and hour below comes straight from the public listing for the facility. Current session times and membership terms move faster than any website; one call settles them.</p>
         </div>
         <div class="board" data-reveal="rise">
@@ -218,7 +208,7 @@
 
       <section class="sec sec-split sec-split--3 frame-in" id="about" aria-labelledby="about-h">
         <div class="sec-head">
-          <h2 class="head" data-lines>Started in 2025.</h2>
+          <h2 class="head" id="about-h" data-reveal="rise">Started in 2025.</h2>
           <p class="sec-note">A new gym in an old neighbourhood, in its own voice.</p>
         </div>
         <div class="letter" data-reveal="rise">
@@ -266,7 +256,7 @@
 
       <section class="sec sec-split frame-in" id="questions" aria-labelledby="faq-title">
         <div class="sec-head">
-          <h2 class="head" data-lines>The obvious questions.</h2>
+          <h2 class="head" id="faq-title" data-reveal="rise">The obvious questions.</h2>
         </div>
         <div class="faq-cols">
           <p class="faq-item"><strong>What are the hours? </strong>05:00–22:00, every day of the week, as listed publicly on Google Maps.</p>
@@ -283,7 +273,7 @@
           <h2 id="visit-title">Come see it lit.</h2>
           <p>The floor keeps its own light until 22:00. Walk in during the listed hours, or call first and ask at the desk.</p>
           <div class="hero-actions">
-            <a class="button button--beam" data-tel href="tel:+919994985599">Call the gym</a>
+            <a class="button" data-tel href="tel:+919994985599">Call the gym</a>
             <a class="text-link" href="https://maps.app.goo.gl/KbJBjfcGLrUxyGn37" target="_blank" rel="noreferrer">Directions on Maps <span aria-hidden="true">→</span></a>
           </div>
         </div>

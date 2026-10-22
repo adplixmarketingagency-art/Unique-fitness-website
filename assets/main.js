@@ -495,6 +495,90 @@
     window.addEventListener("resize", schedule, { passive: true });
   }
 
+  /* --------------------------------------------------------- hero glow */
+
+  function initHeroGlow() {
+    var hero = document.querySelector(".v-hero");
+    if (!hero) {
+      return;
+    }
+
+    var motion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    var finePointer = window.matchMedia("(hover: hover) and (pointer: fine)");
+    var visible = !("IntersectionObserver" in window);
+    var active = false;
+    var frame = 0;
+    var lastTime = 0;
+    var targetX = 0;
+    var targetY = 0;
+    var currentX = 0;
+    var currentY = 0;
+
+    function render(now) {
+      frame = 0;
+      // Time-based easing keeps the same gentle lag on 60 Hz and 120 Hz screens.
+      var ease = 1 - Math.exp(-Math.min(64, now - lastTime) / 240);
+      lastTime = now;
+      currentX += (targetX - currentX) * ease;
+      currentY += (targetY - currentY) * ease;
+      var settled = Math.abs(targetX - currentX) < 0.1 && Math.abs(targetY - currentY) < 0.1;
+      if (settled) {
+        currentX = targetX;
+        currentY = targetY;
+      }
+      hero.style.setProperty("--glow-x", currentX.toFixed(2) + "px");
+      hero.style.setProperty("--glow-y", currentY.toFixed(2) + "px");
+      if (!settled) {
+        frame = window.requestAnimationFrame(render);
+      }
+    }
+
+    function schedule() {
+      if (active && finePointer.matches && !frame) {
+        lastTime = performance.now();
+        frame = window.requestAnimationFrame(render);
+      }
+    }
+
+    function update() {
+      active = visible && !document.hidden && !motion.matches;
+      hero.classList.toggle("is-glow-active", active);
+      if (!active || !finePointer.matches) {
+        window.cancelAnimationFrame(frame);
+        frame = 0;
+        targetX = targetY = currentX = currentY = 0;
+        hero.style.removeProperty("--glow-x");
+        hero.style.removeProperty("--glow-y");
+      }
+    }
+
+    hero.addEventListener("pointermove", function (event) {
+      if (!active || !finePointer.matches || event.pointerType === "touch") {
+        return;
+      }
+      var rect = hero.getBoundingClientRect();
+      targetX = (Math.max(0, Math.min(1, (event.clientX - rect.left) / rect.width)) - 0.5) * 160;
+      targetY = (Math.max(0, Math.min(1, (event.clientY - rect.top) / rect.height)) - 0.5) * 100;
+      schedule();
+    }, { passive: true });
+    hero.addEventListener("pointerleave", function () {
+      targetX = targetY = 0;
+      schedule();
+    });
+
+    if ("IntersectionObserver" in window) {
+      var observer = new IntersectionObserver(function (entries) {
+        visible = entries[0].isIntersecting;
+        update();
+      });
+      observer.observe(hero);
+    }
+    document.addEventListener("visibilitychange", update);
+    motion.addEventListener("change", update);
+    finePointer.addEventListener("change", update);
+    update();
+  }
+
   /* ----------------------------------------------- hero BMI mini-check */
 
   function initHeroBMI() {
@@ -593,6 +677,7 @@
     initStage();
     initScrollScene();
     initMagnetic();
+    initHeroGlow();
     initHeroBMI();
     initForm();
   }

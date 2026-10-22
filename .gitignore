@@ -7,3 +7,5 @@
 graphify-out/
 doc/
 node_modules/
+hero-*.png
+test-results/

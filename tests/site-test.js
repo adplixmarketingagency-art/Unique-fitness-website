@@ -73,4 +73,6 @@ assert.ok(fs.existsSync(path.join(root, "package-lock.json")), "lockfile must ex
 assert.ok(fs.existsSync(path.join(root, "Dockerfile")), "Dockerfile must exist");
 assert.ok(fs.existsSync(path.join(root, "README.md")), "README must exist");
 
+require("./hero-glow-test.js");
+
 console.log(`site tests passed: ${htmlFiles.length} HTML pages, local links/assets, JSON-LD, runtime, lockfile, and Docker checks`);
