@@ -2516,6 +2516,32 @@ h1.v-hero__title {
   }
 }
 
+/* Stronger text and rules when the system asks for more contrast, and no
+   translucent surfaces letting the starfield or imagery soften an edge.
+   The default palette already clears 4.5:1; this is the extra step. */
+@media (prefers-contrast: more) {
+  :root {
+    --color-text-muted: var(--neutral-300);
+    --color-text-faint: var(--neutral-400);
+    --color-border-soft: var(--neutral-850);
+    --color-border: var(--neutral-800);
+    --color-border-strong: var(--neutral-700);
+  }
+
+  .hero-bmi-calc,
+  .bmi-float {
+    background: var(--color-surface);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+  .site-header.is-scrolled {
+    background: var(--color-bg-deep);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+}
+
 @media print {
   .site-header,
   .hero-starfield,
