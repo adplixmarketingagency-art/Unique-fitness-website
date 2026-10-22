@@ -986,6 +986,11 @@ h1.display {
     grid-column: 2;
     align-items: flex-start;
   }
+
+  .v-hero__aside > .hero-bmi-calc {
+    width: min(34rem, calc(100% - clamp(1rem, 2vw, 1.5rem)));
+    margin-left: clamp(1rem, 2vw, 1.5rem);
+  }
 }
 
 /* The headline is authored as two lines. Making the copy column a query
