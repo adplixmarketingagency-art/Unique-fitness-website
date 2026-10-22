@@ -74,10 +74,19 @@
       return;
     }
 
+    var page = document.querySelectorAll("main, .site-footer");
+
     function open() {
       toggle.setAttribute("aria-expanded", "true");
       panel.classList.add("is-open");
       panel.style.display = "flex";
+      /* The panel covers the page, so the page behind it should not accept
+         focus or scroll while it is open. Keyboard users tab through the
+         menu instead of disappearing into hidden content. */
+      page.forEach(function (el) {
+        el.setAttribute("inert", "");
+      });
+      document.body.style.overflow = "hidden";
       var first = panel.querySelector("a");
       if (first) {
         window.setTimeout(function () { first.focus(); }, 60);
@@ -87,6 +96,10 @@
     function close(instant) {
       toggle.setAttribute("aria-expanded", "false");
       panel.classList.remove("is-open");
+      page.forEach(function (el) {
+        el.removeAttribute("inert");
+      });
+      document.body.style.overflow = "";
       if (instant) {
         panel.style.display = "";
       } else {

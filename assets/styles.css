@@ -646,7 +646,6 @@ h1.display {
   top: 0;
   min-height: var(--header-h);
   background: transparent;
-  transition: background-color var(--t-ui) ease, backdrop-filter var(--t-ui) ease;
 }
 
 .site-header::after {
@@ -660,7 +659,22 @@ h1.display {
   transition: opacity var(--t-ui) ease;
 }
 
-.site-header.is-scrolled {
+/* The scrolled bar's tint and blur live on a pseudo-element rather than on
+   the header itself. backdrop-filter creates a containing block for fixed
+   descendants, and the mobile menu is a fixed child of this header: with the
+   filter on the header the panel was clipped to the bar and the page showed
+   through it. A pseudo-element is not an ancestor, so the menu is free. */
+.site-header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: transparent;
+  pointer-events: none;
+  transition: background-color var(--t-ui) ease, backdrop-filter var(--t-ui) ease;
+}
+
+.site-header.is-scrolled::before {
   background: oklch(0.158 0.0054 248 / 0.72);
   backdrop-filter: blur(16px) saturate(140%);
   -webkit-backdrop-filter: blur(16px) saturate(140%);
@@ -895,8 +909,13 @@ h1.display {
     display: none;
   }
 
-  .hdr-cta-mobile {
+  /* Matches the specificity of the desktop hide rule above so the phone CTA
+     actually appears inside the open menu. */
+  .site-nav .hdr-cta-mobile {
     display: inline-flex;
+    align-self: flex-start;
+    /* A full 44px target, matching the rows above it. */
+    min-height: 2.75rem;
   }
 }
 
@@ -2535,7 +2554,7 @@ h1.v-hero__title {
     -webkit-backdrop-filter: none;
   }
 
-  .site-header.is-scrolled {
+  .site-header.is-scrolled::before {
     background: var(--color-bg-deep);
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
