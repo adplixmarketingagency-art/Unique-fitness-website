@@ -591,6 +591,37 @@
     var value = form.querySelector("[data-hero-bmi-value]");
     var bandOutput = form.querySelector("[data-hero-bmi-band]");
 
+    function validateField(field) {
+      var v = Number(field.value);
+      if (field.name === "height") {
+        if (!v || v < 100 || v > 250) {
+          field.setCustomValidity("Height must be between 100 and 250 cm.");
+        } else {
+          field.setCustomValidity("");
+        }
+      } else if (field.name === "weight") {
+        if (!v || v < 25 || v > 300) {
+          field.setCustomValidity("Weight must be between 25 and 300 kg.");
+        } else {
+          field.setCustomValidity("");
+        }
+      }
+    }
+
+    form.querySelectorAll("input").forEach(function (input) {
+      input.addEventListener("input", function () {
+        validateField(input);
+        if (input.checkValidity()) {
+          input.classList.remove("is-invalid");
+        } else {
+          input.classList.add("is-invalid");
+        }
+      });
+      input.addEventListener("blur", function () {
+        validateField(input);
+      });
+    });
+
     form.addEventListener("submit", function (event) {
       event.preventDefault();
       var height = Number(form.elements.height.value);
@@ -665,6 +696,33 @@
     });
   }
 
+  /* --------------------------------------------------- nav glide indicator */
+
+  function initNavGlide() {
+    var navList = document.querySelector(".site-nav__list");
+    if (!navList) return;
+
+    var indicator = navList.querySelector("::before");
+    // The indicator is a pseudo-element; we control it via CSS custom props
+    // by measuring the active link and writing --glide-left / --glide-width
+
+    function updateGlide() {
+      var active = navList.querySelector('a[aria-current="page"]');
+      if (!active) {
+        navList.style.removeProperty("--glide-left");
+        navList.style.removeProperty("--glide-width");
+        return;
+      }
+      var rect = active.getBoundingClientRect();
+      var parentRect = navList.getBoundingClientRect();
+      navList.style.setProperty("--glide-left", (rect.left - parentRect.left) + "px");
+      navList.style.setProperty("--glide-width", rect.width + "px");
+    }
+
+    updateGlide();
+    window.addEventListener("resize", updateGlide);
+  }
+
   /* ------------------------------------------------------------- init */
 
   function init() {
@@ -679,6 +737,7 @@
     initMagnetic();
     initHeroGlow();
     initHeroBMI();
+    initNavGlide();
     initForm();
   }
 
