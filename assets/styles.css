@@ -387,7 +387,7 @@ h1.display {
 
 .sec {
   position: relative;
-  padding-block: clamp(4.5rem, 9vw, 9rem);
+  padding-block: clamp(2.5rem, 5vw, 5rem);
 }
 
 .sec-head {
@@ -1244,7 +1244,7 @@ body[data-page="home"] .site-header .button:hover {
 .figs {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
-  gap: var(--space-5);
+  gap: var(--space-8);
 }
 
 /* A photograph is not a card: no fill, no frame, no drop shadow. The tile is
@@ -1411,7 +1411,7 @@ body[data-page="home"] .site-header .button:hover {
 }
 
 .fac-fig {
-  margin: 0;
+  margin: 0 0 var(--space-8) 0;
   overflow: hidden;
   border-radius: var(--r-lg);
 }

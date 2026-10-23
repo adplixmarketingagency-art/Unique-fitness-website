@@ -2,10 +2,6 @@
 .agents/
 .claude/
 .taste-skill/
-.opencode/
-.playwright-mcp/
 graphify-out/
 doc/
 node_modules/
-hero-*.png
-test-results/
