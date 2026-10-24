@@ -10,6 +10,17 @@ const htmlFiles = [
   "about/index.html",
   "bmi/index.html",
   "contact/index.html",
+  "services/index.html",
+  "blog/index.html",
+  "blog/post.html",
+];
+
+const replacementImagePages = [
+  "index.html",
+  "about/index.html",
+  "bmi/index.html",
+  "contact/index.html",
+  "blog/index.html",
 ];
 
 function read(relativePath) {
@@ -62,6 +73,12 @@ for (const file of htmlFiles) {
   checkHtml(file);
 }
 
+const replacementImage = "assets/optimized/footer-building-night.jpg";
+assert.ok(fs.existsSync(path.join(root, replacementImage)), "replacement footer image must exist");
+for (const file of replacementImagePages) {
+  assert.match(read(file), /footer-building-night\.jpg/, `${file} must use the replacement footer image`);
+}
+
 const data = read("assets/data.js");
 assert.match(data, /Unique Unisex Fitness and Gym/, "data model should use the public listing name");
 assert.match(data, /Kumaran Nagar/, "data model should include the supplied address");
@@ -71,6 +88,23 @@ assert.equal((data.match(/id: "/g) || []).length, 6, "data model should contain 
 assert.ok(fs.existsSync(path.join(root, ".nvmrc")), "runtime version must be pinned");
 assert.ok(fs.existsSync(path.join(root, "package-lock.json")), "lockfile must exist");
 assert.ok(fs.existsSync(path.join(root, "Dockerfile")), "Dockerfile must exist");
+
+const sitemap = read("sitemap.xml");
+assert.doesNotMatch(sitemap, /\[YOUR-DOMAIN\]|\[Website URL/i, "sitemap must use the production host");
+assert.match(sitemap, /https:\/\/unique-fitness-website\.adplixmarketingagency\.workers\.dev\//, "sitemap must use the deployed HTTPS host");
+const robots = read("robots.txt");
+assert.match(robots, /User-agent:\s*\*/i, "robots.txt must define a default crawler policy");
+assert.match(robots, /Allow:\s*\//i, "robots.txt must allow the public site");
+assert.match(robots, /Sitemap:\s*https:\/\/unique-fitness-website\.adplixmarketingagency\.workers\.dev\/sitemap\.xml/i, "robots.txt must point to the deployed sitemap");
+
+const worker = read("worker.js");
+for (const pathName of ["/index.html", "/about/index.html", "/bmi/index.html", "/contact/index.html", "/services/index.html", "/blog/index.html"]) {
+  assert.match(worker, new RegExp(`"${pathName.replaceAll("/", "\\/")}"`), `worker must canonicalize ${pathName}`);
+}
+
+assert.ok(fs.existsSync(path.join(root, "404.html")), "custom 404 page must exist");
+assert.ok(fs.existsSync(path.join(root, "wrangler.jsonc")), "Cloudflare Worker config must exist");
+assert.doesNotMatch(htmlFiles.map(read).join("\n"), /<meta[^>]+(?:noindex|nofollow|noarchive)/i, "pages must remain crawlable");
 
 require("./hero-glow-test.js");
 

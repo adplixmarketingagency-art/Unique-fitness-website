@@ -47,7 +47,7 @@
       sourceUrl: "https://www.justdial.com/Pondicherry/Unique-Unisex-Fitness-and-Gym-Kumaran-Nagar-Mudaliarpet/0413PX413-X413-250910211420-K1I9_BZDET"
     },
     assets: {
-      hero: "/assets/optimized/Outer-look.jpg",
+      hero: "/assets/optimized/footer-building-night.jpg",
       ownerFrontPose: "/assets/optimized/Gym-owner-front-pose.jpg",
       ownerAchievements: "/assets/optimized/Gym-owner-achievements.jpg",
       machine: "/assets/optimized/GYm-machine.jpg",

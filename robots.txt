@@ -1,8 +1,6 @@
 # Unique Fitness Gym crawler policy.
-# Replace [YOUR-DOMAIN] with the final HTTPS domain before deployment.
 
 User-agent: *
 Allow: /
 
-# Keep this placeholder until the production canonical host is confirmed.
-Sitemap: https://[YOUR-DOMAIN]/sitemap.xml
+Sitemap: https://unique-fitness-website.adplixmarketingagency.workers.dev/sitemap.xml

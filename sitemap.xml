@@ -1,16 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Replace [YOUR-DOMAIN] with the final HTTPS canonical host before deployment. -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://[YOUR-DOMAIN]/</loc>
+    <loc>https://unique-fitness-website.adplixmarketingagency.workers.dev/</loc>
   </url>
   <url>
-    <loc>https://[YOUR-DOMAIN]/about/</loc>
+    <loc>https://unique-fitness-website.adplixmarketingagency.workers.dev/about/</loc>
   </url>
   <url>
-    <loc>https://[YOUR-DOMAIN]/bmi/</loc>
+    <loc>https://unique-fitness-website.adplixmarketingagency.workers.dev/bmi/</loc>
   </url>
   <url>
-    <loc>https://[YOUR-DOMAIN]/contact/</loc>
+    <loc>https://unique-fitness-website.adplixmarketingagency.workers.dev/contact/</loc>
+  </url>
+  <url>
+    <loc>https://unique-fitness-website.adplixmarketingagency.workers.dev/services/</loc>
+  </url>
+  <url>
+    <loc>https://unique-fitness-website.adplixmarketingagency.workers.dev/blog/</loc>
+  </url>
+  <url>
+    <loc>https://unique-fitness-website.adplixmarketingagency.workers.dev/blog/post.html</loc>
   </url>
 </urlset>

@@ -67,6 +67,21 @@ const server = createServer(async (request, response) => {
   try {
     const filePath = await resolveFile(request.url || "/");
     if (!filePath) {
+      const notFoundPath = join(root, "404.html");
+      const notFoundInfo = await stat(notFoundPath).catch(() => null);
+      if (notFoundInfo?.isFile()) {
+        response.writeHead(404, {
+          "Content-Type": "text/html; charset=utf-8",
+          "Content-Length": notFoundInfo.size
+        });
+        if (request.method === "HEAD") {
+          response.end();
+          return;
+        }
+        createReadStream(notFoundPath).pipe(response);
+        return;
+      }
+
       response.writeHead(404, { "Content-Type": "text/plain; charset=utf-8" });
       response.end("Not Found");
       return;
