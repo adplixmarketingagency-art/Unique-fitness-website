@@ -1444,6 +1444,157 @@ body[data-page="home"] .site-header .button:hover {
   scale: 1.03;
 }
 
+/* -------------------------------------------------- founder scroll timeline */
+
+.founder-history {
+  padding-top: clamp(4rem, 8vw, 8rem);
+}
+
+.founder-timeline {
+  width: 100%;
+}
+
+.founder-timeline__list {
+  display: grid;
+  gap: clamp(3rem, 9vw, 9rem);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.founder-timeline__item {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(2rem, 5vw, 6rem);
+  align-items: center;
+  min-height: 0;
+  scroll-margin-top: calc(var(--header-h) + var(--space-8));
+}
+
+.founder-timeline__item:nth-child(1) {
+  --stack-index: 1;
+  --card-surface: var(--color-surface);
+}
+
+.founder-timeline__item:nth-child(2) {
+  --stack-index: 2;
+  --card-surface: var(--color-surface-elevated);
+}
+
+.founder-timeline__item:nth-child(3) {
+  --stack-index: 3;
+  --card-surface: var(--color-surface-raised);
+}
+
+.founder-timeline__item:nth-child(4) {
+  --stack-index: 4;
+  --card-surface: var(--color-surface);
+}
+
+.founder-timeline__item:nth-child(5) {
+  --stack-index: 5;
+  --card-surface: var(--color-surface-elevated);
+}
+
+.founder-timeline__item:nth-child(6) {
+  --stack-index: 6;
+  --card-surface: var(--color-surface-raised);
+}
+
+.founder-timeline__item:nth-child(7) {
+  --stack-index: 7;
+  --card-surface: var(--color-accent-quiet);
+}
+
+.founder-timeline__media {
+  position: relative;
+  min-width: 0;
+  margin: 0;
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+  background: var(--color-surface-sunken);
+  border-radius: var(--r-lg);
+}
+
+.founder-timeline__media img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+  background: var(--color-surface-sunken);
+  transition: scale 900ms var(--ease-soft);
+}
+
+.founder-timeline__media:hover img {
+  scale: 1.025;
+}
+
+.founder-timeline__media figcaption {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: var(--space-5) var(--space-5) var(--space-4);
+  color: var(--color-text-inverse);
+  font-size: var(--step-small);
+  font-weight: 550;
+  background: var(--color-overlay);
+}
+
+.founder-timeline__copy {
+  display: grid;
+  align-content: center;
+  gap: var(--space-5);
+  max-width: 42rem;
+  min-height: 22rem;
+}
+
+.founder-timeline__copy h3 {
+  margin: 0;
+  color: var(--color-text-primary);
+  font-size: clamp(2rem, 1.25rem + 2.8vw, 4.25rem);
+  font-weight: 800;
+  letter-spacing: var(--tracking-display);
+  line-height: 0.98;
+  text-wrap: balance;
+}
+
+.founder-timeline__meta {
+  margin: 0;
+  color: var(--color-accent-text);
+  font-size: var(--step-lead);
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.founder-timeline__copy > p:not(.founder-timeline__meta):not(.founder-timeline__result) {
+  max-width: 42ch;
+  margin: 0;
+  color: var(--color-text-secondary);
+  font-size: var(--step-lead);
+  line-height: 1.55;
+}
+
+.founder-timeline__result {
+  width: fit-content;
+  max-width: 100%;
+  margin: 0;
+  padding: 0.65rem 0.9rem;
+  color: var(--color-text-primary);
+  background: var(--color-surface-elevated);
+  border-radius: var(--r-sm);
+  font-size: var(--step-small);
+  font-weight: 650;
+}
+
+/* The following section gets its own ground so the last sticky image cannot
+   visually bleed into the gym-floor gallery. */
+body[data-page="about"] .founder-history + #floor {
+  position: relative;
+  z-index: 2;
+  background: var(--color-bg);
+}
+
 /* ------------------------------------------------------------- review wall */
 
 .rwall {
@@ -2375,6 +2526,41 @@ body[data-page="home"] .site-header .button:hover {
   }
 }
 
+@media (max-width: 47.99rem) {
+  /* On a phone the right-hand chapter copy already names the image and event;
+     removing the overlay keeps the scroll sequence calm and prevents the
+     caption from competing with the next chapter heading. */
+  .founder-timeline__media figcaption {
+    display: none;
+  }
+
+  .founder-timeline__list {
+    gap: 0;
+  }
+
+  .founder-timeline__item {
+    position: sticky;
+    top: calc(var(--header-h) + 0.8rem + (var(--stack-index) * 0.35rem));
+    z-index: var(--stack-index);
+    min-height: 0;
+    margin-bottom: 3.5rem;
+    padding: 1rem;
+    background: var(--card-surface, var(--color-surface));
+    border-radius: var(--r-lg);
+    box-shadow: 0 1.25rem 2.5rem oklch(0.02 0.006 250 / 0.26);
+  }
+
+  .founder-timeline__media {
+    aspect-ratio: 4 / 3;
+    border-radius: var(--r-md);
+  }
+
+  .founder-timeline__copy {
+    min-height: 0;
+    padding-top: var(--space-6);
+  }
+}
+
 @media (min-width: 48rem) {
   .v-hero {
     padding-top: calc(var(--header-h) + clamp(2rem, 6vh, 5rem));
@@ -2406,6 +2592,37 @@ body[data-page="home"] .site-header .button:hover {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: var(--space-5);
+  }
+
+  .founder-timeline__list {
+    gap: 0;
+  }
+
+  .founder-timeline__item {
+    position: sticky;
+    top: calc(var(--header-h) + clamp(1.5rem, 4vh, 3rem) + (var(--stack-index) * 0.55rem));
+    z-index: var(--stack-index);
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+    min-height: min(76svh, 52rem);
+    margin-bottom: clamp(4rem, 8vw, 8rem);
+    padding: clamp(1rem, 2vw, 2rem);
+    background: var(--card-surface, var(--color-surface));
+    border-radius: var(--r-xl);
+    box-shadow: 0 1.5rem 3rem oklch(0.02 0.006 250 / 0.24);
+  }
+
+  .founder-timeline__media {
+    position: relative;
+    top: auto;
+    align-self: center;
+    height: min(62svh, 38rem);
+    aspect-ratio: auto;
+    border-radius: var(--r-md);
+  }
+
+  .founder-timeline__copy {
+    min-height: 0;
+    padding-inline: clamp(0.5rem, 1vw, 1rem);
   }
 
   .figs {
@@ -2475,6 +2692,38 @@ body[data-page="home"] .site-header .button:hover {
     position: sticky;
     top: calc(var(--header-h) + var(--space-5));
   }
+
+  .founder-timeline__list {
+    gap: 0;
+  }
+
+  .founder-timeline__item {
+    position: sticky;
+    top: calc(var(--header-h) + clamp(1.5rem, 4vh, 3rem) + (var(--stack-index) * 0.55rem));
+    z-index: var(--stack-index);
+    grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
+    min-height: min(76svh, 52rem);
+    margin-bottom: clamp(4rem, 8vw, 8rem);
+    padding: clamp(1rem, 2vw, 2rem);
+    background: var(--card-surface, var(--color-surface));
+    border-radius: var(--r-xl);
+    box-shadow: 0 1.5rem 3rem oklch(0.02 0.006 250 / 0.24);
+  }
+
+  .founder-timeline__media {
+    position: relative;
+    top: auto;
+    align-self: center;
+    height: min(62svh, 38rem);
+    aspect-ratio: auto;
+    border-radius: var(--r-md);
+  }
+
+  .founder-timeline__copy {
+    min-height: 0;
+    padding-inline: clamp(0.5rem, 1vw, 1rem);
+  }
+
 
   .figs {
     grid-template-columns: repeat(6, minmax(0, 1fr));
