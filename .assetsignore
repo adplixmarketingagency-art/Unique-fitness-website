@@ -1,5 +1,6 @@
 .git/
 .github/
+.agents/
 .impeccable/
 .claude/
 .wrangler/
@@ -23,3 +24,5 @@ apple-audit.md
 wrangler.jsonc
 worker.js
 .assetsignore
+.DS_Store
+**/.DS_Store
