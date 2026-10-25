@@ -492,6 +492,24 @@ h1.display {
   transform: scale(0.975);
 }
 
+/* The header action should feel steady on touch and desktop. Keep the press
+   state from shrinking the navigation and reserve colour change for real
+   pointer hover. */
+.site-header .button {
+  -webkit-tap-highlight-color: transparent;
+  transition: background-color var(--t-hover) ease, color var(--t-hover) ease;
+}
+
+.site-header .button:hover,
+.site-header .button:active {
+  transform: none;
+}
+
+.site-header .button:focus-visible {
+  outline: 0.18rem solid var(--color-accent);
+  outline-offset: 0.2rem;
+}
+
 /* The secondary button is a raised surface, not an outline: a one-pixel
    frame around a box reads as a drawn shape rather than as depth. */
 .button--ghost {
@@ -1081,10 +1099,6 @@ body[data-page="home"] .site-header .button {
   border-radius: var(--r-pill);
 }
 
-body[data-page="home"] .site-header .button:hover {
-  background: var(--color-accent-hover);
-}
-
 .hero-actions {
   display: flex;
   flex-wrap: wrap;
@@ -1590,6 +1604,180 @@ body[data-page="home"] .site-header .button:hover {
 /* The following section gets its own ground so the last sticky image cannot
    visually bleed into the gym-floor gallery. */
 body[data-page="about"] .founder-history + #floor {
+  position: relative;
+  z-index: 2;
+  background: var(--color-bg);
+}
+
+/* ------------------------------------------- certifications + achievements */
+
+.achievements-history {
+  position: relative;
+  isolation: isolate;
+  padding-top: clamp(5rem, 10vw, 10rem);
+  padding-bottom: clamp(5rem, 10vw, 10rem);
+  background: var(--color-bg-deep);
+}
+
+.achievement-scroller {
+  position: relative;
+  min-width: 0;
+  margin-top: var(--space-8);
+  overflow: hidden;
+  background: var(--color-surface-sunken);
+  border-radius: var(--r-xl);
+}
+
+.achievement-scroller__viewport {
+  width: 100%;
+  overflow: hidden;
+}
+
+.achievement-scroller__track {
+  display: flex;
+  width: max-content;
+  animation: achievement-marquee 62s linear infinite;
+  will-change: transform;
+}
+
+.achievement-scroller__track:hover,
+.achievement-scroller__track:focus-within {
+  animation-play-state: paused;
+}
+
+.achievements-history.is-marquee-paused .achievement-scroller__track {
+  animation-play-state: paused;
+}
+
+.achievement-scroller__controls {
+  display: none;
+}
+
+.achievement-marquee-toggle {
+  align-items: center;
+  gap: 0.45rem;
+  min-height: 2.5rem;
+  padding: 0.55rem 0.8rem;
+  color: var(--color-text-primary);
+  background: var(--color-surface-elevated);
+  border: 0;
+  border-radius: var(--r-sm);
+  font: inherit;
+  font-size: var(--step-small);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.achievement-marquee-toggle:focus-visible {
+  outline: 0.18rem solid var(--color-accent);
+  outline-offset: 0.2rem;
+}
+
+.achievement-scroller__list {
+  display: flex;
+  align-items: stretch;
+  gap: clamp(0.35rem, 0.8vw, var(--space-3));
+  flex: 0 0 auto;
+  width: max-content;
+  height: min(62svh, 38rem);
+  padding: 0 clamp(1rem, 5vw, 6rem);
+}
+
+.achievement-card {
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+  flex: 0 0 clamp(13rem, 17vw, 19rem);
+  height: min(62svh, 38rem);
+  min-width: 0;
+  overflow: hidden;
+  background: var(--color-surface);
+  border-radius: var(--r-lg);
+}
+
+.achievement-card__media {
+  position: relative;
+  min-width: 0;
+  min-height: 0;
+  margin: 0;
+  overflow: hidden;
+  background: var(--color-surface-sunken);
+}
+
+.achievement-card__media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: var(--color-surface-sunken);
+}
+
+.achievement-card__media-pair {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-2);
+  width: 100%;
+  height: 100%;
+  padding: var(--space-2);
+  background: var(--color-surface-sunken);
+}
+
+.achievement-card__media-pair img {
+  min-width: 0;
+  min-height: 0;
+}
+
+.achievement-card__copy {
+  display: grid;
+  gap: var(--space-3);
+  padding: var(--space-5);
+  min-width: 0;
+}
+
+.achievement-card__year {
+  color: var(--color-accent-text);
+  font-size: var(--step-small);
+  font-weight: 700;
+  line-height: 1;
+}
+
+.achievement-card__copy h3 {
+  color: var(--color-text-primary);
+  font-size: clamp(1.2rem, 1rem + 1.25vw, 2rem);
+  font-weight: 800;
+  letter-spacing: var(--tracking-head);
+  line-height: 1.05;
+  text-wrap: balance;
+}
+
+.achievement-card__meta {
+  color: var(--color-text-secondary);
+  font-size: var(--step-small);
+  font-weight: 650;
+  line-height: 1.35;
+}
+
+.achievement-card__copy > p:last-child {
+  max-width: 42ch;
+  display: -webkit-box;
+  overflow: hidden;
+  color: var(--color-text-secondary);
+  font-size: var(--step-body);
+  line-height: 1.55;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+@keyframes achievement-marquee {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+body[data-page="about"] .achievements-history + #floor {
   position: relative;
   z-index: 2;
   background: var(--color-bg);
@@ -2559,6 +2747,36 @@ body[data-page="about"] .founder-history + #floor {
     min-height: 0;
     padding-top: var(--space-6);
   }
+
+  .achievement-scroller {
+    margin-top: var(--space-6);
+  }
+
+  .achievement-scroller__controls {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: var(--space-3);
+    padding-inline: 1rem;
+  }
+
+  .achievement-marquee-toggle {
+    display: inline-flex;
+  }
+
+  .achievement-scroller__track {
+    animation-duration: 46s;
+  }
+
+  .achievement-scroller__list {
+    gap: var(--space-3);
+    height: min(64svh, 32rem);
+    padding: 0 1rem;
+  }
+
+  .achievement-card {
+    flex-basis: clamp(11.5rem, 52vw, 16rem);
+    height: min(64svh, 32rem);
+  }
 }
 
 @media (min-width: 48rem) {
@@ -2824,6 +3042,22 @@ body[data-page="about"] .founder-history + #floor {
   .site-header.is-scrolled::before {
     background: var(--color-bg-deep);
   }
+}
+
+/* Achievement cards use their own marquee presentation. Do not combine it
+   with the generic reveal choreography. */
+.achievement-card [data-reveal="open"],
+.achievement-card [data-reveal="rise"] {
+  opacity: 1;
+  transform: none;
+  clip-path: none;
+  transition: none;
+}
+
+.achievement-card [data-reveal="open"] > img,
+.achievement-card [data-reveal="open"] .achievement-card__media-pair img {
+  transform: none;
+  scale: 1;
 }
 
 @media print {

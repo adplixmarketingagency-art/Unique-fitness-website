@@ -495,6 +495,70 @@
     window.addEventListener("resize", schedule, { passive: true });
   }
 
+  /* --------------------------------------------- right-to-left achievement marquee */
+  function initAchievements() {
+    var section = document.querySelector(".achievements-history");
+    var track = document.querySelector("[data-achievement-track]");
+    var list = track ? track.querySelector(".achievement-scroller__list") : null;
+    var toggle = document.querySelector("[data-achievement-toggle]");
+    var toggleIcon = toggle ? toggle.querySelector("[data-achievement-toggle-icon]") : null;
+    var toggleLabel = toggle ? toggle.querySelector("[data-achievement-toggle-label]") : null;
+    var mobileQuery = window.matchMedia("(max-width: 47.99rem)");
+
+    if (!section || !track || !list || track.dataset.marqueeReady === "true") {
+      return;
+    }
+
+    var clone = list.cloneNode(true);
+    clone.classList.add("achievement-scroller__list--clone");
+    clone.setAttribute("aria-hidden", "true");
+    clone.querySelectorAll("[data-achievement-card]").forEach(function (card) {
+      card.removeAttribute("data-achievement-card");
+      card.removeAttribute("tabindex");
+      card.removeAttribute("aria-current");
+      card.querySelectorAll("[data-reveal]").forEach(function (target) {
+        target.removeAttribute("data-reveal");
+      });
+    });
+    clone.querySelectorAll("[id]").forEach(function (element) {
+      element.removeAttribute("id");
+    });
+
+    function setPaused(paused) {
+      section.classList.toggle("is-marquee-paused", paused);
+      if (!toggle) {
+        return;
+      }
+      toggle.setAttribute("aria-pressed", String(paused));
+      toggle.setAttribute("aria-label", paused ? "Play achievements marquee" : "Pause achievements marquee");
+      if (toggleIcon) {
+        toggleIcon.textContent = paused ? "▶" : "Ⅱ";
+      }
+      if (toggleLabel) {
+        toggleLabel.textContent = paused ? "Play" : "Pause";
+      }
+    }
+
+    track.appendChild(clone);
+    track.dataset.marqueeReady = "true";
+    setPaused(reducedMotion);
+
+    if (toggle) {
+      toggle.addEventListener("click", function () {
+        if (mobileQuery.matches) {
+          setPaused(!section.classList.contains("is-marquee-paused"));
+        }
+      });
+      if (typeof mobileQuery.addEventListener === "function") {
+        mobileQuery.addEventListener("change", function (event) {
+          if (!event.matches) {
+            setPaused(false);
+          }
+        });
+      }
+    }
+  }
+
   /* --------------------------------------------------------- hero glow */
 
   function initHeroGlow() {
@@ -734,6 +798,7 @@
     initLineSplit();
     initStage();
     initScrollScene();
+    initAchievements();
     initMagnetic();
     initHeroGlow();
     initHeroBMI();
