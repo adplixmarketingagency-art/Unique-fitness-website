@@ -501,7 +501,6 @@
     var track = document.querySelector("[data-achievement-track]");
     var list = track ? track.querySelector(".achievement-scroller__list") : null;
     var toggle = document.querySelector("[data-achievement-toggle]");
-    var toggleIcon = toggle ? toggle.querySelector("[data-achievement-toggle-icon]") : null;
     var toggleLabel = toggle ? toggle.querySelector("[data-achievement-toggle-label]") : null;
     var mobileQuery = window.matchMedia("(max-width: 47.99rem)");
 
@@ -531,9 +530,6 @@
       }
       toggle.setAttribute("aria-pressed", String(paused));
       toggle.setAttribute("aria-label", paused ? "Play achievements marquee" : "Pause achievements marquee");
-      if (toggleIcon) {
-        toggleIcon.textContent = paused ? "▶" : "Ⅱ";
-      }
       if (toggleLabel) {
         toggleLabel.textContent = paused ? "Play" : "Pause";
       }
