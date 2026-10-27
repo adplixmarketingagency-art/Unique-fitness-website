@@ -44,6 +44,8 @@ assert.match(motion, /visibilitychange/, "Continuous motion pauses in a hidden t
 assert.match(motion, /conditions\.reduced/, "System reduced-motion preference is respected");
 assert.match(motion, /pin: true/, "Photo collage is scroll-driven at every viewport");
 assert.match(css, /@media \(max-width: 768px\)[\s\S]*?\.floor-collage\s*\{\s*grid-template-columns:\s*24% 1fr 24%/, "Mobile preserves the desktop side-photo composition");
+assert.match(css, /\.floor-collage::before[\s\S]*?radial-gradient/, "Founder glow blends across the full collage instead of a rectangular tile");
+assert.match(css, /\.collage-tile--founder\s*\{[^}]*background:\s*transparent/, "Founder tile does not expose a mismatched background panel");
 assert.match(motion, /return i % 2 === 0 \? -distance : distance/, "Left photos enter from the left and right photos from the right");
 assert.match(motion, /y:\s*0/, "Collage side photos animate horizontally only");
 assert.match(html, /data-motion-toggle/, "Motion has an explicit pause control");

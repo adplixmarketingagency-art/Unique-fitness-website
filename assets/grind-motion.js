@@ -207,8 +207,9 @@
             pin: true, scrub: .7, anticipatePin: 1, invalidateOnRefresh: true,
           },
         });
-        gridTimeline.from(".collage-tile--main", {
-          scale: conditions.desktop ? 1.6 : 1.3, duration: 1, ease: "power2.inOut",
+        gridTimeline.from(".collage-tile--founder img", {
+          scale: conditions.desktop ? 1.6 : 1.85,
+          duration: 1, ease: "power2.inOut", transformOrigin: "center bottom",
         }, 0)
           .from(".collage-tile:not(.collage-tile--main)", {
             scale: .35, opacity: 0,

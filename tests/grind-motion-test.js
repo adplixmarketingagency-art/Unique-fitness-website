@@ -64,7 +64,7 @@ assert.equal(mobile.body.dataset.motionStatus, "running");
 assert.equal(mobile.toggle.hidden, false);
 assert.equal(hasIntro(mobile), true, "Fresh touch-phone loads animate the wordmark");
 assert.equal(hasPin(mobile), true, "Phones get the pinned pull-back/fan-out, not a plain fade");
-assert.ok(mobile.calls.some(({ method, args }) => method === "from" && args[0] === ".collage-tile--main" && args[1].scale > 1), "Mobile center photo pulls back into the mosaic");
+assert.ok(mobile.calls.some(({ method, args }) => method === "from" && args[0] === ".collage-tile--founder img" && args[1].scale >= 1.8), "Mobile founder starts large and pulls back into the mosaic");
 assert.ok(mobile.calls.some(({ method, args }) => method === "set" && args[0] === ".seal-ring" && args[1].svgOrigin === "100 100"), "Emblem rotates around the viewBox center, not font-dependent bounds");
 mobile.click();
 assert.equal(mobile.body.dataset.motionStatus, "paused");
