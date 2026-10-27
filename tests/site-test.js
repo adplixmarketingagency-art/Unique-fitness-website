@@ -107,5 +107,6 @@ assert.ok(fs.existsSync(path.join(root, "wrangler.jsonc")), "Cloudflare Worker c
 assert.doesNotMatch(htmlFiles.map(read).join("\n"), /<meta[^>]+(?:noindex|nofollow|noarchive)/i, "pages must remain crawlable");
 
 require("./hero-glow-test.js");
+require("./grind-home-test.js");
 
 console.log(`site tests passed: ${htmlFiles.length} HTML pages, local links/assets, JSON-LD, runtime, lockfile, and Docker checks`);

@@ -21,9 +21,12 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/styles.css">
+    <link rel="stylesheet" href="assets/grind-home.css">
     <script src="assets/data.js" defer></script>
     <script src="assets/main.js" defer></script>
+    <script src="assets/vendor/gsap-3.13.0.min.js" defer></script>
+    <script src="assets/vendor/ScrollTrigger-3.13.0.min.js" defer></script>
+    <script src="assets/grind-motion.js" defer></script>
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -60,265 +63,489 @@
   <body data-page="home">
     <a class="skip-link" href="#main-content">Skip to content</a>
 
-    <header class="site-header" data-header>
-      <div class="site-header__inner">
-        <a class="site-logo" href="index.html" aria-label="Unique Fitness Gym home">Unique<small>Unisex Fitness &amp; Gym</small></a>
-        <button class="menu-toggle" type="button" data-menu-toggle aria-controls="site-nav" aria-expanded="false">
-          <span class="menu-toggle__label">Menu</span>
-          <span class="menu-toggle__icon" aria-hidden="true"></span>
-        </button>
-        <nav class="site-nav" id="site-nav" data-menu-panel aria-label="Primary navigation">
-          <ul class="site-nav__list">
-            <li><a href="index.html" aria-current="page">Home</a></li>
-            <li><a href="about/">About</a></li>
-            <li><a href="bmi/">BMI</a></li>
-            <li><a href="contact/">Contact</a></li>
-          </ul>
-          <a class="button hdr-cta site-nav__cta" data-tel href="tel:+919994985599" aria-label="Call Unique Fitness Gym on 099949 85599">Call now</a>
-          <a class="button hdr-cta hdr-cta-mobile" data-tel href="tel:+919994985599">Call 099949 85599</a>
-        </nav>
-      </div>
+    <header class="site-header">
+      <a class="wordmark" href="/" aria-label="Unique Fitness Gym home">UNIQUE<span>UNISEX FITNESS &amp; GYM</span></a>
+      <button class="menu-toggle" type="button" data-menu-toggle aria-controls="site-nav" aria-expanded="false">Menu <span aria-hidden="true">+</span></button>
+      <nav class="site-nav" id="site-nav" data-menu-panel aria-label="Primary navigation">
+        <ul class="site-nav__list">
+          <li><a href="#our-story">Story</a></li>
+          <li><a href="#the-gym">Gym</a></li>
+          <li><a href="#training">Training</a></li>
+          <li><a href="#founder-story" data-nav-sections="#founder-story,#certifications-achievements">Founder</a></li>
+          <li><a href="#reviews">Reviews</a></li>
+        </ul>
+        <a class="pill pill--outline" href="#visit">Visit <span aria-hidden="true">↗</span></a>
+      </nav>
     </header>
 
     <main id="main-content">
-      <section class="v-hero" aria-labelledby="hero-title">
-        <div class="v-hero__streaks" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
-        <div class="v-hero__dots" aria-hidden="true"></div>
-        <div class="v-hero__inner frame-in">
-          <div class="v-hero__copy">
-            <h1 class="display v-hero__title" id="hero-title"><span>Stronger</span> <span>starts here.</span></h1>
-            <p class="lead v-hero__lead">Your unisex gym on 100 Feet Road, Mudaliarpet. Train your way with gym access, CrossFit, yoga and one-to-one coaching.</p>
-            <div class="hero-actions">
-              <a class="button hero-call" data-tel href="tel:+919994985599">Call the gym</a>
-              <a class="hero-directions" href="https://maps.app.goo.gl/KbJBjfcGLrUxyGn37" target="_blank" rel="noreferrer">Get directions</a>
-            </div>
-            <div class="v-hero__meta">
-              <p class="open-now" data-open-now>Open daily <span data-placeholder="hours">05:00–22:00</span></p>
-              <p>Every day, from 5 am to 10 pm.</p>
-              <a class="hero-reviews" href="https://maps.app.goo.gl/KbJBjfcGLrUxyGn37" target="_blank" rel="noreferrer"><strong data-placeholder="rating">5.0</strong> on Google, from <span data-placeholder="reviews">20</span> reviews</a>
+      <section class="grind-hero" aria-labelledby="hero-title">
+        <img class="grind-hero__image" src="assets/optimized/wide-angle-click.jpg" alt="The free weights and training floor at Unique Fitness Gym, Mudaliarpet" width="1200" height="900" fetchpriority="high">
+        <div class="grind-hero__shade" aria-hidden="true"></div>
+        <div class="hero-intro-brand" aria-hidden="true">
+          <div class="hero-intro-brand__content">
+            <div class="hero-intro-brand__wordmark">
+              <span class="hero-intro-brand__line"><span>UNIQUE</span></span>
+              <span class="hero-intro-brand__line"><span>FITNESS</span></span>
+              <span class="hero-intro-brand__rule"></span>
             </div>
           </div>
-          <div class="v-hero__aside">
-            <form class="hero-bmi-calc" id="hero-bmi-calc" data-hero-bmi novalidate aria-labelledby="hero-bmi-title" aria-describedby="hero-bmi-note">
-              <div class="hero-bmi-calc__head">
-                <h2 id="hero-bmi-title">A quick BMI check</h2>
-                <a href="bmi/#calorie-calculator">Calorie goal</a>
-              </div>
-              <label>
-                <span>Height <small>(cm)</small></span>
-                <input name="height" type="number" min="100" max="250" step="0.1" inputmode="decimal" placeholder="170" required>
-              </label>
-              <label>
-                <span>Weight <small>(kg)</small></span>
-                <input name="weight" type="number" min="25" max="300" step="0.1" inputmode="decimal" placeholder="65" required>
-              </label>
-              <button class="button" type="submit">Check BMI</button>
-              <p class="hero-bmi-calc__result" data-hero-bmi-result role="status" aria-live="polite" aria-atomic="true"><strong data-hero-bmi-value></strong><span data-hero-bmi-band>Enter your height and weight.</span></p>
-              <p class="hero-bmi-calc__note" id="hero-bmi-note">For adults. A general guide, not a health assessment.</p>
-            </form>
+        </div>
+        <div class="hero-emblem" aria-hidden="true">
+          <svg viewBox="0 0 200 200" class="unique-seal">
+            <defs><path id="seal-ring" d="M100,20a80,80 0 1,1 -0.1,0"/></defs>
+            <g class="seal-ring"><text><textPath href="#seal-ring" textLength="502">SHOW UP. GET STRONGER. STAY UNIQUE. </textPath></text></g>
+            <path class="seal-u" d="M65 58v54c0 48 70 48 70 0V58m-18 17 18-18 18 18" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="square" stroke-linejoin="miter"/>
+          </svg>
+        </div>
+        <div class="hero-ghost-word" aria-hidden="true">UNIQUE</div>
+        <div class="grind-hero__content">
+          <div class="grind-hero__copy">
+            <h1 id="hero-title" data-split-lines>STRONGER.<br>TOGETHER.</h1>
+            <svg class="hero-scribble" viewBox="0 0 560 36" aria-hidden="true"><path d="M8 24C105 9 286 1 528 12M210 30C357 18 434 21 551 25" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round"/></svg>
+            <p>Your goals. Your pace. Your people.<br>A unisex gym in Mudaliarpet, built for showing up.</p>
+            <a class="pill pill--light" href="#training">Find your way to train <span aria-hidden="true">↗</span></a>
+          </div>
+          <form class="start-card" id="bmi" data-hero-bmi novalidate aria-labelledby="bmi-title" aria-describedby="bmi-note">
+            <div class="start-card__top"><span>A LITTLE SELF-CHECK</span></div>
+            <h2 id="bmi-title">KNOW YOUR<br>STARTING POINT.</h2>
+            <div class="start-card__fields">
+              <label>Height <span>(cm)</span><input name="height" type="number" min="100" max="250" step="0.1" inputmode="decimal" placeholder="170" required></label>
+              <label>Weight <span>(kg)</span><input name="weight" type="number" min="25" max="300" step="0.1" inputmode="decimal" placeholder="65" required></label>
+            </div>
+            <button class="pill pill--light" type="submit">Check my BMI <span aria-hidden="true">→</span></button>
+            <p class="start-card__result" data-hero-bmi-result role="status" aria-live="polite" aria-atomic="true"><strong data-hero-bmi-value></strong><span data-hero-bmi-band>Small steps. A stronger you.</span></p>
+            <p class="start-card__note" id="bmi-note">For adults. A general guide, not a health assessment.</p>
+          </form>
+        </div>
+        <div class="grind-hero__bottom">
+          <span>MUDALIARPET, PONDICHERRY</span>
+          <span>OPEN DAILY · 05:00–22:00</span>
+          <a href="#our-story">KEEP GOING <span aria-hidden="true">↓</span></a>
+        </div>
+      </section>
+
+      <div class="motion-ribbon" aria-label="Show up. Get stronger. Stay Unique.">
+        <div class="motion-ribbon__track" aria-hidden="true">
+          <span>SHOW UP. <svg viewBox="0 0 48 48"><path d="M6 24h36M24 6v36M11 11l26 26M37 11 11 37"/></svg> GET STRONGER. <svg viewBox="0 0 48 48"><path d="M6 24h36M24 6v36M11 11l26 26M37 11 11 37"/></svg> STAY UNIQUE. <svg viewBox="0 0 48 48"><path d="M6 24h36M24 6v36M11 11l26 26M37 11 11 37"/></svg> </span>
+          <span>SHOW UP. <svg viewBox="0 0 48 48"><path d="M6 24h36M24 6v36M11 11l26 26M37 11 11 37"/></svg> GET STRONGER. <svg viewBox="0 0 48 48"><path d="M6 24h36M24 6v36M11 11l26 26M37 11 11 37"/></svg> STAY UNIQUE. <svg viewBox="0 0 48 48"><path d="M6 24h36M24 6v36M11 11l26 26M37 11 11 37"/></svg> </span>
+        </div>
+      </div>
+
+      <section class="intro section-wrap" id="our-story" aria-labelledby="intro-title">
+        <div class="section-heading">
+          <h2 id="intro-title" data-split-lines>NOT JUST A GYM.<br><span class="muted-heading">YOUR KIND OF PLACE.</span></h2>
+          <div class="section-heading__copy">
+            <p>Some days, the hardest rep is walking through the door. You don’t have to do the rest alone.</p>
+            <p>Since 2025, our doors on 100 Feet Road have been open to men and women finding their own way to get stronger. No perfect starting point needed. Just you, showing up.</p>
+            <a class="text-link" href="#founder-story">Meet the founder <span aria-hidden="true">↓</span></a>
           </div>
         </div>
-      </section>
-
-      <section class="sec frame-in" id="floor" aria-labelledby="floor-title">
-        <div class="sec-head sec-head--split">
-          <h2 class="head" id="floor-title" data-lines>The floor, before you walk it.</h2>
-          <p class="sec-note">Photographs of the Mudaliarpet facility itself: the wide training floor, the free-weight corner, the cardios and the mirror-wall end of the floor, under their own light.</p>
+        <div class="floor-collage" id="the-gym" aria-label="A look around the Unique training floor">
+          <figure class="collage-tile collage-tile--main collage-tile--founder">
+            <img src="assets/provided/founder-cutout.png" alt="J. Vinoth, founder of Unique Fitness, in a bodybuilding pose" width="941" height="959" loading="lazy">
+            <figcaption>J. VINOTH · FOUNDER, UNIQUE FITNESS</figcaption>
+          </figure>
+          <figure class="collage-tile collage-tile--one">
+            <img src="assets/optimized/dumbell-rack.jpg" alt="Rows of dumbbells in the free-weight area at Unique Fitness Gym" width="1200" height="900" loading="lazy">
+          </figure>
+          <figure class="collage-tile collage-tile--two"><img src="assets/optimized/GYm-machine.jpg" alt="Strength equipment at Unique Fitness Gym" width="1200" height="900" loading="lazy"></figure>
+          <figure class="collage-tile collage-tile--three"><img src="assets/optimized/cardio-machine2.jpg" alt="The gym's cardio equipment" width="900" height="1200" loading="lazy"></figure>
+          <figure class="collage-tile collage-tile--four"><img src="assets/optimized/unnamed.jpg" alt="A closer look at the gym's training machines" width="1200" height="900" loading="lazy"></figure>
+          <span class="collage-caption" aria-hidden="true">YOUR SPACE.<br>YOUR PACE.</span>
         </div>
-        <div class="figs">
-          <figure class="figs__lead" data-reveal="open">
-            <img src="assets/optimized/wide-angle-click.jpg" alt="Wide view across the training floor of Unique Fitness Gym" width="1200" height="900" loading="lazy">
-            <figcaption>Straight across the floor.</figcaption>
-          </figure>
-          <figure class="figs__tall" data-reveal="open" style="--d:120ms">
-            <img src="assets/optimized/cardio-machine2.jpg" alt="Cardio equipment inside Unique Fitness Gym" width="900" height="1200" loading="lazy">
-            <figcaption>The cardio bank.</figcaption>
-          </figure>
-          <figure data-reveal="open" style="--d:160ms">
-            <img src="assets/optimized/dumbell-rack.jpg" alt="Dumbbell rack under blue light at Unique Fitness Gym" width="1200" height="900" loading="lazy">
-            <figcaption>The free-weight corner.</figcaption>
-          </figure>
-          <figure data-reveal="open" style="--d:200ms">
-            <img src="assets/optimized/unnamed.jpg" alt="Training equipment detail inside Unique Fitness Gym" width="1200" height="900" loading="lazy">
-            <figcaption>Detail on the floor.</figcaption>
-          </figure>
-          <figure data-reveal="open" style="--d:240ms">
-            <img src="assets/optimized/interior-entrance.jpg" alt="Treadmills and a mirror wall on the training floor of Unique Fitness Gym" width="1200" height="900" loading="lazy">
-            <figcaption>Treadmills under the mirror wall.</figcaption>
-          </figure>
+        <div class="gym-facts">
+          <div><strong>05–22</strong><span>YOUR TIME. EVERY DAY.</span></div>
+          <div><strong>ONE FLOOR.</strong><span>MEN &amp; WOMEN. EVERY LEVEL.</span></div>
+          <a href="https://maps.app.goo.gl/KbJBjfcGLrUxyGn37" target="_blank" rel="noreferrer"><strong>5.0 <span class="stars" aria-label="out of 5 stars">★★★★★</span></strong><span>FROM 20 GOOGLE REVIEWS ↗</span></a>
         </div>
       </section>
 
-      <section class="sec sec-split frame-in" id="listing" aria-labelledby="listing-title">
-        <div class="sec-head">
-          <h2 class="head" id="listing-title" data-reveal="rise">Straight from the listing.</h2>
-          <p class="sec-note">Every option and hour below comes straight from the public listing for the facility. Current session times and membership terms move faster than any website; one call settles them.</p>
-        </div>
-        <div class="board" data-reveal="rise">
-          <div class="board__groups">
-            <div class="board-group">
-              <h3>The floor</h3>
-              <div class="board-item">
-                <span class="board-item__name">Gym access</span>
-                <span class="board-item__value">Daily · 05:00–22:00</span>
-                <span class="board-item__desc">The training floor is open every day of the week, from first light to late evening.</span>
-                <span class="board-item__leader" aria-hidden="true"></span>
-              </div>
-              <div class="board-item">
-                <span class="board-item__name">Fitness centre</span>
-                <span class="board-item__value">Unisex</span>
-                <span class="board-item__desc">A centre described as unisex: the same floor for men and women.</span>
-                <span class="board-item__leader" aria-hidden="true"></span>
-              </div>
-            </div>
-            <div class="board-group">
-              <h3>Guided options</h3>
-              <div class="board-item">
-                <span class="board-item__name">Personal training</span>
-                <span class="board-item__value">One-to-one</span>
-                <span class="board-item__desc">“Get Your Own Trainer” is a listed service, coaching at your own pace.</span>
-                <span class="board-item__leader" aria-hidden="true"></span>
-              </div>
-              <div class="board-item">
-                <span class="board-item__name">CrossFit</span>
-                <span class="board-item__value">Listed session</span>
-                <span class="board-item__desc">CrossFit is listed as a fitness option. Ask what the current sessions look like.</span>
-                <span class="board-item__leader" aria-hidden="true"></span>
-              </div>
-              <div class="board-item">
-                <span class="board-item__name">Yoga</span>
-                <span class="board-item__value">Listed session</span>
-                <span class="board-item__desc">Yoga is listed as a fitness option. Ask which slots are running this week.</span>
-                <span class="board-item__leader" aria-hidden="true"></span>
-              </div>
-              <div class="board-item">
-                <span class="board-item__name">Meditation</span>
-                <span class="board-item__value">Listed session</span>
-                <span class="board-item__desc">Meditation appears in the listing categories. Worth confirming before you plan around it.</span>
-                <span class="board-item__leader" aria-hidden="true"></span>
-              </div>
+      <section class="training dark-section" id="training" aria-labelledby="training-title">
+        <div class="section-wrap">
+          <div class="section-heading">
+            <h2 id="training-title" data-split-lines>DIFFERENT GOALS.<br>SAME COMMITMENT.</h2>
+            <div class="section-heading__copy">
+              <p>Build strength. Find your rhythm. Get a little more out of yourself. Make the floor work for you.</p>
             </div>
           </div>
-          <div class="board__foot">
-            <span>Membership rates are not published anywhere yet.</span>
-            <a class="board-phone" data-tel href="tel:+919994985599">Call for today’s terms: 099949 85599</a>
+          <div class="training-grid">
+            <article class="training-card">
+              <img src="assets/optimized/GYm-machine.jpg" alt="Strength machines on the Unique Fitness Gym floor" width="1200" height="900" loading="lazy">
+              <div class="training-card__copy"><span>BUILD YOUR FOUNDATION</span><h3>STRENGTH<br>STARTS HERE.</h3><span class="training-card__bottom">Gym access</span></div>
+            </article>
+            <article class="training-card">
+              <img src="assets/provided/personal-training.jpg" alt="A personal trainer supporting a client through a push-up" width="678" height="720" loading="lazy">
+              <div class="training-card__copy"><span>YOU DON’T GO IT ALONE</span><h3>ONE-TO-ONE.<br>ALL ABOUT YOU.</h3><span class="training-card__bottom">Personal training</span></div>
+            </article>
+            <article class="training-card">
+              <img src="assets/optimized/cardio-machine2.jpg" alt="Cardio equipment available at Unique Fitness Gym" width="900" height="1200" loading="lazy">
+              <div class="training-card__copy"><span>FIND YOUR NEXT GEAR</span><h3>MOVE MORE.<br>FEEL STRONGER.</h3><span class="training-card__bottom">Cardio &amp; conditioning</span></div>
+            </article>
+          </div>
+          <div class="training-note"><p>Looking for CrossFit, yoga or meditation?<br>Call us for current sessions and availability.</p><a class="pill pill--outline" data-tel href="tel:+919994985599">Let’s talk training <span aria-hidden="true">↗</span></a></div>
+        </div>
+      </section>
+
+      <section class="founder-section dark-section" id="founder-story" aria-labelledby="founder-title">
+        <div class="section-wrap">
+          <div class="section-heading">
+            <h2 id="founder-title" data-split-lines>BEFORE THE GYM.<br><span class="muted-heading">THERE WAS THE GRIND.</span></h2>
+            <div class="section-heading__copy"><p>Seven original photographs. Seven chapters from the competition floor to Unique Fitness.</p><a class="text-link" href="#certifications-achievements">See all 14 certificates <span aria-hidden="true">↓</span></a></div>
+          </div>
+          <ol class="founder-story-grid" aria-label="Founder’s story in seven chapters">
+            <li class="founder-story-item" id="founder-chapter-2017-india">
+              <article class="founder-story-card" data-photo-shape="portrait">
+                <figure class="founder-story-card__media">
+                  <a href="assets/provided/founder-timeline/2017-mr-india.jpg" target="_blank" rel="noreferrer" aria-label="Open full image: Mr. India · 2017">
+                    <img src="assets/provided/founder-timeline/2017-mr-india.jpg" alt="Unique Fitness founder posing with his medal after winning Mr. India 2017 in New Delhi" width="853" height="1280" loading="lazy">
+                  </a>
+                  <figcaption>Mr. India 2017 · New Delhi</figcaption>
+                </figure>
+                <div class="founder-story-card__copy">
+                  <span class="founder-story-card__index">01 <span>/ 07</span></span>
+                  <h3>Mr. India · 2017</h3>
+                  <p class="founder-story-card__meta">New Delhi · Bodybuilding · 60 kg category</p>
+                  <p>On the national stage, the founder won the 60 kg bodybuilding category at Mr. India 2017 in New Delhi. The gold medal marked the beginning of a record built through discipline, preparation, and complete focus.</p>
+                  <p class="founder-story-card__result">Gold medal · National title</p>
+                </div>
+              </article>
+            </li>
+            <li class="founder-story-item" id="founder-chapter-2017-tamil-nadu">
+              <article class="founder-story-card" data-photo-shape="landscape">
+                <figure class="founder-story-card__media">
+                  <a href="assets/provided/founder-timeline/2017-mr-tamil-nadu.jpg" target="_blank" rel="noreferrer" aria-label="Open full image: Mr. Tamil Nadu · 2017">
+                    <img src="assets/provided/founder-timeline/2017-mr-tamil-nadu.jpg" alt="Unique Fitness founder receiving the Mr. Tamil Nadu 2017 overall championship trophy in Chennai" width="640" height="481" loading="lazy">
+                  </a>
+                  <figcaption>Mr. Tamil Nadu 2017 · Overall champion</figcaption>
+                </figure>
+                <div class="founder-story-card__copy">
+                  <span class="founder-story-card__index">02 <span>/ 07</span></span>
+                  <h3>Mr. Tamil Nadu · 2017</h3>
+                  <p class="founder-story-card__meta">Chennai · Overall championship</p>
+                  <p>The same year, the journey continued at the state level. In Chennai, he was named the overall champion at Mr. Tamil Nadu 2017 — a title that showed the national win was part of a larger standard, not a single moment.</p>
+                  <p class="founder-story-card__result">Overall champion · State title</p>
+                </div>
+              </article>
+            </li>
+            <li class="founder-story-item" id="founder-chapter-2019-asia">
+              <article class="founder-story-card" data-photo-shape="landscape">
+                <figure class="founder-story-card__media">
+                  <a href="assets/provided/founder-timeline/2019-mr-asia.jpg" target="_blank" rel="noreferrer" aria-label="Open full image: Mr. Asia · 2019">
+                    <img src="assets/provided/founder-timeline/2019-mr-asia.jpg" alt="Unique Fitness founder standing on the Mr. Asia 2019 podium in Pondicherry" width="1024" height="682" loading="lazy">
+                  </a>
+                  <figcaption>Mr. Asia 2019 · International podium</figcaption>
+                </figure>
+                <div class="founder-story-card__copy">
+                  <span class="founder-story-card__index">03 <span>/ 07</span></span>
+                  <h3>Mr. Asia · 2019</h3>
+                  <p class="founder-story-card__meta">2019 · International bodybuilding stage</p>
+                  <p>In 2019, the founder earned a bronze medal on the Mr. Asia stage. The original podium photograph captures that moment; the certificate in the archive below records third place in the 60 kg category at the New Delhi championship.</p>
+                  <p class="founder-story-card__result">Bronze medal · International stage</p>
+                </div>
+              </article>
+            </li>
+            <li class="founder-story-item" id="founder-chapter-2019-legacy">
+              <article class="founder-story-card" data-photo-shape="portrait">
+                <figure class="founder-story-card__media">
+                  <a href="assets/provided/founder-timeline/2019-championship-legacy.jpg" target="_blank" rel="noreferrer" aria-label="Open full image: Two titles · 2019">
+                    <img src="assets/provided/founder-timeline/2019-championship-legacy.jpg" alt="Black and white portrait of the founder marked Mr. India 2017 and Mr. Asia 2019" width="1120" height="1600" loading="lazy">
+                  </a>
+                  <figcaption>Mr. India 2017 · Mr. Asia 2019</figcaption>
+                </figure>
+                <div class="founder-story-card__copy">
+                  <span class="founder-story-card__index">04 <span>/ 07</span></span>
+                  <h3>Two titles · 2019</h3>
+                  <p class="founder-story-card__meta">Mr. India 2017 · Mr. Asia 2019</p>
+                  <p>This original portrait brings together the Mr. India 2017 and Mr. Asia 2019 milestones. The titles and the photographs are part of the same record: years of preparation carried forward into daily training.</p>
+                  <p class="founder-story-card__result">A competition legacy carried forward</p>
+                </div>
+              </article>
+            </li>
+            <li class="founder-story-item" id="founder-chapter-2020s">
+              <article class="founder-story-card" data-photo-shape="portrait">
+                <figure class="founder-story-card__media">
+                  <a href="assets/provided/founder-timeline/2020-mr-india-training.jpg" target="_blank" rel="noreferrer" aria-label="Open full image: The work continues">
+                    <img src="assets/provided/founder-timeline/2020-mr-india-training.jpg" alt="The founder training in a gym while wearing a Mr. India bodybuilding vest" width="1079" height="1439" loading="lazy">
+                  </a>
+                  <figcaption>After the titles · The work continues</figcaption>
+                </figure>
+                <div class="founder-story-card__copy">
+                  <span class="founder-story-card__index">05 <span>/ 07</span></span>
+                  <h3>The work continues</h3>
+                  <p class="founder-story-card__meta">Training became a daily practice</p>
+                  <p>Competition gave the founder a standard. Training gave him a daily practice. Away from the stage, the work stayed simple and demanding: return to the gym, build strength, and keep the promise made to yourself.</p>
+                  <p class="founder-story-card__result">Consistency over applause</p>
+                </div>
+              </article>
+            </li>
+            <li class="founder-story-item" id="founder-chapter-2023">
+              <article class="founder-story-card" data-photo-shape="landscape">
+                <figure class="founder-story-card__media">
+                  <a href="assets/provided/founder-timeline/2023-pillars-of-puducherry.jpg" target="_blank" rel="noreferrer" aria-label="Open full image: Pillars of Puducherry">
+                    <img src="assets/provided/founder-timeline/2023-pillars-of-puducherry.jpg" alt="The founder receiving recognition at the Pillars of Puducherry ceremony" width="1160" height="720" loading="lazy">
+                  </a>
+                  <figcaption>Pillars of Puducherry · Recognition beyond sport</figcaption>
+                </figure>
+                <div class="founder-story-card__copy">
+                  <span class="founder-story-card__index">06 <span>/ 07</span></span>
+                  <h3>Pillars of Puducherry</h3>
+                  <p class="founder-story-card__meta">Pondicherry · Community recognition</p>
+                  <p>The story grew beyond competition. Recognition as one of the Pillars of Puducherry reflects a wider role: an athlete whose discipline, example, and commitment have become part of the community around him.</p>
+                  <p class="founder-story-card__result">A local story with a larger reach</p>
+                </div>
+              </article>
+            </li>
+            <li class="founder-story-item" id="founder-chapter-2026">
+              <article class="founder-story-card" data-photo-shape="portrait">
+                <figure class="founder-story-card__media">
+                  <a href="assets/provided/founder-timeline/2026-founder.jpg" target="_blank" rel="noreferrer" aria-label="Open full image: From record to responsibility">
+                    <img src="assets/provided/founder-timeline/2026-founder.jpg" alt="Founder of Unique Fitness posing in the gym today" width="1024" height="1050" loading="lazy">
+                  </a>
+                  <figcaption>2026 · The founder behind Unique Fitness</figcaption>
+                </figure>
+                <div class="founder-story-card__copy">
+                  <span class="founder-story-card__index">07 <span>/ 07</span></span>
+                  <h3>From record to responsibility</h3>
+                  <p class="founder-story-card__meta">Unique Fitness Gym · Mudaliarpet</p>
+                  <p>Today, that competition mindset is the foundation of Unique Fitness: a place where anyone can train with structure, consistency, and intent. The medals tell the history. The gym is where that history becomes useful to someone else.</p>
+                  <p class="founder-story-card__result">Train with purpose · Build your own chapter</p>
+                </div>
+              </article>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="certificate-section" id="certifications-achievements" aria-labelledby="certificates-title">
+        <div class="section-wrap">
+          <div class="section-heading">
+            <h2 id="certificates-title" data-split-lines>THE WORK.<br><span class="muted-heading">ON THE RECORD.</span></h2>
+            <div class="section-heading__copy"><p>All 14 original certificates and credentials, from 2009 to 2025. Select any document to open the full image.</p></div>
+          </div>
+          <ol class="certificate-grid" id="certificate-grid" aria-label="Fourteen certificates and achievement documents">
+            <li class="certificate-card">
+              <div class="certificate-card__media">
+                  <a href="assets/provided/achievements/01-mr-boss-2009.png" target="_blank" rel="noreferrer" aria-label="Open full certificate: Mr. Boss, Puducherry">
+                    <img class="certificate-image" src="assets/provided/achievements/01-mr-boss-2009.png" alt="Certificate of Honor recording J. Vinoth&#x27;s fourth position in the Mr. Boss 2009 60 kilogram category in Puducherry" width="1448" height="1086" loading="lazy">
+                  </a>
+              </div>
+              <div class="certificate-card__copy">
+                <span>2009</span>
+                <h3>Mr. Boss, Puducherry</h3>
+                <p class="certificate-card__meta">60 kg category · Fourth position</p>
+                <p>The first documented milestone in this collection: a fourth-place finish at Mr. Boss 2009 in Puducherry, recorded by the Union Territory of Puducherry Body Building and Fitness Association.</p>
+              </div>
+            </li>
+            <li class="certificate-card">
+              <div class="certificate-card__media">
+                  <a href="assets/provided/achievements/02-mr-karaikal-classic-2010.png" target="_blank" rel="noreferrer" aria-label="Open full certificate: Mr. Karaikal Classic">
+                    <img class="certificate-image" src="assets/provided/achievements/02-mr-karaikal-classic-2010.png" alt="Participation certificate for the Mr. Karaikal Classic 2010 body-building competition in the 60 kilogram category" width="1469" height="1071" loading="lazy">
+                  </a>
+              </div>
+              <div class="certificate-card__copy">
+                <span>2010</span>
+                <h3>Mr. Karaikal Classic</h3>
+                <p class="certificate-card__meta">State-level competition · 60 kg category</p>
+                <p>A participation certificate from the Mr. Karaikal Classic 2010 body-building competition, held at Karaikal Beach on 28 March 2010.</p>
+              </div>
+            </li>
+            <li class="certificate-card">
+              <div class="certificate-card__media">
+                  <a href="assets/provided/achievements/03-mr-puducherry-2013.png" target="_blank" rel="noreferrer" aria-label="Open full certificate: Mr. Puducherry">
+                    <img class="certificate-image" src="assets/provided/achievements/03-mr-puducherry-2013.png" alt="Certificate of Honor recording J. Vinoth&#x27;s fourth position at Mr. Puducherry 2013 in the 60 kilogram category" width="1450" height="1085" loading="lazy">
+                  </a>
+              </div>
+              <div class="certificate-card__copy">
+                <span>2013</span>
+                <h3>Mr. Puducherry</h3>
+                <p class="certificate-card__meta">60 kg category · Fourth position · Karaikal</p>
+                <p>At the Puducherry State Body Building Championship, the certificate records a fourth-place finish in the 60 kg category at Mr. Puducherry 2013.</p>
+              </div>
+            </li>
+            <li class="certificate-card">
+              <div class="certificate-card__media">
+                  <a href="assets/provided/achievements/04-tamil-nadu-championship-2016.png" target="_blank" rel="noreferrer" aria-label="Open full certificate: Salem District championship">
+                    <img class="certificate-image" src="assets/provided/achievements/04-tamil-nadu-championship-2016.png" alt="Tamil Nadu Body Builders Association certificate recording second place in the 65 kilogram category at Salem District competition in 2016" width="1500" height="1049" loading="lazy">
+                  </a>
+              </div>
+              <div class="certificate-card__copy">
+                <span>2016</span>
+                <h3>Salem District championship</h3>
+                <p class="certificate-card__meta">65 kg category · Second place · Thalaivasal</p>
+                <p>The 2016 Tamil Nadu Body Building Championship certificate records a second-place finish in the 65 kg category, representing Salem District.</p>
+              </div>
+            </li>
+            <li class="certificate-card">
+              <div class="certificate-card__media">
+                  <a href="assets/provided/achievements/05-tamil-nadu-championship-2016-second.png" target="_blank" rel="noreferrer" aria-label="Open full certificate: A second state podium">
+                    <img class="certificate-image" src="assets/provided/achievements/05-tamil-nadu-championship-2016-second.png" alt="Tamil Nadu Body Builders Association certificate recording third place in the 65 kilogram category at the 2016 open senior championship in Ariyalur" width="1500" height="1049" loading="lazy">
+                  </a>
+              </div>
+              <div class="certificate-card__copy">
+                <span>2016</span>
+                <h3>A second state podium</h3>
+                <p class="certificate-card__meta">65 kg category · Third place · Ariyalur</p>
+                <p>A second 2016 state-championship record from the collection shows a third-place finish in the 65 kg category at the Tamil Nadu Open senior competition in Ariyalur.</p>
+              </div>
+            </li>
+            <li class="certificate-card">
+              <div class="certificate-card__media">
+                  <a href="assets/provided/achievements/06-steel-man-tamil-nadu-2017.png" target="_blank" rel="noreferrer" aria-label="Open full certificate: Steel Man Tamil Nadu">
+                    <img class="certificate-image" src="assets/provided/achievements/06-steel-man-tamil-nadu-2017.png" alt="Steel Man Tamil Nadu 2017 merit certificate recording second place in the 65 kilogram category in Chennai" width="1416" height="1111" loading="lazy">
+                  </a>
+              </div>
+              <div class="certificate-card__copy">
+                <span>2017</span>
+                <h3>Steel Man Tamil Nadu</h3>
+                <p class="certificate-card__meta">65 kg category · Second place · Chennai</p>
+                <p>The Steel Man Tamil Nadu 2017 merit certificate records second place in the 65 kg category at the state-level physically challenged body-building championship held in Chennai.</p>
+              </div>
+            </li>
+            <li class="certificate-card">
+              <div class="certificate-card__media">
+                  <a href="assets/provided/achievements/07-mr-tamil-nadu-2017-first.png" target="_blank" rel="noreferrer" aria-label="Open full certificate: Mr. Tamil Nadu, 65 kg">
+                    <img class="certificate-image" src="assets/provided/achievements/07-mr-tamil-nadu-2017-first.png" alt="Tamil Nadu Body Building Association merit certificate recording first place in the 65 kilogram category at Mr. Tamil Nadu 2017 in Chennai" width="1451" height="1084" loading="lazy">
+                  </a>
+              </div>
+              <div class="certificate-card__copy">
+                <span>2017</span>
+                <h3>Mr. Tamil Nadu, 65 kg</h3>
+                <p class="certificate-card__meta">First place · Chennai · 30 July 2017</p>
+                <p>This merit certificate records first place in the 65 kg category at the Bobs Classics state body-building championship for Mr. Tamil Nadu 2017 in Chennai.</p>
+              </div>
+            </li>
+            <li class="certificate-card">
+              <div class="certificate-card__media">
+                  <a href="assets/provided/achievements/08-mr-tamil-nadu-2017-overall-third.png" target="_blank" rel="noreferrer" aria-label="Open full certificate: Overall state podium">
+                    <img class="certificate-image" src="assets/provided/achievements/08-mr-tamil-nadu-2017-overall-third.png" alt="Tamil Nadu Body Building Association merit certificate recording overall third place at Mr. Tamil Nadu 2017 in Chennai" width="1456" height="1080" loading="lazy">
+                  </a>
+              </div>
+              <div class="certificate-card__copy">
+                <span>2017</span>
+                <h3>Overall state podium</h3>
+                <p class="certificate-card__meta">Overall third place · Chennai</p>
+                <p>A second Mr. Tamil Nadu 2017 record in the collection recognises an overall third-place result at the Bobs Classics state body-building championship in Chennai.</p>
+              </div>
+            </li>
+            <li class="certificate-card">
+              <div class="certificate-card__media">
+                  <a href="assets/provided/achievements/09-senior-national-mr-india-2017.png" target="_blank" rel="noreferrer" aria-label="Open full certificate: Mr. India, New Delhi">
+                    <img class="certificate-image" src="assets/provided/achievements/09-senior-national-mr-india-2017.png" alt="Merit certificate recording first place in the 60 kilogram category at the 54th Senior National Body Building Championship and Mr. India 2017 in New Delhi" width="1059" height="1485" loading="lazy">
+                  </a>
+              </div>
+              <div class="certificate-card__copy">
+                <span>2017</span>
+                <h3>Mr. India, New Delhi</h3>
+                <p class="certificate-card__meta">54th Senior National Championship · First place · 60 kg</p>
+                <p>The defining national record: first place in the 60 kg body-weight category at the 54th Senior National Body Building Championship and Mr. India 2017 in New Delhi.</p>
+              </div>
+            </li>
+            <li class="certificate-card certificate-card--pair">
+              <div class="certificate-card__media">
+                  <a href="assets/provided/achievements/10-mr-asia-2019-merit.png" target="_blank" rel="noreferrer" aria-label="Open full certificate: Mr. Asia, New Delhi">
+                    <img class="certificate-image" src="assets/provided/achievements/10-mr-asia-2019-merit.png" alt="Ms. and Mr. Asia merit certificate recording third place for Vinoth in the 60 kilogram category at the 2019 championship in New Delhi" width="1073" height="1466" loading="lazy">
+                  </a>
+                  <a href="assets/provided/achievements/10-mr-asia-2019-delegate.png" target="_blank" rel="noreferrer" aria-label="Open full certificate: Mr. Asia, New Delhi">
+                    <img class="certificate-image" src="assets/provided/achievements/10-mr-asia-2019-delegate.png" alt="NAC International Ms. and Mr. Asia 2019 delegate credential identifying J. Vinoth as an Indian bodybuilder" width="986" height="1594" loading="lazy">
+                  </a>
+              </div>
+              <div class="certificate-card__copy">
+                <span>2019</span>
+                <h3>Mr. Asia, New Delhi</h3>
+                <p class="certificate-card__meta">Third place · 60 kg category · International stage</p>
+                <p>At the Ms. &amp; Mr. Asia Championships in New Delhi, the certificate records third place in the 60 kg category on 1–2 February 2019.</p>
+              </div>
+            </li>
+            <li class="certificate-card">
+              <div class="certificate-card__media">
+                  <a href="assets/provided/achievements/11-karate-green-2024.png" target="_blank" rel="noreferrer" aria-label="Open full certificate: Green rank in karate">
+                    <img class="certificate-image" src="assets/provided/achievements/11-karate-green-2024.png" alt="All India Martial Arts Training School karate grading certificate promoting Vinoth J to the Green rank on 20 October 2024" width="1448" height="1086" loading="lazy">
+                  </a>
+              </div>
+              <div class="certificate-card__copy">
+                <span>2024</span>
+                <h3>Green rank in karate</h3>
+                <p class="certificate-card__meta">Grading certificate · Puducherry</p>
+                <p>The achievement record expands beyond bodybuilding: a karate grading certificate promotes Vinoth J to the Green rank after testing in basics, katas and sparring techniques.</p>
+              </div>
+            </li>
+            <li class="certificate-card">
+              <div class="certificate-card__media">
+                  <a href="assets/provided/achievements/12-karate-brown-2025.png" target="_blank" rel="noreferrer" aria-label="Open full certificate: Brown rank, grade four">
+                    <img class="certificate-image" src="assets/provided/achievements/12-karate-brown-2025.png" alt="All India Martial Arts Training School karate grading certificate showing Vinoth J at the Brown rank, grade four, dated 12 January 2025" width="1454" height="1082" loading="lazy">
+                  </a>
+              </div>
+              <div class="certificate-card__copy">
+                <span>2025</span>
+                <h3>Brown rank, grade four</h3>
+                <p class="certificate-card__meta">Karate grading certificate · 12 January 2025</p>
+                <p>The next martial-arts record shows progression to Brown rank, grade four, dated 12 January 2025 and issued after the institute&#x27;s grading test.</p>
+              </div>
+            </li>
+            <li class="certificate-card">
+              <div class="certificate-card__media">
+                  <a href="assets/provided/achievements/13-karate-brown-2025-ii.png" target="_blank" rel="noreferrer" aria-label="Open full certificate: Brown rank, grade two">
+                    <img class="certificate-image" src="assets/provided/achievements/13-karate-brown-2025-ii.png" alt="All India Martial Arts Training School karate grading certificate showing Vinoth J at the Brown rank, grade two, dated 13 April 2025" width="1415" height="1112" loading="lazy">
+                  </a>
+              </div>
+              <div class="certificate-card__copy">
+                <span>2025</span>
+                <h3>Brown rank, grade two</h3>
+                <p class="certificate-card__meta">Karate grading certificate · 13 April 2025</p>
+                <p>A further 2025 grading certificate records Brown rank, grade two, showing the founder continuing structured martial-arts training alongside the gym&#x27;s bodybuilding legacy.</p>
+              </div>
+            </li>
+          </ol>
+          <div class="certificate-grid__controls">
+            <p data-certificates-status aria-live="polite"></p>
+            <button class="certificate-grid__toggle pill pill--outline" type="button" data-certificates-toggle aria-expanded="false" aria-controls="certificate-grid" hidden>
+              <span data-certificates-label>View all 14 certificates</span>
+              <span aria-hidden="true">↓</span>
+            </button>
           </div>
         </div>
       </section>
 
-      <section class="sec sec-split sec-split--3 frame-in" id="about" aria-labelledby="about-h">
-        <div class="sec-head">
-          <h2 class="head" id="about-h" data-reveal="rise">Started in 2025.</h2>
-          <p class="sec-note">A new gym in an old neighbourhood, in its own voice.</p>
-        </div>
-        <div class="letter" data-reveal="rise">
-          <p>We opened <span class="mark">Unique Unisex Fitness and Gym</span> in 2025 on 100 Feet Road, in Kumaran Nagar, Mudaliarpet. One floor, lit every evening, doors on the main road; you cannot mistake it for anything else after dark.</p>
-          <p>“Unisex” is on the sign next to our name because that is what this floor is: men and women training in the same space, at whatever hour suits them. The gates open at 05:00 and we shut at 22:00, every single day of the week.</p>
-          <p>The public listing names the options: gym access, CrossFit, yoga, meditation, and “Get Your Own Trainer” for one-to-one work. Sessions and schedules move week to week; the honest answer about any of them is one phone call.</p>
-          <p>Our first members keep saying the same things on Google: <em>cleanliness is maintained well</em>, <em>new sets every day</em>, <em>the training was very effective</em>. That review average, 5.0 from twenty reviews, belongs to them, not to us.</p>
-          <p>The plan is not complicated: show up, train properly under someone who knows your name, and leave the floor better than you found it.</p>
-          <p class="signature">With the doors open daily,<br>Unique Unisex Fitness and Gym<small>Kumaran Nagar, 100 Feet Road, Mudaliarpet</small></p>
-        </div>
-        <div class="letter-side">
-          <figure class="fac-fig" data-reveal="open">
-            <img src="assets/optimized/Gym-owner-front-pose.jpg" alt="Founder of Unique Fitness Gym in a front double-biceps pose" width="1024" height="1050" loading="lazy">
-          </figure>
-          <figure class="fac-fig" data-reveal="open" style="--d:120ms">
-            <img src="assets/optimized/Gym-owner-achievements.jpg" alt="The founder's achievement wall, magazine cover inside Unique Fitness Gym" width="849" height="1200" loading="lazy">
-          </figure>
-        </div>
-      </section>
-
-      <section class="sec frame-in" id="reviews" aria-labelledby="reviews-title">
-        <div class="sec-head sec-head--split">
-          <h2 class="head" id="reviews-title" data-lines>In their words.</h2>
-          <p class="sec-note">Three excerpts from the public Maps review panel. The full panel, every review so far, is one tap away below.</p>
-        </div>
-        <div class="rwall">
-          <figure class="rwall__card" data-reveal="rise">
-            <blockquote><p>Cleanliness is maintained well.</p></blockquote>
-            <figcaption><strong>rîyãj môhâmèd (rj)</strong><span>Google review</span></figcaption>
-          </figure>
-          <figure class="rwall__card" data-reveal="rise" style="--d:120ms">
-            <blockquote><p>New sets every day.</p></blockquote>
-            <figcaption><strong>Preedip Raj</strong><span>Google review</span></figcaption>
-          </figure>
-          <figure class="rwall__card" data-reveal="rise" style="--d:240ms">
-            <blockquote><p>The training was very effective.</p></blockquote>
-            <figcaption><strong>prakash dass</strong><span>Google review</span></figcaption>
-          </figure>
-        </div>
-        <div class="rwall__foot" data-reveal="rise">
-          <span><strong><span data-placeholder="rating">5.0</span></strong> on Google · <strong><span data-placeholder="reviews">20</span> reviews</strong></span>
-          <a class="text-link" href="https://maps.app.goo.gl/KbJBjfcGLrUxyGn37" target="_blank" rel="noreferrer">Read them all on Maps <span aria-hidden="true">→</span></a>
-        </div>
-      </section>
-
-      <section class="sec sec-split frame-in" id="questions" aria-labelledby="faq-title">
-        <div class="sec-head">
-          <h2 class="head" id="faq-title" data-reveal="rise">The obvious questions.</h2>
-        </div>
-        <div class="faq-cols">
-          <p class="faq-item"><strong>What are the hours? </strong>05:00–22:00, every day of the week, as listed publicly on Google Maps.</p>
-          <p class="faq-item"><strong>Is it really for both men and women? </strong>Yes. The listing records the business as unisex, and “Unisex” sits beside the name on the sign itself.</p>
-          <p class="faq-item"><strong>What can I train here? </strong>Gym access on the main floor, plus CrossFit, yoga, meditation sessions and one-to-one personal training as listed options. Times move week to week, so ask when you call.</p>
-          <p class="faq-item"><strong>How much is membership? </strong>No rates are published in any listing yet. A quick call to 099949 85599 gets you today’s actual terms.</p>
-          <p class="faq-item"><strong>Where exactly is the door? </strong>No. 1, Kumaran Nagar, 100 Feet Road, Mudaliarpet, Pondicherry – 605004. The facade glows yellow at night and is easy to spot from the road.</p>
-          <p class="faq-item"><strong>Do I need to book first? </strong>No booking process is published. Walk in during the listed hours or call ahead, on 099949 85599, and ask at the desk.</p>
-        </div>
-      </section>
-
-      <section class="cta-panel" id="visit" aria-labelledby="visit-title">
-        <div class="cta-copy" data-reveal="rise">
-          <h2 id="visit-title">Come see it lit.</h2>
-          <p>The floor keeps its own light until 22:00. Walk in during the listed hours, or call first and ask at the desk.</p>
-          <div class="hero-actions">
-            <a class="button" data-tel href="tel:+919994985599">Call the gym</a>
-            <a class="text-link" href="https://maps.app.goo.gl/KbJBjfcGLrUxyGn37" target="_blank" rel="noreferrer">Directions on Maps <span aria-hidden="true">→</span></a>
+      <section class="reviews dark-section" id="reviews" aria-labelledby="reviews-title">
+        <div class="section-wrap">
+          <div class="section-heading">
+            <h2 id="reviews-title" data-split-lines>THE PEOPLE.<br>THEIR WORDS.</h2>
+            <div class="review-score"><span class="stars" aria-label="5 out of 5 stars">★★★★★</span><p><strong>5.0</strong> from 20 Google reviews</p><a class="text-link" href="https://maps.app.goo.gl/KbJBjfcGLrUxyGn37" target="_blank" rel="noreferrer">Read all reviews <span aria-hidden="true">↗</span></a></div>
+          </div>
+          <div class="review-grid">
+            <figure class="review"><span class="review__quote" aria-hidden="true">“</span><blockquote>Cleanliness is maintained well.</blockquote><figcaption><strong>rîyãj môhâmèd (rj)</strong><span>Google review</span></figcaption></figure>
+            <figure class="review"><span class="review__quote" aria-hidden="true">“</span><blockquote>New sets every day.</blockquote><figcaption><strong>Preedip Raj</strong><span>Google review</span></figcaption></figure>
+            <figure class="review"><span class="review__quote" aria-hidden="true">“</span><blockquote>The training was very effective.</blockquote><figcaption><strong>prakash dass</strong><span>Google review</span></figcaption></figure>
           </div>
         </div>
-        <figure class="cta-media">
-          <img src="assets/optimized/footer-building-night.jpg" alt="The Unique Fitness Gym facade on 100 Feet Road at night, its sign lit" width="1195" height="896" loading="lazy">
-        </figure>
+      </section>
+
+      <section class="questions section-wrap" id="faq" aria-labelledby="questions-title">
+        <div class="questions__intro"><h2 id="questions-title" data-split-lines>FIRST TIME?<br>LET’S CLEAR<br>THINGS UP.</h2><p>Still have a question?<br>We’re a phone call away.</p><a class="text-link" data-tel href="tel:+919994985599">099949 85599 <span aria-hidden="true">↗</span></a></div>
+        <div class="accordion">
+          <details><summary>When can I train?<span aria-hidden="true">+</span></summary><p>The gym is open every day, from 05:00 to 22:00. Call ahead to confirm current hours on public holidays.</p></details>
+          <details><summary>Is the gym for men and women?<span aria-hidden="true">+</span></summary><p>Yes. Unique is a unisex gym, with one shared training floor for men and women.</p></details>
+          <details><summary>Can I get a personal trainer?<span aria-hidden="true">+</span></summary><p>One-to-one personal training is a listed service. Call us to discuss your goals, trainer availability and current rates.</p></details>
+          <details><summary>How much is a membership?<span aria-hidden="true">+</span></summary><p>Membership rates aren’t published online. Call <a data-tel href="tel:+919994985599">099949 85599</a> for current plans and terms.</p></details>
+          <details><summary>Where do I find you?<span aria-hidden="true">+</span></summary><p>No. 1, Kumaran Nagar, 100 Feet Road, Mudaliarpet, Pondicherry – 605004. <a href="https://maps.app.goo.gl/KbJBjfcGLrUxyGn37" target="_blank" rel="noreferrer">Get directions on Google Maps.</a></p></details>
+        </div>
+      </section>
+
+      <section class="visit" id="visit" aria-labelledby="visit-title">
+        <img src="assets/optimized/footer-building-night.jpg" alt="Unique Fitness Gym’s illuminated building on 100 Feet Road at night" width="1195" height="896" loading="lazy">
+        <div class="visit__copy"><h2 id="visit-title" data-split-lines>YOUR NEXT CHAPTER.<br>STARTS HERE.</h2><p>No perfect moment. Just a first step.</p><div class="visit__actions"><a class="pill pill--light" data-tel href="tel:+919994985599">Call the gym <span aria-hidden="true">↗</span></a><a class="pill pill--outline" href="https://maps.app.goo.gl/KbJBjfcGLrUxyGn37" target="_blank" rel="noreferrer">Get directions <span aria-hidden="true">↗</span></a></div></div>
       </section>
     </main>
 
     <footer class="site-footer">
-      <div class="site-footer__panel">
-        <div class="footer-menu">
-          <a class="site-logo" href="index.html" aria-label="Unique Fitness Gym home">Unique<small>Unisex Fitness &amp; Gym</small></a>
-          <nav aria-label="Footer navigation">
-            <ul>
-              <li><a href="index.html" aria-current="page">Home</a></li>
-              <li><a href="about/">About</a></li>
-              <li><a href="bmi/">BMI</a></li>
-              <li><a href="contact/">Contact</a></li>
-            </ul>
-          </nav>
-        </div>
-        <div class="footer-info">
-          <div>
-            <h2>Visit</h2>
-            <address>No. 1, Kumaran Nagar, 100 Feet Road,<br>Mudaliarpet, Pondicherry – 605004</address>
-            <p><a class="ghost-link" href="https://maps.app.goo.gl/KbJBjfcGLrUxyGn37" target="_blank" rel="noreferrer">Open in Google Maps</a></p>
-          </div>
-          <div>
-            <h2>Call</h2>
-            <p><a data-tel href="tel:+919994985599">099949 85599</a></p>
-            <p data-placeholder="hours">Daily · 05:00–22:00</p>
-          </div>
-        </div>
-        <div class="footer-legal">
-          <p>© <span data-current-year>2026</span> Unique Unisex Fitness and Gym. Business facts from the public <a class="ghost-link" href="https://maps.app.goo.gl/KbJBjfcGLrUxyGn37" target="_blank" rel="noreferrer">Google Maps listing</a> and <a class="ghost-link" href="https://www.justdial.com/Pondicherry/Unique-Unisex-Fitness-and-Gym-Kumaran-Nagar-Mudaliarpet/0413PX413-X413-250910211420-K1I9_BZDET" target="_blank" rel="noreferrer">Justdial</a>. Concept activity photos carry their licences in <a class="ghost-link" href="assets/external/credits.json">credits.json</a>.</p>
-        </div>
-        <div class="footer-powered" style="display:flex;align-items:center;gap:0.75rem;padding:1.25rem 0 0.5rem;opacity:0.85;">
-          <span style="font-size:0.85rem;color:var(--neutral-400);letter-spacing:0.02em;">Powered by</span>
-          <a href="https://adplixmedia.in" target="_blank" rel="noreferrer" aria-label="Adplix Media" style="display:inline-flex;align-items:center;">
-            <img src="assets/img/adplix-rounded.png" alt="Adplix Media" width="40" height="40" style="border-radius:50%;object-fit:cover;display:block;">
-          </a>
-          <span style="font-size:0.85rem;color:var(--neutral-300);font-weight:600;letter-spacing:0.01em;">Adplix Media</span>
-        </div>
+      <div class="footer-top">
+        <div><a class="wordmark" href="/" aria-label="Unique Fitness Gym home">UNIQUE<span>UNISEX FITNESS &amp; GYM</span></a><p>Your goals. Your pace. Your people.</p></div>
+        <nav aria-label="Footer navigation"><a href="#our-story">Story</a><a href="#the-gym">Gym</a><a href="#training">Training</a><a href="#bmi">BMI calculator</a><a href="#founder-story">Founder</a><a href="#faq">FAQ</a><a href="#visit">Visit</a></nav>
+        <div class="footer-address"><address>No. 1, Kumaran Nagar, 100 Feet Road,<br>Mudaliarpet, Pondicherry – 605004</address><a data-tel href="tel:+919994985599">099949 85599</a><p>Daily · 05:00–22:00</p></div>
       </div>
+      <div class="footer-bottom"><p>© <span data-current-year>2026</span> Unique Unisex Fitness and Gym.</p><a href="https://adplixmedia.in" target="_blank" rel="noreferrer">Website by Adplix Media ↗</a></div>
     </footer>
+    <button class="motion-toggle" type="button" data-motion-toggle aria-pressed="false" hidden><span aria-hidden="true">Ⅱ</span> <span data-motion-label>Pause motion</span></button>
   </body>
 </html>

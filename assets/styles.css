@@ -3078,3 +3078,49 @@ body[data-page="about"] .achievements-history + #floor {
     padding-block: 1.5rem;
   }
 }
+
+/* People-first photo frames: preserve the complete original on every page.
+   Dimensions follow the photo, not a fixed landscape crop; captions stay outside. */
+[data-full-photo-frame] {
+  height: auto;
+  min-height: 0;
+  aspect-ratio: auto;
+  overflow: visible;
+}
+img[data-full-photo] {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: none;
+  aspect-ratio: auto;
+  object-fit: contain;
+  transform: none;
+  scale: 1;
+  border-radius: var(--r-md);
+}
+[data-full-photo-frame]:hover img[data-full-photo] {
+  transform: none;
+  scale: 1;
+}
+[data-full-photo-frame] > figcaption {
+  position: static;
+  padding: var(--space-4) 0 0;
+  background: none;
+  color: var(--color-text-secondary);
+}
+.founder-timeline__item {
+  position: relative;
+  top: auto;
+  min-height: 0;
+}
+.founder-timeline__media[data-full-photo-frame] {
+  height: auto;
+  aspect-ratio: auto;
+  background: transparent;
+}
+.blog-card__media[data-full-photo-frame],
+.blog-post__hero[data-full-photo-frame] {
+  display: block;
+  width: min(100%, 34rem);
+  margin-inline: auto;
+}

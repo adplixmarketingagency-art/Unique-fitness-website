@@ -63,6 +63,14 @@
       },
       { passive: true }
     );
+
+    function syncAfterNavigation() {
+      window.requestAnimationFrame(update);
+      window.setTimeout(update, 320);
+    }
+
+    window.addEventListener("load", syncAfterNavigation, { once: true });
+    window.addEventListener("hashchange", syncAfterNavigation);
   }
 
   /* --------------------------------------------------------- mobile menu */
@@ -759,16 +767,29 @@
   /* --------------------------------------------------- nav glide indicator */
 
   function initNavGlide() {
+    var nav = document.querySelector(".site-nav");
     var navList = document.querySelector(".site-nav__list");
-    if (!navList) return;
+    if (!nav || !navList) return;
 
-    var indicator = navList.querySelector("::before");
-    // The indicator is a pseudo-element; we control it via CSS custom props
-    // by measuring the active link and writing --glide-left / --glide-width
+    var links = Array.prototype.slice.call(nav.querySelectorAll('a[href^="#"]'));
+    var primaryLinks = Array.prototype.slice.call(navList.querySelectorAll('a[href^="#"]'));
+    var entries = [];
+
+    links.forEach(function (link) {
+      var selectors = link.getAttribute("data-nav-sections") || link.getAttribute("href");
+      selectors.split(",").forEach(function (selector) {
+        var target = document.querySelector(selector.trim());
+        if (target) {
+          entries.push({ link: link, target: target });
+        }
+      });
+    });
+
+    if (!entries.length) return;
 
     function updateGlide() {
-      var active = navList.querySelector('a[aria-current="page"]');
-      if (!active) {
+      var active = navList.querySelector('a[aria-current="location"]');
+      if (!active || window.innerWidth <= 768) {
         navList.style.removeProperty("--glide-left");
         navList.style.removeProperty("--glide-width");
         return;
@@ -779,8 +800,62 @@
       navList.style.setProperty("--glide-width", rect.width + "px");
     }
 
-    updateGlide();
-    window.addEventListener("resize", updateGlide);
+    function setCurrent(link) {
+      links.forEach(function (candidate) {
+        if (candidate === link) {
+          candidate.setAttribute("aria-current", "location");
+        } else {
+          candidate.removeAttribute("aria-current");
+        }
+      });
+      navList.dataset.hasCurrent = primaryLinks.indexOf(link) !== -1 ? "true" : "false";
+      window.requestAnimationFrame(updateGlide);
+    }
+
+    function syncCurrentSection() {
+      var marker = window.scrollY + Math.min(window.innerHeight * 0.32, 280);
+      var current = null;
+
+      entries
+        .slice()
+        .sort(function (a, b) {
+          return (
+            a.target.getBoundingClientRect().top + window.scrollY -
+            (b.target.getBoundingClientRect().top + window.scrollY)
+          );
+        })
+        .forEach(function (entry) {
+          var top = entry.target.getBoundingClientRect().top + window.scrollY;
+          if (top <= marker) {
+            current = entry.link;
+          }
+        });
+
+      setCurrent(current);
+    }
+
+    links.forEach(function (link) {
+      link.addEventListener("click", function () {
+        setCurrent(link);
+      });
+    });
+
+    var observer = new IntersectionObserver(syncCurrentSection, {
+      rootMargin: "-25% 0px -70% 0px",
+      threshold: [0, 0.01, 0.25],
+    });
+    var observed = [];
+    entries.forEach(function (entry) {
+      if (observed.indexOf(entry.target) === -1) {
+        observed.push(entry.target);
+        observer.observe(entry.target);
+      }
+    });
+
+    syncCurrentSection();
+    window.addEventListener("load", syncCurrentSection, { once: true });
+    window.addEventListener("hashchange", syncCurrentSection);
+    window.addEventListener("resize", syncCurrentSection);
   }
 
   /* ------------------------------------------------------------- init */
