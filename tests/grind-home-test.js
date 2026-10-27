@@ -21,13 +21,13 @@ assert.equal((html.match(/<details>/g) || []).length, 5, "Five keyboard-accessib
 assert.doesNotMatch(html, /thegrind\.nl|slater\.app|website-files\.com|the-grind\.b-cdn/i, "No production dependencies from the reference site");
 assert.doesNotMatch(html, /id="app"|app.store|play.google|download (?:the|our) app/i, "No app/download section");
 assert.doesNotMatch(html, /class="about-section|id="about"/, "Repetitive homepage About section is removed");
-assert.match(html, /href="#our-story">Story<\/a>/, "Navigation now points to the concise opening story");
-assert.match(html, /href="#the-gym">Gym<\/a>/, "Navigation maps directly to the gym section");
-assert.match(html, /href="#founder-story" data-nav-sections="#founder-story,#certifications-achievements">Founder<\/a>/, "Founder nav tracks both founder sections");
+assert.match(html, /href="\/#our-story">Story<\/a>/, "Navigation now points to the concise opening story");
+assert.match(html, /href="\/#the-gym">Gym<\/a>/, "Navigation maps directly to the gym section");
+assert.match(html, /href="\/#founder-story" data-nav-sections="#founder-story,#certifications-achievements">Founder<\/a>/, "Founder nav tracks both founder sections");
 assert.match(html, /class="start-card" id="bmi"/, "BMI card has an on-page navigation target");
 assert.match(html, /class="questions section-wrap" id="faq"/, "FAQ has an on-page navigation target");
 assert.doesNotMatch(html, /href="(?:about|services|bmi|contact)\//, "Homepage links must not route to legacy HTML pages");
-assert.match(html, /aria-label="Footer navigation"><a href="#our-story">Story<\/a><a href="#the-gym">Gym<\/a>/, "Footer navigation maps to homepage sections");
+assert.match(html, /aria-label="Footer navigation"><a href="\/#our-story">Story<\/a><a href="\/#the-gym">Gym<\/a>/, "Footer navigation maps to homepage sections");
 assert.doesNotMatch(html, /STARTED IN 2025|BUILT TO BE UNIQUE/, "Removed section copy is not left behind");
 assert.equal((html.match(/class="founder-story-card"/g) || []).length, 7, "All seven founder story cards are present");
 assert.equal((html.match(/class="certificate-image"/g) || []).length, 14, "All fourteen original certificate images are present");
@@ -42,7 +42,10 @@ assert.match(html, /assets\/vendor\/gsap-3\.13\.0\.min\.js/, "Animation library 
 assert.match(motion, /media\.revert\(\)/, "Pause and media changes revert animation state");
 assert.match(motion, /visibilitychange/, "Continuous motion pauses in a hidden tab");
 assert.match(motion, /conditions\.reduced/, "System reduced-motion preference is respected");
-assert.match(motion, /pin: true/, "Desktop photo collage is scroll-driven");
+assert.match(motion, /pin: true/, "Photo collage is scroll-driven at every viewport");
+assert.match(css, /@media \(max-width: 768px\)[\s\S]*?\.floor-collage\s*\{\s*grid-template-columns:\s*24% 1fr 24%/, "Mobile preserves the desktop side-photo composition");
+assert.match(motion, /return i % 2 === 0 \? -distance : distance/, "Left photos enter from the left and right photos from the right");
+assert.match(motion, /y:\s*0/, "Collage side photos animate horizontally only");
 assert.match(html, /data-motion-toggle/, "Motion has an explicit pause control");
 
 // Optional animation dependencies must never prevent navigation/content.

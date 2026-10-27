@@ -4,21 +4,9 @@
     <loc>https://unique-fitness-website.adplixmarketingagency.workers.dev/</loc>
   </url>
   <url>
-    <loc>https://unique-fitness-website.adplixmarketingagency.workers.dev/about/</loc>
-  </url>
-  <url>
-    <loc>https://unique-fitness-website.adplixmarketingagency.workers.dev/bmi/</loc>
-  </url>
-  <url>
-    <loc>https://unique-fitness-website.adplixmarketingagency.workers.dev/contact/</loc>
-  </url>
-  <url>
-    <loc>https://unique-fitness-website.adplixmarketingagency.workers.dev/services/</loc>
-  </url>
-  <url>
     <loc>https://unique-fitness-website.adplixmarketingagency.workers.dev/blog/</loc>
   </url>
   <url>
-    <loc>https://unique-fitness-website.adplixmarketingagency.workers.dev/blog/post.html</loc>
+    <loc>https://unique-fitness-website.adplixmarketingagency.workers.dev/blog/post</loc>
   </url>
 </urlset>

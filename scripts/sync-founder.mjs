@@ -1,4 +1,4 @@
-// Render the original founder collection into both static pages.
+// Render the original founder collection into the standalone About page.
 // One content source keeps every photograph and certificate in sync.
 import { readFileSync, writeFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
@@ -14,7 +14,7 @@ const markerStart = "<!-- founder collection:start -->";
 const markerEnd = "<!-- founder collection:end -->";
 
 export function renderFounder(prefix = "") {
-  const visitHref = prefix ? `${prefix}contact/` : "#visit";
+  const visitHref = "/#visit";
   function photo(image, title, extra = "") {
     return `<a class="founder-photo ${extra}" href="${prefix}${escape(image.src)}" data-founder-photo data-photo-title="${escape(title)}" aria-label="View full image: ${escape(title)}">
       <img data-full-photo src="${prefix}${escape(image.src)}" alt="${escape(image.alt)}" width="${image.width}" height="${image.height}" style="--photo-ratio:${image.width} / ${image.height}" loading="lazy">
@@ -59,7 +59,7 @@ export function renderFounder(prefix = "") {
         </header>
         <div class="founder-intro">
           <figure class="founder-intro__portrait">
-            ${photo({ src: "assets/optimized/Gym-owner-body-pose.jpg", alt: "J. Vinoth, founder of Unique Fitness, in a bodybuilding pose", width: 1169, height: 1200 }, "J. Vinoth · Founder of Unique Fitness")}
+            ${photo({ src: "assets/images/founder/body-pose.jpg", alt: "J. Vinoth, founder of Unique Fitness, in a bodybuilding pose", width: 1169, height: 1200 }, "J. Vinoth · Founder of Unique Fitness")}
             <figcaption>J. VINOTH · FOUNDER, UNIQUE FITNESS</figcaption>
           </figure>
           <div class="founder-intro__copy">
@@ -69,7 +69,7 @@ export function renderFounder(prefix = "") {
             <div class="founder-intro__scrapbook">
               <svg class="founder-sketch" viewBox="0 0 220 150" aria-hidden="true"><path d="M15 120C55 10 187 15 171 73 164 100 92 104 92 59S147 3 203 29M183 9l22 19-28 12" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>
               <figure>
-                ${photo({ src: "assets/optimized/Gym-owner-achievements.jpg", alt: "The founder's achievement wall and magazine cover inside Unique Fitness Gym", width: 849, height: 1200 }, "The founder’s achievement wall")}
+                ${photo({ src: "assets/images/founder/achievement-wall.jpg", alt: "The founder's achievement wall and magazine cover inside Unique Fitness Gym", width: 849, height: 1200 }, "The founder’s achievement wall")}
                 <figcaption>THE ORIGINAL ACHIEVEMENT WALL.</figcaption>
               </figure>
             </div>
@@ -94,21 +94,21 @@ export function renderFounder(prefix = "") {
         </ol>
         <div class="founder-archive__controls">
           <p data-certificates-status aria-live="polite"></p>
-          <button class="founder-archive__toggle" type="button" data-certificates-toggle aria-expanded="false" aria-controls="founder-documents" hidden>Show all 14 certificates</button>
+          <button class="founder-archive__toggle" type="button" data-certificates-toggle aria-expanded="false" aria-controls="founder-documents" hidden>View all 14 certificates</button>
         </div>
-        <div class="founder-archive__end"><h3>YOUR CHAPTER<br>STARTS ON THE FLOOR.</h3><a class="founder-text-link" href="${visitHref}">Come train with us <span aria-hidden="true">${renderIcon(prefix ? "arrow-up-right" : "arrow-down")}</span></a></div>
+        <div class="founder-archive__end"><h3>YOUR CHAPTER<br>STARTS ON THE FLOOR.</h3><a class="founder-text-link" href="${visitHref}">Come train with us <span aria-hidden="true">${renderIcon("arrow-up-right")}</span></a></div>
       </div>
     </section>
     <dialog class="founder-viewer" aria-labelledby="founder-viewer-title" data-founder-viewer>
       <div class="founder-viewer__bar"><p id="founder-viewer-title"></p><button type="button" data-founder-close autofocus aria-label="Close full image">Close <span aria-hidden="true">×</span></button></div>
-      <div class="founder-viewer__image"><img data-full-photo src="${prefix}assets/optimized/Gym-owner-body-pose.jpg" alt="" width="1600" height="1600" data-founder-viewer-image></div>
+      <div class="founder-viewer__image"><img data-full-photo src="${prefix}assets/images/founder/body-pose.jpg" alt="" width="1600" height="1600" data-founder-viewer-image></div>
       <div class="founder-viewer__footer"><button type="button" data-founder-previous aria-label="Previous image">${renderIcon("arrow-left")} Previous</button><span data-founder-count aria-live="polite"></span><button type="button" data-founder-next aria-label="Next image">Next ${renderIcon("arrow-right")}</button></div>
     </dialog>
     ${markerEnd}`;
 }
 
 export function syncFounder() {
-  for (const [file, prefix] of [["index.html", ""], ["about/index.html", "../"]]) {
+  for (const [file, prefix] of [["about/index.html", "../"]]) {
     const path = join(root, file);
     let html = readFileSync(path, "utf8");
     const start = html.indexOf(markerStart);

@@ -49,6 +49,12 @@ async function resolveFile(requestUrl) {
   }
 
   if (!extname(requested)) {
+    const htmlFile = `${requested}.html`;
+    const htmlInfo = await stat(htmlFile).catch(() => null);
+    if (htmlInfo?.isFile()) {
+      return htmlFile;
+    }
+
     const indexFile = join(requested, "index.html");
     const indexInfo = await stat(indexFile).catch(() => null);
     return indexInfo?.isFile() ? indexFile : null;

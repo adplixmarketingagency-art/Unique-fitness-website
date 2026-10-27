@@ -18,12 +18,12 @@ assert.equal(content.chapters.length, 7);
 assert.equal(content.certificates.length, 13);
 assert.equal(originals.length, 21);
 assert.equal(new Set(originals).size, 21, "Original collection has 21 unique files");
-for (const directory of ["assets/provided/founder-timeline", "assets/provided/achievements"]) {
+for (const directory of ["assets/images/founder/timeline", "assets/images/certificates"]) {
   for (const file of fs.readdirSync(path.join(root, directory)).filter((file) => /\.jpg$/i.test(file))) {
     assert.ok(originals.includes(`${directory}/${file}`), `Archive must not omit ${file}`);
   }
 }
-for (const page of ["index.html", "about/index.html"]) {
+for (const page of ["about/index.html"]) {
   const html = read(page);
   assert.match(html, /assets\/founder\.css/);
   assert.match(html, /assets\/founder\.js/);
@@ -92,7 +92,7 @@ vm.runInNewContext(js, {
 assert.equal(previewCards.filter((card) => !card.hidden).length, 3, "Initially show only three certificates");
 assert.equal(previewToggle.hidden, false);
 assert.equal(toggleAttributes["aria-expanded"], "false");
-assert.equal(previewToggle.textContent, "Show all 14 certificates");
+assert.equal(previewToggle.textContent, "View all 14 certificates");
 onPreviewClick();
 assert.equal(previewCards.filter((card) => !card.hidden).length, 13, "Show all 13 entries containing 14 images");
 assert.equal(toggleAttributes["aria-expanded"], "true");

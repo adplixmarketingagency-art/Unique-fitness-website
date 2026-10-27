@@ -38,9 +38,13 @@ function localPathFromUrl(value, source) {
   }
 
   const base = path.dirname(path.join(root, source));
-  return value.startsWith("/")
+  const target = value.startsWith("/")
     ? path.join(root, cleanValue.slice(1))
     : path.resolve(base, cleanValue);
+  if (!path.extname(target) && fs.existsSync(`${target}.html`)) {
+    return `${target}.html`;
+  }
+  return target;
 }
 
 function checkHtml(relativePath) {
@@ -73,10 +77,10 @@ for (const file of htmlFiles) {
   checkHtml(file);
 }
 
-const replacementImage = "assets/optimized/footer-building-night.jpg";
+const replacementImage = "assets/images/location/exterior-night.jpg";
 assert.ok(fs.existsSync(path.join(root, replacementImage)), "replacement footer image must exist");
 for (const file of replacementImagePages) {
-  assert.match(read(file), /footer-building-night\.jpg/, `${file} must use the replacement footer image`);
+  assert.match(read(file), /assets\/images\/location\/exterior-night\.jpg/, `${file} must use the organized footer image`);
 }
 
 const data = read("assets/data.js");
@@ -98,7 +102,7 @@ assert.match(robots, /Allow:\s*\//i, "robots.txt must allow the public site");
 assert.match(robots, /Sitemap:\s*https:\/\/unique-fitness-website\.adplixmarketingagency\.workers\.dev\/sitemap\.xml/i, "robots.txt must point to the deployed sitemap");
 
 const worker = read("worker.js");
-for (const pathName of ["/index.html", "/about/index.html", "/bmi/index.html", "/contact/index.html", "/services/index.html", "/blog/index.html"]) {
+for (const pathName of ["/index.html", "/about/index.html", "/bmi/index.html", "/contact/index.html", "/services/index.html", "/blog/index.html", "/blog/post.html"]) {
   assert.match(worker, new RegExp(`"${pathName.replaceAll("/", "\\/")}"`), `worker must canonicalize ${pathName}`);
 }
 

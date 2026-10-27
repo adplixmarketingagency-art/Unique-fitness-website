@@ -5,7 +5,7 @@
       "id": "founder-chapter-2017-india",
       "title": "Mr. India · 2017",
       "photo": {
-        "src": "assets/provided/founder-timeline/2017-mr-india.jpg",
+        "src": "assets/images/founder/timeline/2017-mr-india.jpg",
         "alt": "Unique Fitness founder posing with his medal after winning Mr. India 2017 in New Delhi",
         "width": 853,
         "height": 1280
@@ -19,7 +19,7 @@
       "id": "founder-chapter-2017-tamil-nadu",
       "title": "Mr. Tamil Nadu · 2017",
       "photo": {
-        "src": "assets/provided/founder-timeline/2017-mr-tamil-nadu.jpg",
+        "src": "assets/images/founder/timeline/2017-mr-tamil-nadu.jpg",
         "alt": "Unique Fitness founder receiving the Mr. Tamil Nadu 2017 overall championship trophy in Chennai",
         "width": 640,
         "height": 481
@@ -33,7 +33,7 @@
       "id": "founder-chapter-2019-asia",
       "title": "Mr. Asia · 2019",
       "photo": {
-        "src": "assets/provided/founder-timeline/2019-mr-asia.jpg",
+        "src": "assets/images/founder/timeline/2019-mr-asia.jpg",
         "alt": "Unique Fitness founder standing on the Mr. Asia 2019 podium in Pondicherry",
         "width": 1024,
         "height": 682
@@ -47,7 +47,7 @@
       "id": "founder-chapter-2019-legacy",
       "title": "Two titles · 2019",
       "photo": {
-        "src": "assets/provided/founder-timeline/2019-championship-legacy.jpg",
+        "src": "assets/images/founder/timeline/2019-championship-legacy.jpg",
         "alt": "Black and white portrait of the founder marked Mr. India 2017 and Mr. Asia 2019",
         "width": 1120,
         "height": 1600
@@ -61,7 +61,7 @@
       "id": "founder-chapter-2020s",
       "title": "The work continues",
       "photo": {
-        "src": "assets/provided/founder-timeline/2020-mr-india-training.jpg",
+        "src": "assets/images/founder/timeline/2020-mr-india-training.jpg",
         "alt": "The founder training in a gym while wearing a Mr. India bodybuilding vest",
         "width": 1079,
         "height": 1439
@@ -75,7 +75,7 @@
       "id": "founder-chapter-2023",
       "title": "Pillars of Puducherry",
       "photo": {
-        "src": "assets/provided/founder-timeline/2023-pillars-of-puducherry.jpg",
+        "src": "assets/images/founder/timeline/2023-pillars-of-puducherry.jpg",
         "alt": "The founder receiving recognition at the Pillars of Puducherry ceremony",
         "width": 1160,
         "height": 720
@@ -89,7 +89,7 @@
       "id": "founder-chapter-2026",
       "title": "From record to responsibility",
       "photo": {
-        "src": "assets/provided/founder-timeline/2026-founder.jpg",
+        "src": "assets/images/founder/timeline/2026-founder.jpg",
         "alt": "Founder of Unique Fitness posing in the gym today",
         "width": 1024,
         "height": 1050
@@ -106,7 +106,7 @@
       "title": "Mr. Boss, Puducherry",
       "photos": [
         {
-          "src": "assets/provided/achievements/01-mr-boss-2009.png",
+          "src": "assets/images/certificates/01-mr-boss-2009.png",
           "alt": "Certificate of Honor recording J. Vinoth's fourth position in the Mr. Boss 2009 60 kilogram category in Puducherry",
           "width": 1448,
           "height": 1086
@@ -120,7 +120,7 @@
       "title": "Mr. Karaikal Classic",
       "photos": [
         {
-          "src": "assets/provided/achievements/02-mr-karaikal-classic-2010.png",
+          "src": "assets/images/certificates/02-mr-karaikal-classic-2010.png",
           "alt": "Participation certificate for the Mr. Karaikal Classic 2010 body-building competition in the 60 kilogram category",
           "width": 1469,
           "height": 1071
@@ -134,7 +134,7 @@
       "title": "Mr. Puducherry",
       "photos": [
         {
-          "src": "assets/provided/achievements/03-mr-puducherry-2013.png",
+          "src": "assets/images/certificates/03-mr-puducherry-2013.png",
           "alt": "Certificate of Honor recording J. Vinoth's fourth position at Mr. Puducherry 2013 in the 60 kilogram category",
           "width": 1450,
           "height": 1085
@@ -148,7 +148,7 @@
       "title": "Salem District championship",
       "photos": [
         {
-          "src": "assets/provided/achievements/04-tamil-nadu-championship-2016.png",
+          "src": "assets/images/certificates/04-tamil-nadu-championship-2016.png",
           "alt": "Tamil Nadu Body Builders Association certificate recording second place in the 65 kilogram category at Salem District competition in 2016",
           "width": 1500,
           "height": 1049
@@ -162,7 +162,7 @@
       "title": "A second state podium",
       "photos": [
         {
-          "src": "assets/provided/achievements/05-tamil-nadu-championship-2016-second.png",
+          "src": "assets/images/certificates/05-tamil-nadu-championship-2016-second.png",
           "alt": "Tamil Nadu Body Builders Association certificate recording third place in the 65 kilogram category at the 2016 open senior championship in Ariyalur",
           "width": 1500,
           "height": 1049
@@ -176,7 +176,7 @@
       "title": "Steel Man Tamil Nadu",
       "photos": [
         {
-          "src": "assets/provided/achievements/06-steel-man-tamil-nadu-2017.png",
+          "src": "assets/images/certificates/06-steel-man-tamil-nadu-2017.png",
           "alt": "Steel Man Tamil Nadu 2017 merit certificate recording second place in the 65 kilogram category in Chennai",
           "width": 1416,
           "height": 1111
@@ -190,7 +190,7 @@
       "title": "Mr. Tamil Nadu, 65 kg",
       "photos": [
         {
-          "src": "assets/provided/achievements/07-mr-tamil-nadu-2017-first.png",
+          "src": "assets/images/certificates/07-mr-tamil-nadu-2017-first.png",
           "alt": "Tamil Nadu Body Building Association merit certificate recording first place in the 65 kilogram category at Mr. Tamil Nadu 2017 in Chennai",
           "width": 1451,
           "height": 1084
@@ -204,7 +204,7 @@
       "title": "Overall state podium",
       "photos": [
         {
-          "src": "assets/provided/achievements/08-mr-tamil-nadu-2017-overall-third.png",
+          "src": "assets/images/certificates/08-mr-tamil-nadu-2017-overall-third.png",
           "alt": "Tamil Nadu Body Building Association merit certificate recording overall third place at Mr. Tamil Nadu 2017 in Chennai",
           "width": 1456,
           "height": 1080
@@ -218,7 +218,7 @@
       "title": "Mr. India, New Delhi",
       "photos": [
         {
-          "src": "assets/provided/achievements/09-senior-national-mr-india-2017.png",
+          "src": "assets/images/certificates/09-senior-national-mr-india-2017.png",
           "alt": "Merit certificate recording first place in the 60 kilogram category at the 54th Senior National Body Building Championship and Mr. India 2017 in New Delhi",
           "width": 1059,
           "height": 1485
@@ -232,13 +232,13 @@
       "title": "Mr. Asia, New Delhi",
       "photos": [
         {
-          "src": "assets/provided/achievements/10-mr-asia-2019-merit.png",
+          "src": "assets/images/certificates/10-mr-asia-2019-merit.png",
           "alt": "Ms. and Mr. Asia merit certificate recording third place for Vinoth in the 60 kilogram category at the 2019 championship in New Delhi",
           "width": 1073,
           "height": 1466
         },
         {
-          "src": "assets/provided/achievements/10-mr-asia-2019-delegate.png",
+          "src": "assets/images/certificates/10-mr-asia-2019-delegate.png",
           "alt": "NAC International Ms. and Mr. Asia 2019 delegate credential identifying J. Vinoth as an Indian bodybuilder",
           "width": 986,
           "height": 1594
@@ -252,7 +252,7 @@
       "title": "Green rank in karate",
       "photos": [
         {
-          "src": "assets/provided/achievements/11-karate-green-2024.png",
+          "src": "assets/images/certificates/11-karate-green-2024.png",
           "alt": "All India Martial Arts Training School karate grading certificate promoting Vinoth J to the Green rank on 20 October 2024",
           "width": 1448,
           "height": 1086
@@ -266,7 +266,7 @@
       "title": "Brown rank, grade four",
       "photos": [
         {
-          "src": "assets/provided/achievements/12-karate-brown-2025.png",
+          "src": "assets/images/certificates/12-karate-brown-2025.png",
           "alt": "All India Martial Arts Training School karate grading certificate showing Vinoth J at the Brown rank, grade four, dated 12 January 2025",
           "width": 1454,
           "height": 1082
@@ -280,7 +280,7 @@
       "title": "Brown rank, grade two",
       "photos": [
         {
-          "src": "assets/provided/achievements/13-karate-brown-2025-ii.png",
+          "src": "assets/images/certificates/13-karate-brown-2025-ii.png",
           "alt": "All India Martial Arts Training School karate grading certificate showing Vinoth J at the Brown rank, grade two, dated 13 April 2025",
           "width": 1415,
           "height": 1112

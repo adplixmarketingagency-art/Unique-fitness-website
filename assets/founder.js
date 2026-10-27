@@ -16,7 +16,7 @@
     function render() {
       cards.forEach(function (card, index) { card.hidden = !expanded && index >= 3; });
       toggle.setAttribute("aria-expanded", String(expanded));
-      toggle.textContent = expanded ? "Show fewer certificates" : "Show all " + total + " certificates";
+      toggle.textContent = expanded ? "Show fewer certificates" : "View all " + total + " certificates";
       status.textContent = expanded ? "Showing all " + total + " certificates" : "Showing 3 of " + total + " certificates";
     }
     // Progressive enhancement: the complete archive stays readable without JS.

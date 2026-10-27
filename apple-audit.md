@@ -17,7 +17,7 @@ None. No accessibility failures, no broken conventions that confuse users, and n
 - **Medium — The BMI calculator form lacks dynamic validation feedback beyond the submit event.** `entering-data.md`: "Validates dynamically." The form only validates on submit; no inline error messages appear as the user types.
   - **Fix:** Add `input` event listeners that show validation messages in real time (e.g., "Height must be between 100 and 250 cm").
 
-- **Low — The `og:image` and `twitter:image` meta tags reference `/assets/optimized/Outer-look.jpg` without an absolute URL.** This is a content/config issue, not a design issue, but it affects how the site appears when shared.
+- **Low — The `og:image` and `twitter:image` meta tags reference `/assets/images/location/exterior-day.jpg` without an absolute URL.** This is a content/config issue, not a design issue, but it affects how the site appears when shared.
   - **Fix:** Update meta tags with the full production URL once configured.
 
 ### Craft notes

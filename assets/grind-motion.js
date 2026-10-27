@@ -212,8 +212,11 @@
         }, 0)
           .from(".collage-tile:not(.collage-tile--main)", {
             scale: .35, opacity: 0,
-            x: function (i) { return (i % 2 ? -1 : 1) * (conditions.desktop ? 90 : 60); },
-            y: function (i) { return conditions.desktop ? 0 : (i < 2 ? 100 : -100); },
+            x: function (i) {
+              var distance = conditions.desktop ? 90 : 60;
+              return i % 2 === 0 ? -distance : distance;
+            },
+            y: 0,
             duration: 1.1, stagger: .08, ease: "power2.out",
           }, .15)
           .from(".collage-caption", { y: 22, opacity: 0, duration: .3 }, .85);

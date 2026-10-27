@@ -67,12 +67,13 @@ Do not expose private API keys in HTML or JavaScript. If the endpoint requires a
 
 ## Asset optimization notes
 
+- All site media lives under `assets/images/`, grouped by `brand`, `gym`, `founder`, `certificates`, `services`, and `location`.
 - Keep the original supplied images as source material and generate appropriately sized delivery variants rather than shipping oversized originals to every viewport.
 - Prefer AVIF or WebP for photographic assets when the deployment target supports them, with a fallback where needed. Pick a quality setting that preserves readable details and check the actual file size after export.
 - Provide intrinsic `width` and `height` values for content images to reduce layout shift, and lazy-load below-the-fold images where the page behavior allows it.
 - Use responsive image sizes for large hero or gallery images instead of downloading the largest file on small screens.
 - Keep decorative images out of the accessibility tree and give meaningful content images concise, descriptive alternative text.
-- The hand-authored [`assets/img/favicon.svg`](assets/img/favicon.svg) is a small original placeholder mark. It is not an approved official logo and should be replaced if a real logo is supplied.
+- The hand-authored [`assets/images/brand/favicon.svg`](assets/images/brand/favicon.svg) is a small original placeholder mark. It is not an approved official logo and should be replaced if a real logo is supplied.
 
 ## Deploy notes
 

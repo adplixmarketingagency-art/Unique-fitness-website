@@ -7,7 +7,8 @@ export default {
       "/bmi/index.html": "/bmi/",
       "/contact/index.html": "/contact/",
       "/services/index.html": "/services/",
-      "/blog/index.html": "/blog/"
+      "/blog/index.html": "/blog/",
+      "/blog/post.html": "/blog/post"
     };
     const target = canonicalRedirects[url.pathname];
 

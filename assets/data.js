@@ -20,10 +20,12 @@
       locality: "Mudaliarpet, Pondicherry"
     },
     navigation: [
-      { label: "Home", href: "/" },
-      { label: "About", href: "/about/" },
-      { label: "BMI", href: "/bmi/" },
-      { label: "Contact", href: "/contact/" }
+      { label: "Story", href: "/#our-story" },
+      { label: "Gym", href: "/#the-gym" },
+      { label: "Training", href: "/#training" },
+      { label: "Founder", href: "/#founder-story" },
+      { label: "Reviews", href: "/#reviews" },
+      { label: "Visit", href: "/#visit" }
     ],
     contact: {
       phoneDisplay: "099949 85599",
@@ -47,16 +49,16 @@
       sourceUrl: "https://www.justdial.com/Pondicherry/Unique-Unisex-Fitness-and-Gym-Kumaran-Nagar-Mudaliarpet/0413PX413-X413-250910211420-K1I9_BZDET"
     },
     assets: {
-      hero: "/assets/optimized/footer-building-night.jpg",
-      ownerFrontPose: "/assets/optimized/Gym-owner-front-pose.jpg",
-      ownerAchievements: "/assets/optimized/Gym-owner-achievements.jpg",
-      machine: "/assets/optimized/GYm-machine.jpg",
-      cardioMachine: "/assets/optimized/cardio-machine2.jpg",
-      dumbbellRack: "/assets/optimized/dumbell-rack.jpg",
-      entrance: "/assets/optimized/interior-entrance.jpg",
-      facilityWide: "/assets/optimized/wide-angle-click.jpg",
-      facilityDetail: "/assets/optimized/unnamed.jpg",
-      streetView: "/assets/provided/mudaliarpet-street-view.jpg"
+      hero: "/assets/images/location/exterior-night.jpg",
+      ownerFrontPose: "/assets/images/founder/front-pose.jpg",
+      ownerAchievements: "/assets/images/founder/achievement-wall.jpg",
+      machine: "/assets/images/gym/strength-machines.jpg",
+      cardioMachine: "/assets/images/gym/cardio-machines.jpg",
+      dumbbellRack: "/assets/images/gym/dumbbell-rack.jpg",
+      entrance: "/assets/images/gym/interior-entrance.jpg",
+      facilityWide: "/assets/images/gym/training-floor.jpg",
+      facilityDetail: "/assets/images/gym/equipment-detail.jpg",
+      streetView: "/assets/images/location/street-view.jpg"
     },
     testimonials: [
       {
@@ -81,7 +83,7 @@
         name: "Gym access",
         value: "Daily · 05:00–22:00",
         description: "The training floor is open every day, from first light to late evening.",
-        image: "/assets/optimized/GYm-machine.jpg",
+        image: "/assets/images/gym/strength-machines.jpg",
         imageAlt: "Strength training equipment inside Unique Fitness Gym"
       },
       {
@@ -89,7 +91,7 @@
         name: "Personal training",
         value: "One-to-one",
         description: "The listing lists “Get Your Own Trainer” as a service: one-to-one coaching at your pace.",
-        image: "/assets/provided/personal-training.jpg",
+        image: "/assets/images/services/personal-training.jpg",
         imageAlt: "Trainer coaching a client through a push-up during a personal training session"
       },
       {
@@ -97,7 +99,7 @@
         name: "CrossFit",
         value: "Listed session",
         description: "CrossFit is listed as a fitness option. Ask for current session times.",
-        image: "/assets/external/crossfit-skierg-jpg.jpg",
+        image: "/assets/images/services/crossfit-skierg.jpg",
         imageAlt: "Athlete training on a SkiErg, an open-licensed concept reference and not the gym"
       },
       {
@@ -105,7 +107,7 @@
         name: "Yoga",
         value: "Listed session",
         description: "Yoga is listed as a fitness option. Ask which sessions are running.",
-        image: "/assets/external/yoga-stretch-jpg.jpg",
+        image: "/assets/images/services/yoga-stretch.jpg",
         imageAlt: "Athlete stretching in a yoga hold, an open-licensed concept reference and not the gym"
       },
       {
@@ -113,7 +115,7 @@
         name: "Meditation",
         value: "Listed session",
         description: "Meditation appears in the listing categories. Confirm availability.",
-        image: "/assets/external/meditation-wellness-2026.jpg",
+        image: "/assets/images/services/meditation-wellness.jpg",
         imageAlt: "Quiet meditation moment, an open-licensed concept reference and not the gym"
       },
       {
@@ -121,7 +123,7 @@
         name: "Fitness centre",
         value: "Unisex floor",
         description: "A unisex centre, described by the listing as open to both men and women.",
-        image: "/assets/optimized/unnamed.jpg",
+        image: "/assets/images/gym/equipment-detail.jpg",
         imageAlt: "Machinery detail inside Unique Fitness Gym"
       }
     ]
