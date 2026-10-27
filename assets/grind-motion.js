@@ -50,7 +50,6 @@
       });
       toggle.setAttribute("aria-expanded", String(expanded));
       label.textContent = expanded ? "Show fewer certificates" : "View all " + total + " certificates";
-      toggle.lastElementChild.textContent = expanded ? "↑" : "↓";
       status.textContent = expanded
         ? "Showing all " + total + " certificates"
         : "Showing 3 of " + total + " certificates";

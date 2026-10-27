@@ -48,6 +48,10 @@ assert.match(css, /\.floor-collage::before[\s\S]*?radial-gradient/, "Founder glo
 assert.match(css, /\.collage-tile--founder\s*\{[^}]*background:\s*transparent/, "Founder tile does not expose a mismatched background panel");
 assert.match(motion, /return i % 2 === 0 \? -distance : distance/, "Left photos enter from the left and right photos from the right");
 assert.match(motion, /y:\s*0/, "Collage side photos animate horizontally only");
+assert.match(html, /assets\/icons\.css/, "Homepage loads the shared drawn-icon styles");
+assert.doesNotMatch(html, /[↗→↓↑]/, "Homepage arrows use SVG instead of platform-dependent emoji glyphs");
+assert.doesNotMatch(motion, /[↗→↓↑]/, "Dynamic controls do not inject platform-dependent emoji glyphs");
+assert.ok((html.match(/class="ui-icon"/g) || []).length >= 12, "Homepage CTAs use consistent drawn SVG arrows");
 assert.match(html, /data-motion-toggle/, "Motion has an explicit pause control");
 
 // Optional animation dependencies must never prevent navigation/content.

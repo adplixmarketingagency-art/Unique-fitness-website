@@ -340,6 +340,10 @@ main { overflow: clip; }
 .certificate-grid__controls p { color: #cececa; font-size: 13px; }
 .certificate-grid__toggle { flex-shrink: 0; color: white; cursor: pointer; }
 .certificate-grid__toggle[hidden] { display: none; }
+.certificate-grid__toggle-icon { transition: transform .25s ease; }
+.certificate-grid__toggle[aria-expanded="true"] .certificate-grid__toggle-icon { transform: rotate(180deg); }
+.gym-facts > a > span, .footer-bottom a { display: inline-flex; align-items: center; gap: .45em; }
+.footer-bottom a .ui-icon { font-size: 14px; }
 .motion-toggle { position: fixed; right: 20px; bottom: 18px; z-index: 90; display: flex; align-items: center; gap: 9px; min-height: 40px; border: 1px solid var(--red); padding: 8px 15px; border-radius: 50px; color: white; background: #090909; font-size: 12px; line-height: 1.2; box-shadow: 0 3px 14px #0006; }
 .motion-toggle[hidden] { display: none; }
 .motion-toggle > span:first-child { font-size: 13px; }
