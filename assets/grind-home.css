@@ -125,11 +125,13 @@ h2 { font-size: clamp(40px, 4.8vw, 76px); }
 .coach__copy p:first-of-type { color: var(--paper); }
 .coach__copy .pill { margin-top: 30px; }
 .review-score { justify-self: end; }
-.review-score > .stars { color: var(--red-text); font-size: 20px; }
-.review-score p { font-size: 14px; margin: 6px 0 14px; color: #dededb; }
+.review-score p { font-size: 14px; margin: 0 0 14px; color: #dededb; }
 .review-score p strong { font-size: 23px; margin-right: 6px; color: var(--paper); }
 .review-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
 .review { display: flex; flex-direction: column; min-height: 285px; border-radius: 10px; border: 1px solid #6b1a1d; padding: 27px; }
+.review__source { display: flex; align-items: center; justify-content: space-between; gap: 18px; margin-bottom: 17px; }
+.google-g { display: block; width: 22px; height: 22px; flex: 0 0 auto; }
+.review__stars { color: var(--red-text); font-size: 17px; letter-spacing: .09em; line-height: 1; white-space: nowrap; }
 .review__quote { font-family: Georgia, serif; font-size: 68px; height: 54px; line-height: 1; color: var(--red-text); }
 .review blockquote { font-size: clamp(23px, 2vw, 31px); line-height: 1.25; letter-spacing: -.03em; font-weight: 500; padding: 10px 0 32px; }
 .review figcaption { margin-top: auto; display: flex; flex-direction: column; gap: 4px; font-size: 12px; }

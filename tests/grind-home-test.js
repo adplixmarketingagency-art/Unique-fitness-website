@@ -55,6 +55,10 @@ assert.doesNotMatch(motion, /[↗→↓↑]/, "Dynamic controls do not inject pl
 assert.ok((html.match(/class="ui-icon"/g) || []).length >= 12, "Homepage CTAs use consistent drawn SVG arrows");
 assert.doesNotMatch(html, /data-motion-toggle|Pause motion/, "Obsolete motion pause control is removed");
 assert.doesNotMatch(css, /\.motion-toggle/, "Obsolete motion pause control styles are removed");
+assert.doesNotMatch(html, /class="review-score"><span class="stars"/, "The reviews heading no longer carries a detached star row");
+assert.equal((html.match(/class="review__source"/g) || []).length, 3, "Every review card has its own source and rating row");
+assert.equal((html.match(/class="google-g"/g) || []).length, 3, "Every review card shows the Google G logo");
+assert.equal((html.match(/class="review__stars"/g) || []).length, 3, "Every review card shows its five-star rating");
 
 // Optional animation dependencies must never prevent navigation/content.
 const vm = require("node:vm");
