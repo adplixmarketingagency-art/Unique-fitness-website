@@ -347,9 +347,6 @@ main { overflow: clip; }
 .certificate-grid__toggle[aria-expanded="true"] .certificate-grid__toggle-icon { transform: rotate(180deg); }
 .gym-facts > a > span, .footer-bottom a { display: inline-flex; align-items: center; gap: .45em; }
 .footer-bottom a .ui-icon { font-size: 14px; }
-.motion-toggle { position: fixed; right: 20px; bottom: 18px; z-index: 90; display: flex; align-items: center; gap: 9px; min-height: 40px; border: 1px solid var(--red); padding: 8px 15px; border-radius: 50px; color: white; background: #090909; font-size: 12px; line-height: 1.2; box-shadow: 0 3px 14px #0006; }
-.motion-toggle[hidden] { display: none; }
-.motion-toggle > span:first-child { font-size: 13px; }
 .pill:active { transform: scale(.97); transition-duration: .1s; }
 .site-nav__list a, .pill { position: relative; }
 @media (min-width: 769px) and (max-width: 1100px) {
@@ -387,7 +384,6 @@ main { overflow: clip; }
   .certificate-card--pair .certificate-card__media { grid-template-columns: 1fr; }
   .certificate-card__media a { min-height: 0; }
   .certificate-grid__controls { align-items: flex-start; flex-direction: column; margin-top: 42px; }
-  .motion-toggle { right: 14px; bottom: 12px; min-height: 38px; font-size: 12px; }
 }
 @media (max-width: 380px) {
   .hero-emblem { width: 64px; top: 124px; right: 15px; }

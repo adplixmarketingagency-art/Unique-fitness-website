@@ -78,10 +78,6 @@
       return;
     }
     gsap.registerPlugin(ScrollTrigger);
-    var toggle = document.querySelector("[data-motion-toggle]");
-    var label = toggle.querySelector("[data-motion-label]");
-    var prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)");
-    var userPaused = false;
     var media;
     var playedIntro = false;
 
@@ -95,16 +91,8 @@
         reduced: "(prefers-reduced-motion: reduce)",
       }, function (context) {
         var conditions = context.conditions;
-        var disabled = userPaused || conditions.reduced;
+        var disabled = conditions.reduced;
         document.body.dataset.motionStatus = disabled ? "paused" : "running";
-        toggle.hidden = false;
-        toggle.setAttribute("aria-pressed", String(disabled));
-        label.textContent = disabled ? "Motion paused" : "Pause motion";
-        toggle.setAttribute("aria-label", conditions.reduced
-          ? "Reduced motion is enabled in your device settings"
-          : disabled ? "Play animations" : "Pause animations");
-        // The system preference wins. The control remains explanatory, not deceptive.
-        toggle.disabled = conditions.reduced;
         if (disabled) return;
 
         var cleanups = [];
@@ -138,17 +126,30 @@
         });
 
         var hero = document.querySelector(".grind-hero");
-        // Never replay the opening cover over someone already reading further down.
-        if (!playedIntro && window.scrollY < 100 && !window.location.hash) {
+        var storyDeepLink = window.location.hash === "#our-story";
+        // The shared homepage link includes #our-story, so keep its first-load
+        // wordmark reveal visible as a fixed cover while preserving the anchor.
+        // Other deep links still open directly at their requested content.
+        if (!playedIntro && ((window.scrollY < 100 && !window.location.hash) || storyDeepLink)) {
           playedIntro = true;
-          var intro = gsap.timeline({ defaults: { ease: "power3.out" } });
-          intro.set(".hero-intro-brand", { display: "block" }, 0)
+          var intro = gsap.timeline({
+            defaults: { ease: "power3.out" },
+            onComplete: function () {
+              if (!storyDeepLink) return;
+              var story = document.querySelector("#our-story");
+              if (story) story.scrollIntoView({ block: "start", behavior: "auto" });
+            },
+          });
+          intro.set(".hero-intro-brand", {
+            display: "block",
+            position: storyDeepLink ? "fixed" : "absolute",
+          }, 0)
             .from(".hero-intro-brand__line > span", {
               yPercent: 115, duration: .65, stagger: .1,
             }, .05)
             .from(".hero-intro-brand__rule", { scaleX: 0, duration: .45 }, .42)
             .to(".hero-intro-brand", { yPercent: -100, duration: .6, ease: "power3.inOut" }, 1)
-            .set(".hero-intro-brand", { display: "none" }, 1.6)
+            .set(".hero-intro-brand", { display: "none", clearProps: "position" }, 1.6)
             .fromTo(".grind-hero__image", { scale: 1.08 }, { scale: 1, duration: 1.2 }, .75)
             .from(".site-header > *", { y: -22, opacity: 0, stagger: .1, duration: .7 }, .85)
             .from("#hero-title .heading-line-inner", { yPercent: 115, rotate: 2, duration: .8, stagger: .1 }, 1.05)
@@ -245,14 +246,6 @@
         return function () { cleanups.forEach(function (cleanup) { cleanup(); }); };
       });
     }
-    toggle.addEventListener("click", function () {
-      userPaused = !userPaused;
-      build();
-    });
-    // matchMedia rebuilds animation contexts on a live system preference change.
-    prefersReduced.addEventListener("change", function () {
-      if (!prefersReduced.matches) userPaused = false;
-    });
     build();
     if (document.fonts) {
       document.fonts.ready.then(function () { ScrollTrigger.refresh(); });
