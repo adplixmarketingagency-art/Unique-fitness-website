@@ -110,7 +110,7 @@
         toggle.disabled = reduced || globalPaused;
         toggle.setAttribute("aria-pressed", String(paused));
         toggle.textContent = reduced ? "Reduced motion enabled"
-          : globalPaused ? "Founder motion paused" : paused ? "Play founder motion" : "Pause founder motion";
+          : globalPaused ? "Mentor motion paused" : paused ? "Play mentor motion" : "Pause mentor motion";
         if (paused) return;
 
         document.querySelectorAll("[data-founder-heading], .founder-intro__copy > h3, .founder-story-heading > div").forEach(function (element) {

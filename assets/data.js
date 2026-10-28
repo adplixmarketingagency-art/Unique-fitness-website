@@ -23,7 +23,7 @@
       { label: "Story", href: "/#our-story" },
       { label: "Gym", href: "/#the-gym" },
       { label: "Training", href: "/#training" },
-      { label: "Founder", href: "/#founder-story" },
+      { label: "Mentor", href: "/#founder-story" },
       { label: "Reviews", href: "/#reviews" },
       { label: "Visit", href: "/#visit" }
     ],

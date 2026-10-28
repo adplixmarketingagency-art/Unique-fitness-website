@@ -23,7 +23,7 @@ assert.doesNotMatch(html, /id="app"|app.store|play.google|download (?:the|our) a
 assert.doesNotMatch(html, /class="about-section|id="about"/, "Repetitive homepage About section is removed");
 assert.match(html, /href="\/#our-story">Story<\/a>/, "Navigation now points to the concise opening story");
 assert.match(html, /href="\/#the-gym">Gym<\/a>/, "Navigation maps directly to the gym section");
-assert.match(html, /href="\/#founder-story" data-nav-sections="#founder-story,#certifications-achievements">Founder<\/a>/, "Founder nav tracks both founder sections");
+assert.match(html, /href="\/#founder-story" data-nav-sections="#founder-story,#certifications-achievements">Mentor<\/a>/, "Mentor nav tracks both mentor sections");
 assert.match(html, /class="start-card" id="bmi"/, "BMI card has an on-page navigation target");
 assert.match(html, /class="questions section-wrap" id="faq"/, "FAQ has an on-page navigation target");
 assert.doesNotMatch(html, /href="(?:about|services|bmi|contact)\//, "Homepage links must not route to legacy HTML pages");
@@ -44,7 +44,8 @@ assert.match(motion, /visibilitychange/, "Continuous motion pauses in a hidden t
 assert.match(motion, /conditions\.reduced/, "System reduced-motion preference is respected");
 assert.match(motion, /pin: true/, "Photo collage is scroll-driven at every viewport");
 assert.match(css, /@media \(max-width: 768px\)[\s\S]*?\.floor-collage\s*\{\s*grid-template-columns:\s*24% 1fr 24%/, "Mobile preserves the desktop side-photo composition");
-assert.match(css, /\.floor-collage::before[\s\S]*?radial-gradient/, "Founder glow blends across the full collage instead of a rectangular tile");
+assert.match(css, /\.floor-collage::before[\s\S]*?radial-gradient/, "Mentor glow blends across the full collage instead of a rectangular tile");
+assert.match(css, /@media \(min-width: 769px\)[\s\S]*?\.collage-tile--founder img\s*\{[^}]*transform:\s*scale\(1\.35\)/, "Desktop mentor portrait is visibly enlarged without changing mobile sizing");
 assert.match(css, /\.collage-tile--founder\s*\{[^}]*background:\s*transparent/, "Founder tile does not expose a mismatched background panel");
 assert.match(motion, /return i % 2 === 0 \? -distance : distance/, "Left photos enter from the left and right photos from the right");
 assert.match(motion, /y:\s*0/, "Collage side photos animate horizontally only");
