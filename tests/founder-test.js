@@ -14,6 +14,32 @@ const originals = [
   ...content.certificates.flatMap((certificate) => certificate.photos.map((photo) => photo.src)),
 ];
 
+for (const index of [0, 4]) {
+  const chapter = content.chapters[index];
+  assert.equal(chapter.photo.width, 941, `Card ${index + 1} uses the replacement photo width`);
+  assert.equal(chapter.photo.height, 1672, `Card ${index + 1} uses the replacement photo height`);
+  for (const page of ["index.html", "about/index.html"]) {
+    const card = read(page).split(`id="${chapter.id}"`)[1]?.split("</li>")[0];
+    assert.ok(card, `${page} includes replacement card ${index + 1}`);
+    assert.ok(card.includes(`href="${page === "about/index.html" ? "../" : ""}${chapter.photo.src}"`), `${page} opens the replacement photo`);
+    assert.ok(card.includes(`src="${page === "about/index.html" ? "../" : ""}${chapter.photo.src}"`), `${page} displays the replacement photo`);
+    assert.ok(card.includes(`alt="${chapter.photo.alt}"`), `${page} describes the replacement photo`);
+    assert.match(card, /width="941" height="1672"/, `${page} preserves the replacement photo dimensions`);
+  }
+}
+
+const brownGradeTwo = content.certificates.find((certificate) => certificate.title === "Brown rank, grade two").photos[0];
+assert.equal(brownGradeTwo.width, 1414);
+assert.equal(brownGradeTwo.height, 1112);
+for (const page of ["index.html", "about/index.html"]) {
+  const html = read(page);
+  const source = `${page === "about/index.html" ? "../" : ""}${brownGradeTwo.src}`;
+  assert.ok(html.includes(`href="${source}"`), `${page} opens the replacement Brown Grade II certificate`);
+  const image = [...html.matchAll(/<img\b[^>]+>/g)].find(([tag]) => tag.includes(`src="${source}"`))?.[0];
+  assert.ok(image, `${page} displays the replacement Brown Grade II certificate`);
+  assert.match(image, /width="1414" height="1112"/);
+}
+
 assert.equal(content.chapters.length, 7);
 assert.equal(content.certificates.length, 13);
 assert.equal(originals.length, 21);
