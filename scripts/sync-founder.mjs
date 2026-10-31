@@ -15,6 +15,7 @@ const markerEnd = "<!-- founder collection:end -->";
 
 export function renderFounder(prefix = "") {
   const visitHref = "/#visit";
+  const certificateCount = content.certificates.reduce((total, certificate) => total + certificate.photos.length, 0);
   function photo(image, title, extra = "") {
     return `<a class="founder-photo ${extra}" href="${prefix}${escape(image.src)}" data-founder-photo data-photo-title="${escape(title)}" aria-label="View full image: ${escape(title)}">
       <img data-full-photo src="${prefix}${escape(image.src)}" alt="${escape(image.alt)}" width="${image.width}" height="${image.height}" style="--photo-ratio:${image.width} / ${image.height}" loading="lazy">
@@ -55,12 +56,12 @@ export function renderFounder(prefix = "") {
       <div class="founder-wrap">
         <header class="founder-heading">
           <h2 id="founder-title" data-founder-heading>THE MAN BEHIND<br><span>THE MOVEMENT.</span></h2>
-          <div><p>Meet J. Vinoth, the founder of Unique Fitness. From the competition floor to your training floor, this is the work behind the name.</p><a class="founder-text-link" href="#certifications-achievements">Certificates &amp; achievements <span aria-hidden="true">${renderIcon("arrow-up-right")}</span></a></div>
+          <div><p>Meet J. Vinoth, the mentor of Unique Fitness. From the competition floor to your training floor, this is the work behind the name.</p><a class="founder-text-link" href="#certifications-achievements">Certificates &amp; achievements <span aria-hidden="true">${renderIcon("arrow-up-right")}</span></a></div>
         </header>
         <div class="founder-intro">
           <figure class="founder-intro__portrait">
-            ${photo({ src: "assets/images/founder/body-pose.jpg", alt: "J. Vinoth, founder of Unique Fitness, in a bodybuilding pose", width: 1169, height: 1200 }, "J. Vinoth · Founder of Unique Fitness")}
-            <figcaption>J. VINOTH · FOUNDER, UNIQUE FITNESS</figcaption>
+            ${photo({ src: "assets/images/founder/body-pose.jpg", alt: "J. Vinoth, mentor of Unique Fitness, in a bodybuilding pose", width: 1169, height: 1200 }, "J. Vinoth · Mentor of Unique Fitness")}
+            <figcaption>J. VINOTH · MENTOR, UNIQUE FITNESS</figcaption>
           </figure>
           <div class="founder-intro__copy">
             <h3>YEARS OF WORK.<br>ONE UNIQUE STORY.</h3>
@@ -69,7 +70,7 @@ export function renderFounder(prefix = "") {
             <div class="founder-intro__scrapbook">
               <svg class="founder-sketch" viewBox="0 0 220 150" aria-hidden="true"><path d="M15 120C55 10 187 15 171 73 164 100 92 104 92 59S147 3 203 29M183 9l22 19-28 12" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>
               <figure>
-                ${photo({ src: "assets/images/founder/achievement-wall.jpg", alt: "The founder's achievement wall and magazine cover inside Unique Fitness Gym", width: 849, height: 1200 }, "The founder’s achievement wall")}
+                ${photo({ src: "assets/images/founder/achievement-wall.jpg", alt: "The mentor's achievement wall and magazine cover inside Unique Fitness Gym", width: 849, height: 1200 }, "The mentor’s achievement wall")}
                 <figcaption>THE ORIGINAL ACHIEVEMENT WALL.</figcaption>
               </figure>
             </div>
@@ -77,9 +78,9 @@ export function renderFounder(prefix = "") {
         </div>
         <div class="founder-story-heading" id="founder-story">
           <div><h3>BEFORE THE GYM.<br>THERE WAS THE GRIND.</h3><p>Seven original photographs. Seven chapters. Scroll through the story.</p></div>
-          <button class="founder-motion-control" type="button" data-founder-toggle aria-pressed="false" hidden>Pause founder motion</button>
+          <button class="founder-motion-control" type="button" data-founder-toggle aria-pressed="false" hidden>Pause mentor motion</button>
         </div>
-        <ol class="founder-stack" aria-label="Founder’s story in seven chapters">${chapters}
+        <ol class="founder-stack" aria-label="Mentor’s story in seven chapters">${chapters}
         </ol>
         <div class="founder-story-footer"><span>THE WORK NEVER STOPS.</span><a class="founder-text-link" href="#certifications-achievements">The record behind the story <span aria-hidden="true">${renderIcon("arrow-down")}</span></a></div>
       </div>
@@ -88,13 +89,13 @@ export function renderFounder(prefix = "") {
       <div class="founder-wrap">
         <header class="founder-heading">
           <h2 id="achievements-title" data-founder-heading>THE WORK.<br><span>ON THE RECORD.</span></h2>
-          <div><p>Every original certificate and credential, from 2009 to 2025. Bodybuilding titles, national and international competition, and the latest karate grades.</p><p class="founder-archive__hint">14 original documents · Select any image to read it in full.</p></div>
+          <div><p>Every certificate and credential, from 2009 to 2025. Bodybuilding titles, national and international competition, and the latest karate grades.</p><p class="founder-archive__hint">${certificateCount} documents · Select any image to read it in full.</p></div>
         </header>
         <ol class="founder-documents" id="founder-documents" aria-label="Certificates and achievements, 2009 to 2025">${documents}
         </ol>
         <div class="founder-archive__controls">
           <p data-certificates-status aria-live="polite"></p>
-          <button class="founder-archive__toggle" type="button" data-certificates-toggle aria-expanded="false" aria-controls="founder-documents" hidden>View all 14 certificates</button>
+          <button class="founder-archive__toggle" type="button" data-certificates-toggle aria-expanded="false" aria-controls="founder-documents" hidden>View all ${certificateCount} certificates</button>
         </div>
         <div class="founder-archive__end"><h3>YOUR CHAPTER<br>STARTS ON THE FLOOR.</h3><a class="founder-text-link" href="${visitHref}">Come train with us <span aria-hidden="true">${renderIcon("arrow-up-right")}</span></a></div>
       </div>

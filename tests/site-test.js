@@ -112,5 +112,6 @@ assert.doesNotMatch(htmlFiles.map(read).join("\n"), /<meta[^>]+(?:noindex|nofoll
 
 require("./hero-glow-test.js");
 require("./grind-home-test.js");
+require("./events-test.js");
 
 console.log(`site tests passed: ${htmlFiles.length} HTML pages, local links/assets, JSON-LD, runtime, lockfile, and Docker checks`);

@@ -1,5 +1,5 @@
 {
-  "source": "Original About page founder timeline and certificate archive; all 21 original files preserved.",
+  "source": "Founder timeline and certificate archive; all 21 original files preserved, plus a privacy-redacted copy of the supplied 2025 black belt certificate.",
   "chapters": [
     {
       "id": "founder-chapter-2017-india",
@@ -49,8 +49,8 @@
       "photo": {
         "src": "assets/images/founder/timeline/2019-championship-legacy.jpg",
         "alt": "Black and white portrait of the mentor marked Mr. India 2017 and Mr. Asia 2019",
-        "width": 1120,
-        "height": 1600
+        "width": 1014,
+        "height": 1494
       },
       "caption": "Mr. India 2017 · Mr. Asia 2019",
       "meta": "Mr. India 2017 · Mr. Asia 2019",
@@ -101,6 +101,48 @@
     }
   ],
   "certificates": [
+    {
+      "year": "2019",
+      "title": "Mr. Asia, New Delhi",
+      "photos": [
+        {
+          "src": "assets/images/certificates/10-mr-asia-2019-merit.png",
+          "alt": "Ms. and Mr. Asia merit certificate recording third place for Vinoth in the 60 kilogram category at the 2019 championship in New Delhi",
+          "width": 1073,
+          "height": 1466
+        }
+      ],
+      "meta": "Third place · 60 kg category · International stage",
+      "description": "At the Ms. & Mr. Asia Championships in New Delhi, the certificate records third place in the 60 kg category on 1–2 February 2019."
+    },
+    {
+      "year": "2017",
+      "title": "Mr. India, New Delhi",
+      "photos": [
+        {
+          "src": "assets/images/certificates/09-senior-national-mr-india-2017.png",
+          "alt": "Merit certificate recording first place in the 60 kilogram category at the 54th Senior National Body Building Championship and Mr. India 2017 in New Delhi",
+          "width": 1059,
+          "height": 1485
+        }
+      ],
+      "meta": "54th Senior National Championship · First place · 60 kg",
+      "description": "The defining national record: first place in the 60 kg body-weight category at the 54th Senior National Body Building Championship and Mr. India 2017 in New Delhi."
+    },
+    {
+      "year": "2025",
+      "title": "Karate black belt, 1st Dan",
+      "photos": [
+        {
+          "src": "assets/images/certificates/14-karate-black-belt-2025.webp",
+          "alt": "World Bamboo–Aikido Federation certificate awarding J. Vinoth Black Belt, 1st Dan (Sho-Dan), on 1 August 2025; personal details redacted",
+          "width": 720,
+          "height": 1017
+        }
+      ],
+      "meta": "Black Belt · 1st Dan (Sho-Dan) · 1 August 2025",
+      "description": "Issued by the World Bamboo–Aikido Federation on 1 August 2025, this certificate recognises J. Vinoth’s completion of its training course and promotion to Black Belt, 1st Dan (“Sho-Dan”)."
+    },
     {
       "year": "2009",
       "title": "Mr. Boss, Puducherry",
@@ -214,29 +256,9 @@
       "description": "A second Mr. Tamil Nadu 2017 record in the collection recognises an overall third-place result at the Bobs Classics state body-building championship in Chennai."
     },
     {
-      "year": "2017",
-      "title": "Mr. India, New Delhi",
-      "photos": [
-        {
-          "src": "assets/images/certificates/09-senior-national-mr-india-2017.png",
-          "alt": "Merit certificate recording first place in the 60 kilogram category at the 54th Senior National Body Building Championship and Mr. India 2017 in New Delhi",
-          "width": 1059,
-          "height": 1485
-        }
-      ],
-      "meta": "54th Senior National Championship · First place · 60 kg",
-      "description": "The defining national record: first place in the 60 kg body-weight category at the 54th Senior National Body Building Championship and Mr. India 2017 in New Delhi."
-    },
-    {
       "year": "2019",
-      "title": "Mr. Asia, New Delhi",
+      "title": "Mr. Asia delegate credential",
       "photos": [
-        {
-          "src": "assets/images/certificates/10-mr-asia-2019-merit.png",
-          "alt": "Ms. and Mr. Asia merit certificate recording third place for Vinoth in the 60 kilogram category at the 2019 championship in New Delhi",
-          "width": 1073,
-          "height": 1466
-        },
         {
           "src": "assets/images/certificates/10-mr-asia-2019-delegate.png",
           "alt": "NAC International Ms. and Mr. Asia 2019 delegate credential identifying J. Vinoth as an Indian bodybuilder",
@@ -244,8 +266,8 @@
           "height": 1594
         }
       ],
-      "meta": "Third place · 60 kg category · International stage",
-      "description": "At the Ms. & Mr. Asia Championships in New Delhi, the certificate records third place in the 60 kg category on 1–2 February 2019."
+      "meta": "NAC International · Indian competitor",
+      "description": "The companion delegate credential identifies J. Vinoth as an Indian bodybuilder at the 2019 Ms. & Mr. Asia Championships."
     },
     {
       "year": "2024",

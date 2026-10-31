@@ -87,6 +87,8 @@
       media.add({
         all: "(min-width: 0px)",
         desktop: "(min-width: 900px)",
+        // Rebuild at the portrait's CSS breakpoint so its final scale stays in sync.
+        compact: "(max-width: 768px)",
         fine: "(hover: hover) and (pointer: fine)",
         reduced: "(prefers-reduced-motion: reduce)",
       }, function (context) {

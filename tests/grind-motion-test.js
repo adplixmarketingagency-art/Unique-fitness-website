@@ -12,7 +12,8 @@ function run({ width = 390, fine = false, reduced = false, hash = "", scrollY = 
   const body = { dataset: {} };
   const matches = (query) => query.includes("reduced-motion") ? reduced
     : query.includes("pointer") ? fine
-      : width >= Number(query.match(/min-width:\s*(\d+)/)?.[1] || 0);
+      : query.includes("max-width") ? width <= Number(query.match(/max-width:\s*(\d+)/)[1])
+        : width >= Number(query.match(/min-width:\s*(\d+)/)?.[1] || 0);
   const animation = {};
   for (const method of ["set", "from", "fromTo", "to", "paused"]) {
     animation[method] = (...args) => { calls.push({ method, args }); return animation; };
